@@ -1,0 +1,499 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+.desktop {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("images/wallpaper.jpeg");
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   DESKTOP ICONS
+   ========================= */
+
+.desktop-icon {
+    width: 90px;
+
+    margin: 20px;
+
+    text-align: center;
+
+    color: white;
+
+    font-family: monospace;
+
+    cursor: default;
+
+    user-select: none;
+}
+
+.desktop-icon .icon {
+    font-size: 40px;
+
+    margin-bottom: 5px;
+
+    text-shadow: 2px 2px 3px black;
+}
+
+.desktop-icon span {
+    font-size: 12px;
+
+    text-shadow: 1px 1px 2px black;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================
+   TASKBAR
+   ========================= */
+
+.taskbar {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    background: #202020;
+
+    border-top: 2px solid #555;
+}
+
+.start-button {
+    margin-left: 6px;
+
+    padding: 7px 18px;
+
+    background: #333;
+
+    border: 1px solid #777;
+
+    color: white;
+
+    font-family: monospace;
+}
+
+.clock {
+    margin-left: auto;
+
+    margin-right: 15px;
+
+    color: white;
+
+    font-family: monospace;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   WINDOWS
+   ========================= */
+
+.computer-window {
+    position: absolute;
+
+    top: 100px;
+    left: 220px;
+
+    width: 420px;
+
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 90px);
+
+    background: #eeeeee;
+
+    border: 2px solid #333;
+
+    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.45);
+
+    color: #111;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   WINDOW HEADER
+   ========================= */
+
+.window-header {
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 8px;
+
+    background: #333;
+
+    color: white;
+
+    font-family: monospace;
+}
+
+.close-button {
+    margin-left: auto;
+
+    width: 25px;
+    height: 23px;
+
+    border: 1px solid #777;
+
+    background: #ddd;
+
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #aaa;
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
+
+.window-content {
+    padding: 15px;
+
+    max-height: 60vh;
+
+    overflow-y: auto;
+}
+
+
+/* =========================
+   FILES
+   ========================= */
+
+.file {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px;
+
+    font-family: monospace;
+
+    cursor: pointer;
+
+    border: 1px solid transparent;
+}
+
+.file:hover {
+    background: #ddd;
+
+    border-color: #aaa;
+}
+
+.file-icon {
+    width: 30px;
+
+    font-size: 24px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   TEXT FILES
+   ========================= */
+
+.file-window {
+    width: 430px;
+}
+
+.file-content {
+    padding: 20px;
+
+    background: #f5f5f5;
+
+    font-family: monospace;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+.file-content h3 {
+    margin-top: 0;
+}
+
+.file-content p {
+    margin: 10px 0;
+}
+
+
+/* THE ONE CHANGING ELEMENT */
+
+.strange-message {
+    color: #8b0000;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   PHOTOS
+   ========================= */
+
+.photos-window {
+    width: 650px;
+}
+
+.photo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.photo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.photo img {
+    width: 180px;
+    height: 110px;
+
+    object-fit: cover;
+
+    border: 2px solid #777;
+}
+
+.photo span {
+    white-space: nowrap;
+}
+
+/* =========================
+   BROWSER
+   ========================= */
+
+.browser-window {
+    width: 600px;
+
+    height: 400px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.browser-toolbar {
+    display: flex;
+
+    gap: 5px;
+
+    padding: 6px;
+
+    background: #ccc;
+}
+
+.browser-button {
+    width: 30px;
+}
+
+.address-bar {
+    flex: 1;
+
+    min-width: 0;
+
+    font-family: monospace;
+}
+
+.browser-page {
+    padding: 20px;
+
+    background: white;
+
+    overflow-y: auto;
+
+    overflow-wrap: anywhere;
+}
+
+.browser-page h1 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   NOTES
+   ========================= */
+
+.notes-content {
+    padding: 15px;
+
+    background: #fffef2;
+
+    font-family: monospace;
+}
+
+.note-line {
+    display: flex;
+
+    gap: 15px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.note-line span {
+    color: #888;
+}
+
+.note-line p {
+    margin: 0;
+}
+
+
+/* =========================
+   WARNING
+   ========================= */
+
+.warning-content {
+    padding: 25px;
+
+    text-align: center;
+
+    font-family: monospace;
+}
+
+.warning-icon {
+    font-size: 40px;
+}
+
+.warning-button {
+    padding: 6px 25px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .computer-window {
+        top: 60px;
+        left: 20px;
+    }
+
+    .photos-window {
+        width: 420px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* =========================
+   PHOTO PREVIEW
+   ========================= */
+
+.photo-preview {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    z-index: 1000;
+}
+
+.preview-window {
+    width: 700px;
+    max-width: 90vw;
+
+    max-height: 90vh;
+
+    background: #eeeeee;
+
+    border: 2px solid #333;
+
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.preview-content {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #111;
+
+    max-height: 80vh;
+
+    overflow: auto;
+}
+
+.preview-content img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 65vh;
+
+    width: auto;
+    height: auto;
+
+    margin: 0 auto;
+}
+
+.preview-name {
+    margin-top: 12px;
+
+    color: white;
+
+    font-family: monospace;
+
+    font-size: 12px;
+}
