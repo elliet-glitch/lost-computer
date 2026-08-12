@@ -1,11 +1,6 @@
-/* ==========================================================
-   MACINTOSH LOST COMPUTER
-   ========================================================== */
-
-
-/* ==========================================================
+/* ==========================================
    RESET
-   ========================================================== */
+   ========================================== */
 
 * {
     box-sizing: border-box;
@@ -15,10 +10,8 @@ html,
 body {
     width: 100%;
     height: 100%;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
 }
 
@@ -29,14 +22,12 @@ body {
         "Helvetica Neue",
         Arial,
         sans-serif;
-
-    background: #111;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DESKTOP
-   ========================================================== */
+   ========================================== */
 
 .desktop {
 
@@ -62,9 +53,9 @@ body {
 }
 
 
-/* ==========================================================
+/* ==========================================
    MENU BAR
-   ========================================================== */
+   ========================================== */
 
 .menu-bar {
 
@@ -74,8 +65,7 @@ body {
     left: 0;
 
     width: 100%;
-
-    height: 29px;
+    height: 30px;
 
     display: flex;
 
@@ -83,29 +73,29 @@ body {
 
     justify-content: space-between;
 
-    padding: 0 10px;
+    padding:
+        0 12px;
 
     background:
-        rgba(245, 245, 245, 0.88);
+        rgba(245,245,245,0.82);
 
     backdrop-filter:
-        blur(18px);
+        blur(15px);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(15px);
 
     border-bottom:
-        1px solid rgba(0, 0, 0, 0.15);
-
-    color: #111;
+        1px solid rgba(0,0,0,0.15);
 
     z-index: 5000;
+
+    color: #111;
 
     font-size: 13px;
 
     box-shadow:
-        0 1px 3px
-        rgba(0, 0, 0, 0.12);
+        0 1px 4px rgba(0,0,0,0.12);
 }
 
 
@@ -116,93 +106,62 @@ body {
 
     align-items: center;
 
-    height: 100%;
-}
-
-
-.menu-left {
-    gap: 18px;
-}
-
-
-.menu-right {
-    gap: 14px;
-
-    font-size: 12px;
+    gap: 17px;
 }
 
 
 .apple-logo {
 
-    font-size: 20px;
+    font-size: 16px;
 
-    line-height: 1;
+    font-weight: bold;
 
     cursor: pointer;
 
-    width: 18px;
-
-    text-align: center;
-
-    transition:
-        transform 0.15s ease;
-}
-
-
-.apple-logo:hover {
-    transform: scale(1.08);
+    line-height: 1;
 }
 
 
 .menu-item {
 
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
     cursor: default;
-}
 
-
-.menu-item:hover,
-.active-menu:hover {
-
-    background:
-        rgba(0, 0, 0, 0.08);
-
-    padding:
-        0 6px;
-
-    margin:
-        0 -6px;
-
-    border-radius: 4px;
+    white-space: nowrap;
 }
 
 
 .active-menu {
+
     font-weight: 600;
 }
 
 
 .menu-status {
-    opacity: 0.85;
+
+    font-size: 12px;
+
+    white-space: nowrap;
 }
 
 
-/* ==========================================================
-   DESKTOP ICONS
-   ========================================================== */
+#menu-date,
+#clock {
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   DESKTOP ITEMS
+   ========================================== */
 
 .desktop-item {
 
     position: absolute;
 
-    width: 110px;
+    width: 105px;
 
-    padding: 7px;
+    padding: 6px;
 
     text-align: center;
 
@@ -210,130 +169,152 @@ body {
 
     font-size: 12px;
 
-    font-weight: 400;
-
     cursor: default;
+
+    text-shadow:
+        0 1px 4px rgba(0,0,0,0.9);
 
     border:
         1px solid transparent;
 
     border-radius: 6px;
 
-    text-shadow:
-        0 1px 4px rgba(0,0,0,0.9);
-
     transition:
-        background 0.12s ease;
+        background 0.12s;
 }
 
 
 .desktop-item:hover {
 
     background:
-        rgba(255,255,255,0.14);
+        rgba(255,255,255,0.16);
 
     border:
-        1px solid
-        rgba(255,255,255,0.15);
+        1px solid rgba(255,255,255,0.28);
 }
 
 
-.desktop-item > span {
+.desktop-item span {
 
     display: block;
 
-    margin-top: 5px;
+    margin-top: 4px;
 
     overflow-wrap: anywhere;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DESKTOP POSITIONS
-   ========================================================== */
+   ========================================== */
 
 .item-school {
-    left: 30px;
+
+    left: 32px;
     top: 55px;
 }
 
 
 .item-photos {
-    left: 155px;
-    top: 95px;
+
+    left: 32px;
+    top: 170px;
 }
 
 
 .item-downloads {
-    left: 35px;
-    top: 210px;
-}
 
-
-.item-chrome {
-    left: 165px;
+    left: 32px;
     top: 285px;
 }
 
 
-.item-notes {
-    right: 125px;
+.item-chrome {
+
+    left: 160px;
     top: 55px;
 }
 
 
+.item-notes {
+
+    right: 120px;
+    top: 60px;
+}
+
+
 .item-trash {
+
     right: 35px;
-    bottom: 90px;
+    bottom: 105px;
 }
 
 
 .file-resume {
-    left: 310px;
-    top: 50px;
+
+    left: 300px;
+    top: 60px;
 }
 
 
 .file-screenshot {
-    right: 235px;
-    top: 210px;
+
+    right: 255px;
+    top: 235px;
 }
 
 
 .file-untitled {
-    left: 345px;
-    bottom: 120px;
+
+    left: 320px;
+    bottom: 145px;
 }
 
 
 .file-final {
-    right: 55px;
-    top: 325px;
+
+    right: 60px;
+    top: 350px;
 }
 
 
-/* ==========================================================
-   APPLE-STYLE FOLDER ICON
-   ========================================================== */
+.file-form {
+
+    left: 475px;
+    top: 265px;
+}
+
+
+/* ==========================================
+   APPLE-STYLE ICONS
+   ========================================== */
 
 .apple-icon {
 
-    position: relative;
+    width: 58px;
 
-    width: 64px;
     height: 58px;
 
     margin: 0 auto;
-}
 
-
-.folder-icon {
+    position: relative;
 
     filter:
         drop-shadow(
-            0 3px 4px
-            rgba(0,0,0,0.4)
+            0 3px 4px rgba(0,0,0,0.35)
         );
+}
+
+
+/* ==========================================
+   FOLDER
+   ========================================== */
+
+.folder-icon {
+
+    position: relative;
+
+    margin-top: 2px;
 }
 
 
@@ -341,20 +322,20 @@ body {
 
     position: absolute;
 
-    left: 7px;
-    top: 4px;
+    left: 5px;
+    top: 7px;
 
-    width: 27px;
-    height: 12px;
+    width: 24px;
+    height: 10px;
 
     background:
         linear-gradient(
-            #9ed7ff,
-            #5da8e8
+            #82b8f5,
+            #5d99df
         );
 
     border-radius:
-        6px 6px 0 0;
+        5px 5px 0 0;
 }
 
 
@@ -362,271 +343,158 @@ body {
 
     position: absolute;
 
-    left: 3px;
-    top: 11px;
+    left: 2px;
+    top: 13px;
 
-    width: 58px;
-    height: 43px;
+    width: 54px;
+    height: 40px;
 
     background:
         linear-gradient(
-            #91d0ff,
-            #3d94db
+            #82b8f5,
+            #4e91df
         );
 
     border-radius:
-        4px 4px 9px 9px;
+        4px 4px 8px 8px;
 
     box-shadow:
-        inset 0 1px 2px
-        rgba(255,255,255,0.7),
-
-        inset 0 -2px 3px
-        rgba(0,0,0,0.12);
+        inset 0 1px rgba(255,255,255,0.5);
 }
 
 
-.download-arrow {
+/* ==========================================
+   DOWNLOAD ICON
+   ========================================== */
+
+.downloads-icon .download-arrow {
 
     position: absolute;
 
     z-index: 3;
 
-    left: 0;
-    right: 0;
-
-    top: 17px;
-
-    text-align: center;
+    left: 20px;
+    top: 18px;
 
     color: white;
 
-    font-size: 26px;
+    font-size: 25px;
 
-    font-weight: 600;
+    font-weight: bold;
 
     text-shadow:
-        0 1px 2px
-        rgba(0,0,0,0.25);
+        0 1px 2px rgba(0,0,0,0.3);
 }
 
 
-/* ==========================================================
-   PHOTOS ICON
-   ========================================================== */
+/* ==========================================
+   PHOTOS
+   ========================================== */
 
 .photos-icon {
 
-    width: 62px;
-    height: 62px;
-
-    border-radius: 18px;
+    border-radius: 50%;
 
     background:
         linear-gradient(
             135deg,
-            #ffffff,
-            #e8edf5
+            #ffb347,
+            #ff5e78,
+            #a96cff,
+            #43b9ff,
+            #45d483
         );
 
-    box-shadow:
-        0 4px 8px
-        rgba(0,0,0,0.35);
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
 
-.photo-flower,
-.dock-flower {
+.photo-flower {
 
-    position: absolute;
+    position: relative;
 
-    left: 50%;
-    top: 50%;
-
-    width: 44px;
-    height: 44px;
-
-    transform:
-        translate(-50%, -50%);
+    width: 34px;
+    height: 34px;
 }
 
 
-.photo-flower i,
-.dock-flower i {
+.photo-flower i {
 
     position: absolute;
 
-    left: 50%;
-    top: 50%;
+    width: 13px;
+    height: 19px;
 
-    width: 15px;
-    height: 25px;
-
-    margin:
-        -12px 0 0 -7px;
+    background: white;
 
     border-radius:
         50% 50% 45% 45%;
 
+    left: 11px;
+    top: 7px;
+
     transform-origin:
-        50% 12px;
+        6px 10px;
+
+    opacity: 0.95;
 }
 
 
-.photo-flower i:nth-child(1),
-.dock-flower i:nth-child(1) {
-    background: #ff5d73;
+.photo-flower i:nth-child(1) {
     transform: rotate(0deg);
 }
 
-.photo-flower i:nth-child(2),
-.dock-flower i:nth-child(2) {
-    background: #ffad42;
+.photo-flower i:nth-child(2) {
     transform: rotate(45deg);
 }
 
-.photo-flower i:nth-child(3),
-.dock-flower i:nth-child(3) {
-    background: #ffe044;
+.photo-flower i:nth-child(3) {
     transform: rotate(90deg);
 }
 
-.photo-flower i:nth-child(4),
-.dock-flower i:nth-child(4) {
-    background: #67d77c;
+.photo-flower i:nth-child(4) {
     transform: rotate(135deg);
 }
 
-.photo-flower i:nth-child(5),
-.dock-flower i:nth-child(5) {
-    background: #4bb8ff;
+.photo-flower i:nth-child(5) {
     transform: rotate(180deg);
 }
 
-.photo-flower i:nth-child(6),
-.dock-flower i:nth-child(6) {
-    background: #7777ff;
+.photo-flower i:nth-child(6) {
     transform: rotate(225deg);
 }
 
-.photo-flower i:nth-child(7),
-.dock-flower i:nth-child(7) {
-    background: #b06cff;
+.photo-flower i:nth-child(7) {
     transform: rotate(270deg);
 }
 
-.photo-flower i:nth-child(8),
-.dock-flower i:nth-child(8) {
-    background: #ff63c3;
+.photo-flower i:nth-child(8) {
     transform: rotate(315deg);
 }
 
 
-.photo-flower::after,
-.dock-flower::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 15px;
-    height: 15px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    background: white;
-
-    border-radius: 50%;
-}
-
-
-/* ==========================================================
-   NOTES ICON
-   ========================================================== */
-
-.notes-icon {
-
-    width: 60px;
-    height: 62px;
-
-    background:
-        linear-gradient(
-            #fff,
-            #e8e8e8
-        );
-
-    border-radius:
-        9px;
-
-    box-shadow:
-        0 4px 8px
-        rgba(0,0,0,0.35);
-
-    overflow: hidden;
-}
-
-
-.notes-icon::before {
-
-    content: "";
-
-    display: block;
-
-    width: 100%;
-    height: 17px;
-
-    background:
-        linear-gradient(
-            #ffd85b,
-            #f3b928
-        );
-}
-
-
-.notes-paper {
-
-    padding: 8px;
-}
-
-
-.notes-paper div {
-
-    height: 3px;
-
-    margin:
-        5px 0;
-
-    background: #aaa;
-
-    border-radius: 2px;
-}
-
-
-/* ==========================================================
-   CHROME ICON
-   ========================================================== */
+/* ==========================================
+   CHROME
+   ========================================== */
 
 .chrome-icon {
-
-    width: 62px;
-    height: 62px;
 
     border-radius: 50%;
 
     background:
         conic-gradient(
-            #e94335 0deg 120deg,
-            #f4c542 120deg 240deg,
-            #42a95a 240deg 360deg
+            #e94235 0 33%,
+            #fbbc05 33% 66%,
+            #34a853 66% 82%,
+            #4285f4 82% 100%
         );
 
-    box-shadow:
-        0 4px 8px
-        rgba(0,0,0,0.4);
+    border:
+        2px solid rgba(255,255,255,0.7);
 }
 
 
@@ -634,14 +502,8 @@ body {
 
     position: absolute;
 
-    width: 25px;
-    height: 25px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
 
     border-radius: 50%;
 
@@ -650,37 +512,80 @@ body {
 
     border:
         4px solid white;
+
+    left: 16px;
+    top: 16px;
 }
 
 
-/* ==========================================================
-   TRASH ICON
-   ========================================================== */
+/* ==========================================
+   NOTES
+   ========================================== */
 
-.trash-icon {
+.notes-icon {
 
-    width: 58px;
-    height: 62px;
-}
+    border-radius: 8px;
 
-
-.trash-lid {
-
-    position: absolute;
-
-    left: 7px;
-    top: 9px;
-
-    width: 44px;
-    height: 7px;
-
-    border-radius: 4px;
+    overflow: hidden;
 
     background:
         linear-gradient(
-            #e9e9e9,
-            #bdbdbd
+            #fff,
+            #f5f5f5
         );
+
+    border:
+        1px solid #ccc;
+}
+
+
+.notes-icon::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 15px;
+
+    background:
+        #f5d84c;
+}
+
+
+.notes-paper {
+
+    position: absolute;
+
+    left: 12px;
+    top: 22px;
+
+    width: 34px;
+}
+
+
+.notes-paper div {
+
+    height: 2px;
+
+    background: #aaa;
+
+    margin-bottom: 6px;
+}
+
+
+/* ==========================================
+   TRASH
+   ========================================== */
+
+.trash-icon {
+
+    display: flex;
+
+    justify-content: center;
 }
 
 
@@ -688,69 +593,88 @@ body {
 
     position: absolute;
 
-    left: 11px;
-    top: 17px;
+    bottom: 3px;
 
     width: 36px;
     height: 40px;
 
-    border-radius:
-        3px 3px 8px 8px;
-
     background:
         linear-gradient(
             90deg,
-            #c9c9c9,
-            #f5f5f5,
-            #bdbdbd
+            #ddd,
+            #fff,
+            #ccc
         );
 
-    box-shadow:
-        0 3px 5px
-        rgba(0,0,0,0.35);
+    border:
+        1px solid #aaa;
+
+    border-radius:
+        2px 2px 8px 8px;
+}
+
+
+.trash-lid {
+
+    position: absolute;
+
+    top: 10px;
+
+    width: 42px;
+    height: 6px;
+
+    background: #ccc;
+
+    border-radius: 5px;
+
+    z-index: 2;
 }
 
 
 .trash-can span {
 
-    display: inline-block;
+    display: block;
 
     width: 2px;
-    height: 27px;
+    height: 28px;
 
-    margin:
-        6px 4px;
+    background: #aaa;
 
-    background: #999;
+    margin-left: 9px;
+
+    margin-top: 6px;
+
+    float: left;
 }
 
 
-/* ==========================================================
+/* ==========================================
    FILE ICONS
-   ========================================================== */
+   ========================================== */
 
 .apple-file-icon {
 
-    position: relative;
+    width: 50px;
 
-    width: 58px;
-    height: 64px;
+    height: 58px;
 
     margin: 0 auto;
+
+    position: relative;
 
     background:
         linear-gradient(
             #ffffff,
-            #e9e9e9
+            #eeeeee
         );
 
-    border-radius: 6px;
+    border:
+        1px solid #aaa;
+
+    border-radius: 5px;
 
     box-shadow:
-        0 3px 6px
-        rgba(0,0,0,0.4);
-
-    overflow: hidden;
+        0 2px 4px rgba(0,0,0,0.3);
 }
 
 
@@ -758,13 +682,13 @@ body {
 
     position: absolute;
 
-    right: 0;
-    top: 0;
+    right: -1px;
+    top: -1px;
 
     width: 17px;
     height: 17px;
 
-    background: #cfcfcf;
+    background: #ddd;
 
     clip-path:
         polygon(
@@ -772,42 +696,43 @@ body {
             100% 100%,
             0 100%
         );
+
+    border-left:
+        1px solid #aaa;
+
+    border-bottom:
+        1px solid #aaa;
 }
 
 
 .pdf-icon {
 
-    background:
-        linear-gradient(
-            #fff,
-            #f0f0f0
-        );
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
 
 .pdf-icon strong {
 
-    position: absolute;
+    color: #e74c3c;
 
-    left: 0;
-    right: 0;
+    font-size: 10px;
 
-    top: 27px;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    color: #e53935;
+    margin-top: 18px;
 }
 
 
 .image-file-icon {
 
+    overflow: hidden;
+
     background:
         linear-gradient(
-            #eaf5ff,
-            #d8ecff
+            #cfeeff,
+            #fff
         );
 }
 
@@ -816,21 +741,21 @@ body {
 
     position: absolute;
 
-    left: 7px;
-    bottom: 8px;
+    left: 5px;
+    bottom: 7px;
 
-    width: 44px;
-    height: 28px;
+    width: 38px;
+    height: 25px;
 
     background:
-        #59a85b;
+        #6bb36b;
 
     clip-path:
         polygon(
             0 100%,
-            40% 25%,
+            38% 25%,
             58% 55%,
-            72% 35%,
+            75% 20%,
             100% 100%
         );
 }
@@ -840,26 +765,28 @@ body {
 
     position: absolute;
 
-    right: 9px;
-    top: 9px;
-
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
 
     border-radius: 50%;
 
-    background: #ffbd3e;
+    background:
+        #f5c542;
+
+    top: 9px;
+    right: 8px;
+}
+
+
+.document-icon {
+
+    padding-top: 21px;
 }
 
 
 .document-lines {
 
-    position: absolute;
-
-    left: 10px;
-    right: 10px;
-
-    top: 25px;
+    padding: 0 8px;
 }
 
 
@@ -867,26 +794,23 @@ body {
 
     display: block;
 
-    height: 3px;
+    height: 2px;
 
-    margin: 5px 0;
+    background: #999;
 
-    background: #777;
-
-    border-radius: 2px;
+    margin-bottom: 5px;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DOCK
-   ========================================================== */
+   ========================================== */
 
 .dock-container {
 
     position: absolute;
 
     left: 50%;
-
     bottom: 12px;
 
     transform:
@@ -898,66 +822,64 @@ body {
 
 .dock {
 
-    height: 82px;
+    min-width: 440px;
 
-    display: flex;
-
-    align-items: flex-end;
-
-    gap: 9px;
+    height: 76px;
 
     padding:
         8px 12px;
-
-    border-radius:
-        22px;
-
-    background:
-        rgba(245,245,245,0.72);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.55);
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.35);
-}
-
-
-.dock-icon {
-
-    position: relative;
-
-    width: 58px;
-    height: 65px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: flex-end;
+    justify-content: center;
 
-    flex-direction: column;
+    gap: 9px;
+
+    background:
+        rgba(245,245,245,0.65);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    border:
+        1px solid rgba(255,255,255,0.75);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.28);
+}
+
+
+.dock-icon {
+
+    width: 54px;
+    height: 58px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     cursor: pointer;
 
     transition:
-        transform 0.15s ease;
+        transform 0.15s;
 }
 
 
 .dock-icon:hover {
 
     transform:
-        translateY(-9px)
-        scale(1.08);
+        translateY(-8px) scale(1.12);
 }
 
 
@@ -965,54 +887,65 @@ body {
 
     position: absolute;
 
-    top: -29px;
-
     display: none;
 
-    padding:
-        4px 7px;
+    bottom: -20px;
 
-    border-radius: 5px;
+    padding:
+        3px 6px;
 
     background:
-        rgba(0,0,0,0.75);
+        rgba(20,20,20,0.85);
 
     color: white;
+
+    border-radius: 4px;
 
     font-size: 10px;
 }
 
 
 .dock-icon:hover small {
+
     display: block;
 }
 
 
-/* ==========================================================
+.dock-divider {
+
+    width: 1px;
+
+    height: 45px;
+
+    background:
+        rgba(0,0,0,0.2);
+
+    margin:
+        0 4px;
+}
+
+
+/* ==========================================
    DOCK FINDER
-   ========================================================== */
+   ========================================== */
 
 .dock-finder-icon {
 
-    width: 54px;
-    height: 54px;
+    width: 50px;
+    height: 50px;
 
-    border-radius: 14px;
-
-    overflow: hidden;
+    border-radius: 12px;
 
     background:
         linear-gradient(
-            90deg,
-            #49a9f4 50%,
-            #e8f5ff 50%
+            135deg,
+            #55b9ff 50%,
+            #1888d8 50%
         );
 
-    box-shadow:
-        0 3px 6px
-        rgba(0,0,0,0.3);
-
     position: relative;
+
+    overflow: hidden;
 }
 
 
@@ -1028,24 +961,23 @@ body {
 
     position: absolute;
 
-    top: 20px;
-
     width: 5px;
     height: 7px;
 
-    background: #1c4f78;
+    background: #111;
 
     border-radius: 50%;
+
+    top: 18px;
 }
 
 
 .left-eye {
-    left: 17px;
+    left: 15px;
 }
 
-
 .right-eye {
-    right: 17px;
+    right: 15px;
 }
 
 
@@ -1053,120 +985,170 @@ body {
 
     position: absolute;
 
-    left: 50%;
-    bottom: 13px;
-
-    width: 23px;
-    height: 10px;
-
-    transform:
-        translateX(-50%);
+    width: 17px;
+    height: 8px;
 
     border-bottom:
-        2px solid #27658d;
+        2px solid #111;
 
-    border-radius:
-        0 0 50% 50%;
+    border-radius: 50%;
+
+    left: 17px;
+    top: 26px;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DOCK CHROME
-   ========================================================== */
+   ========================================== */
 
 .dock-chrome-icon {
 
-    width: 54px;
-    height: 54px;
+    width: 50px;
+    height: 50px;
 
     border-radius: 50%;
 
     background:
         conic-gradient(
-            #e94335 0deg 120deg,
-            #f4c542 120deg 240deg,
-            #42a95a 240deg 360deg
+            #e94235 0 33%,
+            #fbbc05 33% 66%,
+            #34a853 66% 82%,
+            #4285f4 82% 100%
         );
 
-    position: relative;
-
-    box-shadow:
-        0 3px 6px
-        rgba(0,0,0,0.3);
+    border:
+        2px solid white;
 }
 
 
 .dock-chrome-icon div {
 
-    position: absolute;
+    width: 20px;
+    height: 20px;
 
-    width: 22px;
-    height: 22px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%,-50%);
+    margin: 13px;
 
     border-radius: 50%;
 
     background: #4285f4;
 
-    border: 3px solid white;
+    border:
+        3px solid white;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DOCK PHOTOS
-   ========================================================== */
+   ========================================== */
 
 .dock-photos-icon {
 
-    position: relative;
+    width: 50px;
+    height: 50px;
 
-    width: 54px;
-    height: 54px;
+    border-radius: 12px;
 
-    border-radius: 15px;
+    display: flex;
 
-    background: white;
+    align-items: center;
 
-    box-shadow:
-        0 3px 6px
-        rgba(0,0,0,0.3);
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff5e78,
+            #a96cff,
+            #43b9ff,
+            #45d483
+        );
 }
 
 
 .dock-flower {
-    transform:
-        translate(-50%, -50%)
-        scale(.85);
+
+    width: 30px;
+    height: 30px;
+
+    position: relative;
 }
 
 
-/* ==========================================================
+.dock-flower i {
+
+    position: absolute;
+
+    width: 11px;
+    height: 16px;
+
+    left: 10px;
+    top: 7px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transform-origin:
+        5px 8px;
+}
+
+
+.dock-flower i:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.dock-flower i:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.dock-flower i:nth-child(3) {
+    transform: rotate(90deg);
+}
+
+.dock-flower i:nth-child(4) {
+    transform: rotate(135deg);
+}
+
+.dock-flower i:nth-child(5) {
+    transform: rotate(180deg);
+}
+
+.dock-flower i:nth-child(6) {
+    transform: rotate(225deg);
+}
+
+.dock-flower i:nth-child(7) {
+    transform: rotate(270deg);
+}
+
+.dock-flower i:nth-child(8) {
+    transform: rotate(315deg);
+}
+
+
+/* ==========================================
    DOCK NOTES
-   ========================================================== */
+   ========================================== */
 
 .dock-notes-icon {
 
-    width: 54px;
-    height: 54px;
+    width: 50px;
+    height: 50px;
 
-    border-radius: 12px;
+    border-radius: 10px;
 
     background:
         linear-gradient(
             #fff,
-            #ececec
+            #eee
         );
 
-    overflow: hidden;
-
     box-shadow:
-        0 3px 6px
-        rgba(0,0,0,0.3);
+        inset 0 0 0 1px #ccc;
+
+    position: relative;
 }
 
 
@@ -1174,39 +1156,46 @@ body {
 
     content: "";
 
-    display: block;
+    position: absolute;
 
-    height: 15px;
+    left: 0;
+    top: 0;
 
-    background:
-        #ffd84d;
+    width: 100%;
+    height: 14px;
+
+    background: #f5d84c;
 }
 
 
 .dock-notes-icon div {
 
-    margin: 7px;
+    position: absolute;
 
-    height: 3px;
+    left: 10px;
+    right: 10px;
+    top: 23px;
 
-    background: #aaa;
+    height: 2px;
+
+    background: #999;
 
     box-shadow:
-        0 7px 0 #aaa,
-        0 14px 0 #aaa;
+        0 7px #999,
+        0 14px #999;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DOCK DOWNLOADS
-   ========================================================== */
+   ========================================== */
 
 .dock-download-icon {
 
-    position: relative;
+    width: 50px;
+    height: 50px;
 
-    width: 54px;
-    height: 54px;
+    position: relative;
 }
 
 
@@ -1214,16 +1203,15 @@ body {
 
     position: absolute;
 
-    left: 5px;
-    top: 5px;
+    left: 4px;
+    top: 9px;
 
-    width: 24px;
-    height: 11px;
+    width: 21px;
+    height: 8px;
 
-    background: #70baf2;
+    background: #72aef0;
 
-    border-radius:
-        5px 5px 0 0;
+    border-radius: 4px 4px 0 0;
 }
 
 
@@ -1232,19 +1220,18 @@ body {
     position: absolute;
 
     left: 2px;
-    top: 11px;
+    top: 14px;
 
-    width: 50px;
-    height: 38px;
+    width: 46px;
+    height: 30px;
 
     background:
         linear-gradient(
-            #8dd0ff,
-            #398ed2
+            #7db6f3,
+            #4c90dd
         );
 
-    border-radius:
-        4px 4px 9px 9px;
+    border-radius: 5px;
 }
 
 
@@ -1252,49 +1239,29 @@ body {
 
     position: absolute;
 
-    left: 0;
-    right: 0;
-
-    top: 14px;
-
-    text-align: center;
+    left: 18px;
+    top: 15px;
 
     color: white;
 
-    font-size: 25px;
+    font-size: 22px;
 
     font-weight: bold;
 
-    z-index: 3;
+    z-index: 2;
 }
 
 
-/* ==========================================================
+/* ==========================================
    DOCK TRASH
-   ========================================================== */
+   ========================================== */
 
 .dock-trash-icon {
 
+    width: 50px;
+    height: 50px;
+
     position: relative;
-
-    width: 54px;
-    height: 54px;
-}
-
-
-.dock-trash-lid {
-
-    position: absolute;
-
-    left: 8px;
-    top: 9px;
-
-    width: 38px;
-    height: 6px;
-
-    background: #c8c8c8;
-
-    border-radius: 4px;
 }
 
 
@@ -1302,63 +1269,70 @@ body {
 
     position: absolute;
 
-    left: 12px;
-    top: 16px;
+    left: 9px;
+    bottom: 3px;
 
-    width: 30px;
-    height: 35px;
+    width: 32px;
+    height: 36px;
 
     border-radius:
-        3px 3px 8px 8px;
+        3px 3px 7px 7px;
 
     background:
         linear-gradient(
             90deg,
-            #bdbdbd,
-            #f2f2f2,
-            #bdbdbd
+            #ccc,
+            #fff,
+            #ccc
         );
+
+    border:
+        1px solid #aaa;
+}
+
+
+.dock-trash-lid {
+
+    position: absolute;
+
+    left: 6px;
+    top: 8px;
+
+    width: 38px;
+    height: 5px;
+
+    background: #bbb;
+
+    border-radius: 4px;
+
+    z-index: 2;
 }
 
 
 .dock-trash-body span {
 
-    display: inline-block;
+    float: left;
 
     width: 2px;
-    height: 23px;
+    height: 25px;
+
+    background: #aaa;
 
     margin:
-        5px 3px;
-
-    background: #999;
+        7px 0 0 7px;
 }
 
 
-.dock-divider {
-
-    width: 1px;
-
-    height: 52px;
-
-    margin:
-        0 3px;
-
-    background:
-        rgba(0,0,0,0.25);
-}
-
-
-/* ==========================================================
+/* ==========================================
    SYSTEM MESSAGE
-   ========================================================== */
+   ========================================== */
 
 .system-message {
 
     position: absolute;
 
     left: 50%;
-    bottom: 103px;
+    bottom: 100px;
 
     transform:
         translateX(-50%);
@@ -1366,285 +1340,225 @@ body {
     padding:
         6px 12px;
 
-    border-radius: 8px;
+    color: white;
 
     background:
-        rgba(0,0,0,0.6);
+        rgba(20,20,20,0.55);
 
-    color: white;
+    backdrop-filter:
+        blur(8px);
+
+    border-radius: 7px;
 
     font-size: 11px;
 
-    opacity: 0;
+    opacity: 0.8;
 
     pointer-events: none;
-
-    transition:
-        opacity 0.2s ease;
-
-    z-index: 4500;
 }
 
 
-.system-message:not(:empty) {
-    opacity: 1;
-}
+/* ==========================================
+   APPLE MENU
+   ========================================== */
 
+.apple-menu {
 
-/* ==========================================================
-   WINDOWS
-   ========================================================== */
+    position: fixed;
 
-.computer-window {
+    display: none;
 
-    position: absolute;
+    left: 8px;
+    top: 31px;
 
-    left: 250px;
-    top: 110px;
-
-    width: 520px;
-
-    max-width:
-        calc(100vw - 40px);
-
-    max-height:
-        calc(100vh - 50px);
+    width: 235px;
 
     background:
-        rgba(248,248,248,0.96);
+        rgba(245,245,245,0.96);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25);
 
     border:
-        1px solid #777;
+        1px solid rgba(0,0,0,0.15);
 
-    border-radius:
-        10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 20px 45px
-        rgba(0,0,0,0.4),
-
-        0 2px 8px
-        rgba(0,0,0,0.25);
-
-    z-index: 100;
-
-    color: #111;
-}
-
-
-.window-header {
-
-    position: relative;
-
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            #fafafa,
-            #dedede
-        );
-
-    border-bottom:
-        1px solid #b5b5b5;
-
-    cursor: move;
-
-    color: #222;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-
-.window-title {
-    pointer-events: none;
-}
-
-
-.window-controls {
-
-    position: absolute;
-
-    left: 10px;
-
-    top: 11px;
-
-    display: flex;
-
-    gap: 6px;
-
-    z-index: 5;
-}
-
-
-.window-dot {
-
-    width: 13px;
-    height: 13px;
-
-    padding: 0;
-
-    border: none;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    box-shadow:
-        inset 0 0 0 0.5px
-        rgba(0,0,0,0.25);
-}
-
-
-.close-dot {
-    background: #ff5f57;
-}
-
-
-.minimize-dot {
-    background: #ffbd2e;
-}
-
-
-.maximize-dot {
-    background: #28c840;
-}
-
-
-.window-dot:hover {
-    filter: brightness(0.9);
-}
-
-
-/* ==========================================================
-   WINDOW STATES
-   ========================================================== */
-
-.computer-window.minimized {
-
-    transform:
-        scale(0.05);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        transform .2s ease,
-        opacity .2s ease;
-}
-
-
-.computer-window.maximized {
-
-    left: 15px !important;
-    top: 40px !important;
-
-    width:
-        calc(100vw - 30px) !important;
-
-    height:
-        calc(100vh - 55px) !important;
-
-    max-width: none;
-
-    max-height: none;
-
-    border-radius: 10px;
-}
-
-
-/* ==========================================================
-   FINDER TOOLBAR
-   ========================================================== */
-
-.finder-toolbar {
-
-    height: 45px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
+    z-index: 7000;
 
     padding:
-        6px 10px;
+        5px 0;
 
-    background:
-        #f2f2f2;
-
-    border-bottom:
-        1px solid #d0d0d0;
+    font-size: 13px;
 }
 
 
-.toolbar-button {
+.apple-menu.visible {
 
-    width: 28px;
-    height: 27px;
+    display: block;
+}
 
-    border:
-        1px solid #bbb;
 
-    border-radius: 6px;
+.apple-menu-title,
+.apple-menu-entry {
 
-    background:
-        linear-gradient(
-            #fff,
-            #e5e5e5
-        );
-
-    font-size: 20px;
-
-    line-height: 20px;
+    padding:
+        7px 14px;
 
     cursor: default;
 }
 
 
-.toolbar-folder {
-
-    margin-left: 8px;
-
-    font-size: 13px;
+.apple-menu-title {
 
     font-weight: 600;
 }
 
 
-/* ==========================================================
+.apple-menu-entry:hover {
+
+    background:
+        #3478f6;
+
+    color: white;
+}
+
+
+.apple-menu-separator {
+
+    height: 1px;
+
+    background:
+        #ccc;
+
+    margin:
+        4px 0;
+}
+
+
+/* ==========================================
+   WINDOWS
+   ========================================== */
+
+.computer-window {
+
+    position: absolute;
+
+    top: 110px;
+    left: 250px;
+
+    width: 500px;
+
+    max-width:
+        calc(100vw - 40px);
+
+    max-height:
+        calc(100vh - 90px);
+
+    background:
+        rgba(248,248,248,0.97);
+
+    border:
+        1px solid #aaa;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35);
+
+    z-index: 20;
+
+    color: #111;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   WINDOW HEADER
+   ========================================== */
+
+.window-header {
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        0 10px;
+
+    background:
+        linear-gradient(
+            #f7f7f7,
+            #dedede
+        );
+
+    color: #222;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid #bbb;
+
+    cursor: move;
+}
+
+
+.close-button {
+
+    margin-left: auto;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid #999;
+
+    background:
+        #ff5f57;
+
+    color: transparent;
+
+    cursor: pointer;
+
+    font-size: 0;
+
+    padding: 0;
+}
+
+
+.close-button:hover {
+
+    color: #600;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
    WINDOW CONTENT
-   ========================================================== */
+   ========================================== */
 
 .window-content {
 
-    padding: 14px;
+    padding: 15px;
 
-    max-height:
-        60vh;
+    max-height: 60vh;
 
     overflow-y: auto;
 }
 
 
-.file-list {
-    padding: 7px;
-}
-
-
-/* ==========================================================
-   FILE ROW
-   ========================================================== */
+/* ==========================================
+   FILE LIST
+   ========================================== */
 
 .file {
 
@@ -1652,98 +1566,54 @@ body {
 
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
-    min-height: 52px;
-
-    padding:
-        7px 10px;
+    padding: 9px;
 
     border-radius: 6px;
 
-    cursor: default;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
 
-    font-size: 13px;
+    cursor: default;
 }
 
 
 .file:hover {
 
     background:
-        #d8eaff;
+        #dceaff;
 }
 
 
-.file-icon {
+.file .file-icon {
 
-    width: 36px;
-    height: 36px;
+    width: 30px;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 6px;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    color: white;
-
-    box-shadow:
-        0 2px 4px
-        rgba(0,0,0,0.2);
+    font-size: 24px;
 }
 
 
-.document-small {
-    background: #4388e8;
-}
-
-
-.pdf-small {
-    background: #e84b4b;
-}
-
-
-.text-small {
-    background: #8d8d8d;
-}
-
-
-.image-small {
-    background: #48a86a;
-}
-
-
-.folder-small {
-    background: #6eb7ed;
-}
-
-
-/* ==========================================================
+/* ==========================================
    FILE WINDOWS
-   ========================================================== */
+   ========================================== */
 
 .file-window {
 
-    width: 500px;
-
-    background: #fff;
+    width: 480px;
 }
 
 
 .file-content {
 
-    padding: 25px;
+    padding: 22px;
 
-    max-height:
-        65vh;
-
-    overflow-y: auto;
+    background:
+        #fff;
 
     font-family:
         -apple-system,
@@ -1754,7 +1624,11 @@ body {
 
     line-height: 1.7;
 
-    font-size: 14px;
+    max-height: 65vh;
+
+    overflow-y: auto;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1762,9 +1636,7 @@ body {
 
     margin-top: 0;
 
-    font-size: 18px;
-
-    font-weight: 600;
+    font-weight: 500;
 }
 
 
@@ -1778,11 +1650,12 @@ body {
 }
 
 
-/* ==========================================================
+/* ==========================================
    PHOTOS
-   ========================================================== */
+   ========================================== */
 
 .photos-window {
+
     width: 650px;
 }
 
@@ -1800,22 +1673,21 @@ body {
 
 .photo {
 
-    padding: 7px;
+    padding: 6px;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     cursor: default;
 
-    text-align: center;
-
     font-size: 11px;
+
+    text-align: center;
 }
 
 
 .photo:hover {
 
-    background:
-        #d8eaff;
+    background: #e5e5e5;
 }
 
 
@@ -1825,23 +1697,19 @@ body {
 
     width: 100%;
 
-    height: 150px;
+    height: 145px;
 
     object-fit: cover;
 
     border-radius: 6px;
 
     margin-bottom: 7px;
-
-    box-shadow:
-        0 2px 5px
-        rgba(0,0,0,0.2);
 }
 
 
-/* ==========================================================
+/* ==========================================
    PHOTO PREVIEW
-   ========================================================== */
+   ========================================== */
 
 .photo-preview {
 
@@ -1856,66 +1724,32 @@ body {
     justify-content: center;
 
     background:
-        rgba(0,0,0,0.6);
+        rgba(0,0,0,0.65);
 
-    backdrop-filter:
-        blur(5px);
-
-    z-index: 6000;
+    z-index: 8000;
 }
 
 
 .preview-window {
 
-    width: 750px;
+    width: 680px;
 
     max-width: 90vw;
 
-    background: #eee;
+    background: #f5f5f5;
 
     border-radius: 10px;
 
     overflow: hidden;
 
     box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.6);
-}
-
-
-.preview-header {
-
-    position: relative;
-
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            #fafafa,
-            #ddd
-        );
-
-    border-bottom:
-        1px solid #bbb;
-
-    font-size: 13px;
-
-    font-weight: 600;
+        0 20px 50px rgba(0,0,0,0.5);
 }
 
 
 .preview-content {
 
     padding: 15px;
-
-    background:
-        #222;
 
     text-align: center;
 }
@@ -1925,69 +1759,29 @@ body {
 
     max-width: 100%;
 
-    max-height: 70vh;
-
-    object-fit: contain;
-}
-
-
-/* ==========================================================
-   IMAGE FILE WINDOW
-   ========================================================== */
-
-.image-file-window {
-
-    width: 650px;
-
-    max-width:
-        calc(100vw - 40px);
-}
-
-
-.preview-image-content {
-
-    padding: 18px;
-
-    text-align: center;
-
-    background:
-        #222;
-}
-
-
-.large-file-image {
-
-    display: block;
-
-    max-width: 100%;
-
     max-height: 65vh;
 
-    margin: 0 auto;
-
     object-fit: contain;
 }
 
 
-.image-caption {
+.preview-name {
 
-    margin-top: 12px;
+    margin-top: 10px;
 
-    color: #ddd;
-
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
-/* ==========================================================
+/* ==========================================
    BROWSER
-   ========================================================== */
+   ========================================== */
 
 .browser-window {
 
-    width: 720px;
+    width: 700px;
 
-    height: 510px;
+    height: 500px;
 
     display: flex;
 
@@ -1999,17 +1793,18 @@ body {
 
     display: flex;
 
-    align-items: center;
-
-    gap: 6px;
+    gap: 5px;
 
     padding: 7px;
 
-    background:
-        #ededed;
+    background: #e5e5e5;
+}
 
-    border-bottom:
-        1px solid #ccc;
+
+.browser-toolbar button {
+
+    width: 30px;
+    height: 25px;
 }
 
 
@@ -2017,22 +1812,17 @@ body {
 
     flex: 1;
 
-    height: 27px;
-
-    padding:
-        0 10px;
+    min-width: 0;
 
     border:
         1px solid #bbb;
 
     border-radius: 6px;
 
-    background: white;
+    padding:
+        4px 8px;
 
-    font-family:
-        monospace;
-
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
@@ -2042,7 +1832,7 @@ body {
 
     overflow-y: auto;
 
-    padding: 28px;
+    padding: 25px;
 
     background: white;
 }
@@ -2050,17 +1840,17 @@ body {
 
 .browser-page h1 {
 
-    margin-top: 0;
-
-    font-size: 25px;
+    font-size: 22px;
 
     font-weight: 500;
+
+    margin-top: 0;
 }
 
 
 .browser-page p {
 
-    color: #777;
+    color: #666;
 }
 
 
@@ -2076,11 +1866,10 @@ body {
 
 .search-history li {
 
-    padding:
-        12px 8px;
+    padding: 12px 5px;
 
     border-bottom:
-        1px solid #eee;
+        1px solid #ddd;
 
     font-size: 13px;
 }
@@ -2088,8 +1877,7 @@ body {
 
 .search-history li:hover {
 
-    background:
-        #f3f3f3;
+    background: #f1f1f1;
 }
 
 
@@ -2105,22 +1893,17 @@ body {
 }
 
 
-/* ==========================================================
+/* ==========================================
    NOTES
-   ========================================================== */
+   ========================================== */
 
 .notes-content {
 
-    background:
-        #fffef2;
+    background: #fffef2;
 
-    padding:
-        18px 22px;
+    padding: 20px;
 
-    font-family:
-        "SF Mono",
-        Monaco,
-        monospace;
+    font-family: monospace;
 }
 
 
@@ -2130,19 +1913,16 @@ body {
 
     gap: 15px;
 
-    padding:
-        10px 0;
+    padding: 10px 0;
 
     border-bottom:
-        1px solid #e4e0ce;
+        1px solid #ddd;
 }
 
 
 .note-number {
 
     color: #aaa;
-
-    min-width: 22px;
 }
 
 
@@ -2154,308 +1934,37 @@ body {
 }
 
 
-/* ==========================================================
-   ABOUT MAC
-   ========================================================== */
-
-.about-window {
-    width: 360px;
-}
-
-
-.about-mac-content {
-
-    padding: 30px;
-
-    text-align: center;
-
-    background: white;
-}
-
-
-.about-apple {
-
-    font-size: 65px;
-
-    margin-bottom: 10px;
-}
-
-
-.about-mac-content h2 {
-
-    margin:
-        0 0 5px;
-
-    font-size: 22px;
-}
-
-
-.about-mac-content p {
-
-    margin:
-        5px 0;
-
-    color: #555;
-}
-
-
-.about-small {
-
-    font-size: 12px;
-}
-
-
-/* ==========================================================
-   PREFERENCES
-   ========================================================== */
-
-.preferences-content {
-
-    padding: 20px;
-
-    background: white;
-}
-
-
-.preferences-content h2 {
-
-    margin-top: 0;
-
-    font-size: 20px;
-}
-
-
-.preference-row {
-
-    padding:
-        13px;
-
-    margin:
-        5px 0;
-
-    border-radius: 7px;
-
-    background:
-        #f1f1f1;
-}
-
-
-.preference-row:hover {
-    background: #e3e3e3;
-}
-
-
-/* ==========================================================
-   FORCE QUIT
-   ========================================================== */
-
-.force-quit-content {
-
-    padding: 20px;
-
-    background: white;
-}
-
-
-.force-quit-content h3 {
-
-    margin-top: 0;
-}
-
-
-.force-app {
-
-    padding: 12px;
-
-    margin:
-        5px 0;
-
-    background:
-        #f1f1f1;
-
-    border-radius: 6px;
-}
-
-
-.force-button {
-
-    margin-top: 15px;
-
-    padding:
-        7px 18px;
-
-    border:
-        1px solid #aaa;
-
-    border-radius: 6px;
-
-    background:
-        #eee;
-}
-
-
-/* ==========================================================
-   APPLE MENU
-   ========================================================== */
-
-.apple-menu {
-
-    position: fixed;
-
-    display: none;
-
-    left: 7px;
-    top: 31px;
-
-    width: 245px;
-
-    padding:
-        6px;
-
-    background:
-        rgba(250,250,250,0.94);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    border:
-        1px solid
-        rgba(0,0,0,0.2);
-
-    border-radius:
-        8px;
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,0.3);
-
-    z-index: 7000;
-
-    color: #111;
-
-    font-size: 13px;
-}
-
-
-.apple-menu.visible {
-    display: block;
-}
-
-
-.apple-menu-title,
-.apple-menu-entry {
-
-    padding:
-        7px 10px;
-
-    border-radius: 5px;
-
-    cursor: default;
-}
-
-
-.apple-menu-title {
-
-    font-weight: 600;
-}
-
-
-.apple-menu-entry:hover {
-
-    background:
-        #287cf0;
-
-    color: white;
-}
-
-
-.apple-menu-separator {
-
-    height: 1px;
-
-    margin:
-        5px 4px;
-
-    background:
-        #d0d0d0;
-}
-
-
-/* ==========================================================
-   SCROLLBARS
-   ========================================================== */
-
-::-webkit-scrollbar {
-    width: 9px;
-}
-
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-
-::-webkit-scrollbar-thumb {
-
-    background:
-        rgba(0,0,0,0.25);
-
-    border-radius:
-        10px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-
-    background:
-        rgba(0,0,0,0.4);
-}
-
-
-/* ==========================================================
-   SMALL SCREENS
-   ========================================================== */
+/* ==========================================
+   SMALL SCREEN
+   ========================================== */
 
 @media (max-width: 700px) {
 
-    .menu-item {
-        display: none;
-    }
+    .menu-left .menu-item:nth-of-type(n+4) {
 
-    .menu-left {
-        gap: 8px;
+        display: none;
     }
 
     .menu-right .menu-status {
-        display: none;
-    }
 
-    .desktop-item {
-        transform: scale(.85);
-        transform-origin: top left;
+        display: none;
     }
 
     .dock {
 
-        max-width:
-            calc(100vw - 20px);
+        min-width: 320px;
 
-        overflow-x: auto;
+        transform:
+            scale(0.85);
     }
 
     .computer-window {
 
-        left: 20px !important;
+        left: 20px;
 
-        top: 55px !important;
+        top: 60px;
 
         width:
-            calc(100vw - 40px) !important;
-
-        max-width:
             calc(100vw - 40px);
     }
 
@@ -2463,13 +1972,12 @@ body {
     .browser-window {
 
         width:
-            calc(100vw - 40px) !important;
+            calc(100vw - 40px);
     }
 
     .photo-grid {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
 }
