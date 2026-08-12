@@ -1,6 +1,11 @@
-/* ==========================================
+/* ==========================================================
+   MACINTOSH LOST COMPUTER
+   ========================================================== */
+
+
+/* ==========================================================
    RESET
-   ========================================== */
+   ========================================================== */
 
 * {
     box-sizing: border-box;
@@ -10,19 +15,28 @@ html,
 body {
     width: 100%;
     height: 100%;
+
     margin: 0;
     padding: 0;
+
     overflow: hidden;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    background: #111;
 }
 
 
-/* ==========================================
+/* ==========================================================
    DESKTOP
-   ========================================== */
+   ========================================================== */
 
 .desktop {
 
@@ -34,7 +48,7 @@ body {
     height: 100vh;
 
     background-image:
-        url("images/wallpaper.jpg");
+        url("images/wallpaper.jpeg");
 
     background-size: cover;
 
@@ -48,9 +62,9 @@ body {
 }
 
 
-/* ==========================================
+/* ==========================================================
    MENU BAR
-   ========================================== */
+   ========================================================== */
 
 .menu-bar {
 
@@ -60,30 +74,40 @@ body {
     left: 0;
 
     width: 100%;
-    height: 28px;
+
+    height: 29px;
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
 
-    padding: 0 12px;
+    justify-content: space-between;
 
-    background: rgba(245, 245, 245, 0.86);
+    padding: 0 10px;
 
-    backdrop-filter: blur(15px);
+    background:
+        rgba(245, 245, 245, 0.88);
 
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter:
+        blur(18px);
 
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid rgba(0, 0, 0, 0.15);
 
     color: #111;
 
+    z-index: 5000;
+
     font-size: 13px;
 
-    z-index: 5000;
+    box-shadow:
+        0 1px 3px
+        rgba(0, 0, 0, 0.12);
 }
+
 
 .menu-left,
 .menu-right {
@@ -92,50 +116,85 @@ body {
 
     align-items: center;
 
-    gap: 17px;
+    height: 100%;
 }
 
-.apple-logo {
 
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    width: 17px;
-
-    text-align: center;
+.menu-left {
+    gap: 18px;
 }
 
-.menu-item {
-
-    cursor: default;
-
-    white-space: nowrap;
-}
-
-.active-menu {
-
-    font-weight: 600;
-}
-
-.menu-status {
-
-    white-space: nowrap;
-}
 
 .menu-right {
-
-    gap: 13px;
+    gap: 14px;
 
     font-size: 12px;
 }
 
 
-/* ==========================================
-   DESKTOP ITEMS
-   ========================================== */
+.apple-logo {
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    width: 18px;
+
+    text-align: center;
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+.apple-logo:hover {
+    transform: scale(1.08);
+}
+
+
+.menu-item {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    cursor: default;
+}
+
+
+.menu-item:hover,
+.active-menu:hover {
+
+    background:
+        rgba(0, 0, 0, 0.08);
+
+    padding:
+        0 6px;
+
+    margin:
+        0 -6px;
+
+    border-radius: 4px;
+}
+
+
+.active-menu {
+    font-weight: 600;
+}
+
+
+.menu-status {
+    opacity: 0.85;
+}
+
+
+/* ==========================================================
+   DESKTOP ICONS
+   ========================================================== */
 
 .desktop-item {
 
@@ -143,7 +202,7 @@ body {
 
     width: 110px;
 
-    padding: 6px;
+    padding: 7px;
 
     text-align: center;
 
@@ -151,587 +210,683 @@ body {
 
     font-size: 12px;
 
+    font-weight: 400;
+
     cursor: default;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 6px;
 
     text-shadow:
         0 1px 4px rgba(0,0,0,0.9);
 
-    border: 1px solid transparent;
-
-    border-radius: 5px;
+    transition:
+        background 0.12s ease;
 }
+
 
 .desktop-item:hover {
 
     background:
-        rgba(255,255,255,0.15);
+        rgba(255,255,255,0.14);
 
     border:
-        1px solid rgba(255,255,255,0.25);
-}
-
-.desktop-item:active {
-
-    background:
-        rgba(100,150,255,0.35);
+        1px solid
+        rgba(255,255,255,0.15);
 }
 
 
-/* ==========================================
+.desktop-item > span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
    DESKTOP POSITIONS
-   ========================================== */
+   ========================================================== */
 
 .item-school {
-    left: 35px;
+    left: 30px;
     top: 55px;
 }
+
 
 .item-photos {
-    left: 165px;
-    top: 110px;
+    left: 155px;
+    top: 95px;
 }
+
 
 .item-downloads {
-    left: 40px;
-    top: 220px;
-}
-
-.item-chrome {
-    left: 165px;
-    top: 310px;
-}
-
-.item-notes {
-    right: 125px;
-    top: 65px;
-}
-
-.item-trash {
-    right: 35px;
-    bottom: 100px;
-}
-
-
-/* ==========================================
-   FILE POSITIONS
-   ========================================== */
-
-.loose-file {
-
-    width: 130px;
-
-    word-break: break-word;
-}
-
-.file-resume {
-
-    left: 320px;
-    top: 55px;
-}
-
-.file-screenshot {
-
-    right: 250px;
+    left: 35px;
     top: 210px;
 }
 
-.file-untitled {
 
-    left: 340px;
-    bottom: 130px;
+.item-chrome {
+    left: 165px;
+    top: 285px;
 }
+
+
+.item-notes {
+    right: 125px;
+    top: 55px;
+}
+
+
+.item-trash {
+    right: 35px;
+    bottom: 90px;
+}
+
+
+.file-resume {
+    left: 310px;
+    top: 50px;
+}
+
+
+.file-screenshot {
+    right: 235px;
+    top: 210px;
+}
+
+
+.file-untitled {
+    left: 345px;
+    bottom: 120px;
+}
+
 
 .file-final {
-
     right: 55px;
-    top: 350px;
-}
-
-.file-form {
-
-    left: 500px;
-    top: 185px;
+    top: 325px;
 }
 
 
-/* ==========================================
-   APPLE STYLE FOLDER ICON
-   ========================================== */
+/* ==========================================================
+   APPLE-STYLE FOLDER ICON
+   ========================================================== */
 
 .apple-icon {
 
     position: relative;
 
-    width: 58px;
+    width: 64px;
     height: 58px;
 
-    margin: 0 auto 6px;
-
-    filter:
-        drop-shadow(
-            0 3px 4px rgba(0,0,0,0.35)
-        );
+    margin: 0 auto;
 }
 
-
-/* FOLDER */
 
 .folder-icon {
 
-    width: 64px;
-    height: 52px;
-
-    margin-top: 5px;
+    filter:
+        drop-shadow(
+            0 3px 4px
+            rgba(0,0,0,0.4)
+        );
 }
+
 
 .folder-tab {
 
     position: absolute;
 
-    left: 5px;
-    top: 2px;
+    left: 7px;
+    top: 4px;
 
-    width: 25px;
+    width: 27px;
     height: 12px;
 
-    background: linear-gradient(
-        #78bdf8,
-        #4b94dc
-    );
+    background:
+        linear-gradient(
+            #9ed7ff,
+            #5da8e8
+        );
 
     border-radius:
-        5px 5px 0 0;
+        6px 6px 0 0;
 }
+
 
 .folder-body {
 
     position: absolute;
 
-    left: 2px;
-    top: 10px;
+    left: 3px;
+    top: 11px;
 
-    width: 60px;
-    height: 39px;
+    width: 58px;
+    height: 43px;
 
-    border-radius: 5px;
+    background:
+        linear-gradient(
+            #91d0ff,
+            #3d94db
+        );
 
-    background: linear-gradient(
-        #76bdf7,
-        #3e8fd8
-    );
+    border-radius:
+        4px 4px 9px 9px;
 
     box-shadow:
-        inset 0 1px rgba(255,255,255,0.55);
+        inset 0 1px 2px
+        rgba(255,255,255,0.7),
+
+        inset 0 -2px 3px
+        rgba(0,0,0,0.12);
 }
 
 
-/* ==========================================
-   DOWNLOAD ICON
-   ========================================== */
-
-.downloads-icon .download-arrow {
+.download-arrow {
 
     position: absolute;
 
-    z-index: 4;
+    z-index: 3;
 
-    left: 23px;
-    top: 15px;
+    left: 0;
+    right: 0;
+
+    top: 17px;
+
+    text-align: center;
 
     color: white;
 
-    font-size: 25px;
+    font-size: 26px;
 
-    font-weight: bold;
+    font-weight: 600;
 
     text-shadow:
-        0 1px 2px rgba(0,0,0,0.4);
+        0 1px 2px
+        rgba(0,0,0,0.25);
 }
 
 
-/* ==========================================
+/* ==========================================================
    PHOTOS ICON
-   ========================================== */
+   ========================================================== */
 
 .photos-icon {
 
-    width: 58px;
-    height: 58px;
+    width: 62px;
+    height: 62px;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
-    background: white;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #e8edf5
+        );
 
     box-shadow:
-        0 3px 7px rgba(0,0,0,0.3);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
+        0 4px 8px
+        rgba(0,0,0,0.35);
 }
 
-.photo-flower {
 
-    position: relative;
-
-    width: 42px;
-    height: 42px;
-}
-
-.photo-flower i {
+.photo-flower,
+.dock-flower {
 
     position: absolute;
 
-    left: 17px;
-    top: 1px;
+    left: 50%;
+    top: 50%;
 
-    width: 9px;
-    height: 19px;
+    width: 44px;
+    height: 44px;
 
-    border-radius: 50%;
-
-    background: #ff5277;
-
-    transform-origin: 4px 20px;
+    transform:
+        translate(-50%, -50%);
 }
 
-.photo-flower i:nth-child(2) {
+
+.photo-flower i,
+.dock-flower i {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 15px;
+    height: 25px;
+
+    margin:
+        -12px 0 0 -7px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    transform-origin:
+        50% 12px;
+}
+
+
+.photo-flower i:nth-child(1),
+.dock-flower i:nth-child(1) {
+    background: #ff5d73;
+    transform: rotate(0deg);
+}
+
+.photo-flower i:nth-child(2),
+.dock-flower i:nth-child(2) {
+    background: #ffad42;
     transform: rotate(45deg);
 }
 
-.photo-flower i:nth-child(3) {
+.photo-flower i:nth-child(3),
+.dock-flower i:nth-child(3) {
+    background: #ffe044;
     transform: rotate(90deg);
 }
 
-.photo-flower i:nth-child(4) {
+.photo-flower i:nth-child(4),
+.dock-flower i:nth-child(4) {
+    background: #67d77c;
     transform: rotate(135deg);
 }
 
-.photo-flower i:nth-child(5) {
+.photo-flower i:nth-child(5),
+.dock-flower i:nth-child(5) {
+    background: #4bb8ff;
     transform: rotate(180deg);
 }
 
-.photo-flower i:nth-child(6) {
+.photo-flower i:nth-child(6),
+.dock-flower i:nth-child(6) {
+    background: #7777ff;
     transform: rotate(225deg);
 }
 
-.photo-flower i:nth-child(7) {
+.photo-flower i:nth-child(7),
+.dock-flower i:nth-child(7) {
+    background: #b06cff;
     transform: rotate(270deg);
 }
 
-.photo-flower i:nth-child(8) {
+.photo-flower i:nth-child(8),
+.dock-flower i:nth-child(8) {
+    background: #ff63c3;
     transform: rotate(315deg);
 }
 
 
-/* ==========================================
-   CHROME ICON
-   ========================================== */
+.photo-flower::after,
+.dock-flower::after {
 
-.chrome-icon {
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            #ea4335 0deg 120deg,
-            #fbbc05 120deg 240deg,
-            #34a853 240deg 360deg
-        );
-
-    box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
-}
-
-.chrome-center {
+    content: "";
 
     position: absolute;
 
-    left: 17px;
-    top: 17px;
+    width: 15px;
+    height: 15px;
 
-    width: 24px;
-    height: 24px;
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background: white;
 
     border-radius: 50%;
-
-    background: #4285f4;
-
-    border: 4px solid white;
 }
 
 
-/* ==========================================
+/* ==========================================================
    NOTES ICON
-   ========================================== */
+   ========================================================== */
 
 .notes-icon {
 
-    width: 52px;
-    height: 58px;
+    width: 60px;
+    height: 62px;
 
-    background: #fff;
+    background:
+        linear-gradient(
+            #fff,
+            #e8e8e8
+        );
 
-    border-radius: 7px;
+    border-radius:
+        9px;
 
     box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
+        0 4px 8px
+        rgba(0,0,0,0.35);
 
     overflow: hidden;
 }
 
-.notes-paper {
 
-    width: 100%;
-    height: 100%;
-}
-
-.notes-paper::before {
+.notes-icon::before {
 
     content: "";
 
     display: block;
 
     width: 100%;
-    height: 16px;
+    height: 17px;
 
-    background: #f9c842;
+    background:
+        linear-gradient(
+            #ffd85b,
+            #f3b928
+        );
 }
+
+
+.notes-paper {
+
+    padding: 8px;
+}
+
 
 .notes-paper div {
 
-    width: 34px;
-    height: 2px;
+    height: 3px;
+
+    margin:
+        5px 0;
 
     background: #aaa;
 
-    margin:
-        8px auto;
+    border-radius: 2px;
 }
 
 
-/* ==========================================
+/* ==========================================================
+   CHROME ICON
+   ========================================================== */
+
+.chrome-icon {
+
+    width: 62px;
+    height: 62px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #e94335 0deg 120deg,
+            #f4c542 120deg 240deg,
+            #42a95a 240deg 360deg
+        );
+
+    box-shadow:
+        0 4px 8px
+        rgba(0,0,0,0.4);
+}
+
+
+.chrome-center {
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        #4285f4;
+
+    border:
+        4px solid white;
+}
+
+
+/* ==========================================================
    TRASH ICON
-   ========================================== */
+   ========================================================== */
 
 .trash-icon {
 
-    width: 50px;
-    height: 58px;
+    width: 58px;
+    height: 62px;
 }
+
 
 .trash-lid {
 
     position: absolute;
 
     left: 7px;
-    top: 6px;
+    top: 9px;
 
-    width: 36px;
-    height: 6px;
+    width: 44px;
+    height: 7px;
 
     border-radius: 4px;
 
-    background: #d8d8d8;
+    background:
+        linear-gradient(
+            #e9e9e9,
+            #bdbdbd
+        );
 }
+
 
 .trash-can {
 
     position: absolute;
 
-    left: 10px;
-    top: 13px;
+    left: 11px;
+    top: 17px;
 
-    width: 30px;
-    height: 39px;
+    width: 36px;
+    height: 40px;
 
-    border-radius: 3px 3px 7px 7px;
+    border-radius:
+        3px 3px 8px 8px;
 
     background:
         linear-gradient(
             90deg,
-            #ddd,
-            #aaa,
-            #ddd
+            #c9c9c9,
+            #f5f5f5,
+            #bdbdbd
         );
+
+    box-shadow:
+        0 3px 5px
+        rgba(0,0,0,0.35);
 }
+
 
 .trash-can span {
 
-    display: block;
+    display: inline-block;
 
     width: 2px;
-    height: 28px;
+    height: 27px;
 
-    background: #888;
+    margin:
+        6px 4px;
 
-    margin: 5px auto;
-}
-
-.trash-can span:nth-child(1) {
-    margin-left: 8px;
-}
-
-.trash-can span:nth-child(2) {
-    margin-top: -33px;
-}
-
-.trash-can span:nth-child(3) {
-    margin-left: 20px;
-    margin-top: -28px;
+    background: #999;
 }
 
 
-/* ==========================================
+/* ==========================================================
    FILE ICONS
-   ========================================== */
+   ========================================================== */
 
 .apple-file-icon {
 
     position: relative;
 
-    width: 50px;
-    height: 58px;
+    width: 58px;
+    height: 64px;
 
-    margin: 0 auto 7px;
+    margin: 0 auto;
 
-    border-radius: 5px;
+    background:
+        linear-gradient(
+            #ffffff,
+            #e9e9e9
+        );
+
+    border-radius: 6px;
 
     box-shadow:
-        0 3px 5px rgba(0,0,0,0.35);
+        0 3px 6px
+        rgba(0,0,0,0.4);
 
     overflow: hidden;
 }
 
 
-/* PDF */
-
-.pdf-icon {
-
-    background: #f5f5f5;
-
-    border: 1px solid #bbb;
-
-    color: #e53935;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 10px;
-}
-
-.pdf-icon strong {
-
-    margin-top: 8px;
-}
-
 .file-fold {
 
     position: absolute;
 
-    top: 0;
     right: 0;
+    top: 0;
 
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
 
-    background: #ddd;
+    background: #cfcfcf;
 
     clip-path:
-        polygon(0 0,100% 100%,0 100%);
+        polygon(
+            0 0,
+            100% 100%,
+            0 100%
+        );
 }
 
 
-/* IMAGE FILE */
+.pdf-icon {
+
+    background:
+        linear-gradient(
+            #fff,
+            #f0f0f0
+        );
+}
+
+
+.pdf-icon strong {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 27px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #e53935;
+}
+
 
 .image-file-icon {
 
-    background: linear-gradient(
-        135deg,
-        #d9f1ff,
-        #8cc9f5
-    );
-
-    border: 1px solid white;
+    background:
+        linear-gradient(
+            #eaf5ff,
+            #d8ecff
+        );
 }
+
+
+.image-mountain {
+
+    position: absolute;
+
+    left: 7px;
+    bottom: 8px;
+
+    width: 44px;
+    height: 28px;
+
+    background:
+        #59a85b;
+
+    clip-path:
+        polygon(
+            0 100%,
+            40% 25%,
+            58% 55%,
+            72% 35%,
+            100% 100%
+        );
+}
+
 
 .image-sun {
 
     position: absolute;
+
+    right: 9px;
+    top: 9px;
 
     width: 11px;
     height: 11px;
 
     border-radius: 50%;
 
-    background: #ffd54f;
-
-    top: 9px;
-    right: 9px;
+    background: #ffbd3e;
 }
 
-.image-mountain {
-
-    position: absolute;
-
-    left: 5px;
-    bottom: 5px;
-
-    width: 40px;
-    height: 29px;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 50%,
-            #4caf50 51%
-        );
-
-    border-radius: 3px;
-}
-
-
-/* DOCUMENT */
-
-.document-icon {
-
-    background: white;
-
-    border: 1px solid #aaa;
-}
 
 .document-lines {
 
-    padding-top: 22px;
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+
+    top: 25px;
 }
+
 
 .document-lines i {
 
     display: block;
 
-    width: 31px;
-    height: 2px;
+    height: 3px;
 
-    background: #999;
+    margin: 5px 0;
 
-    margin: 5px auto;
+    background: #777;
+
+    border-radius: 2px;
 }
 
 
-/* ==========================================
+/* ==========================================================
    DOCK
-   ========================================== */
+   ========================================================== */
 
 .dock-container {
 
     position: absolute;
 
     left: 50%;
+
     bottom: 12px;
 
     transform:
@@ -740,48 +895,56 @@ body {
     z-index: 4000;
 }
 
+
 .dock {
+
+    height: 82px;
 
     display: flex;
 
     align-items: flex-end;
 
-    gap: 10px;
+    gap: 9px;
 
     padding:
-        8px 12px 7px;
+        8px 12px;
+
+    border-radius:
+        22px;
 
     background:
-        rgba(235,235,235,0.65);
+        rgba(245,245,245,0.72);
 
     backdrop-filter:
-        blur(18px);
+        blur(20px);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(20px);
 
     border:
-        1px solid rgba(255,255,255,0.55);
-
-    border-radius: 20px;
+        1px solid
+        rgba(255,255,255,0.55);
 
     box-shadow:
-        0 5px 25px rgba(0,0,0,0.4);
+        0 10px 30px
+        rgba(0,0,0,0.35);
 }
+
 
 .dock-icon {
 
     position: relative;
 
-    width: 56px;
-
-    height: 56px;
+    width: 58px;
+    height: 65px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: center;
+    justify-content: flex-end;
+
+    flex-direction: column;
 
     cursor: pointer;
 
@@ -789,67 +952,77 @@ body {
         transform 0.15s ease;
 }
 
+
 .dock-icon:hover {
 
     transform:
-        translateY(-10px) scale(1.13);
+        translateY(-9px)
+        scale(1.08);
 }
+
 
 .dock-icon small {
 
     position: absolute;
 
+    top: -29px;
+
     display: none;
 
-    bottom: 62px;
-
-    background: rgba(0,0,0,0.75);
-
-    color: white;
-
-    padding: 4px 7px;
+    padding:
+        4px 7px;
 
     border-radius: 5px;
 
-    white-space: nowrap;
+    background:
+        rgba(0,0,0,0.75);
+
+    color: white;
 
     font-size: 10px;
 }
+
 
 .dock-icon:hover small {
     display: block;
 }
 
 
-/* FINDER */
+/* ==========================================================
+   DOCK FINDER
+   ========================================================== */
 
 .dock-finder-icon {
 
-    width: 53px;
-    height: 53px;
+    width: 54px;
+    height: 54px;
 
     border-radius: 14px;
+
+    overflow: hidden;
 
     background:
         linear-gradient(
             90deg,
-            #59aef5 50%,
-            #b8ddfa 50%
+            #49a9f4 50%,
+            #e8f5ff 50%
         );
 
     box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
+        0 3px 6px
+        rgba(0,0,0,0.3);
 
-    overflow: hidden;
+    position: relative;
 }
+
 
 .finder-face {
 
-    position: relative;
+    position: absolute;
 
-    width: 100%;
-    height: 100%;
+    inset: 0;
 }
+
 
 .finder-eye {
 
@@ -860,162 +1033,142 @@ body {
     width: 5px;
     height: 7px;
 
-    background: #222;
+    background: #1c4f78;
 
     border-radius: 50%;
 }
 
+
 .left-eye {
-    left: 16px;
+    left: 17px;
 }
 
+
 .right-eye {
-    right: 16px;
+    right: 17px;
 }
+
 
 .finder-mouth {
 
     position: absolute;
 
-    left: 17px;
-    top: 30px;
+    left: 50%;
+    bottom: 13px;
 
-    width: 20px;
-    height: 8px;
+    width: 23px;
+    height: 10px;
+
+    transform:
+        translateX(-50%);
 
     border-bottom:
-        2px solid #222;
+        2px solid #27658d;
 
-    border-radius: 50%;
+    border-radius:
+        0 0 50% 50%;
 }
 
 
-/* DOCK CHROME */
+/* ==========================================================
+   DOCK CHROME
+   ========================================================== */
 
 .dock-chrome-icon {
 
-    width: 53px;
-    height: 53px;
+    width: 54px;
+    height: 54px;
 
     border-radius: 50%;
 
     background:
         conic-gradient(
-            #ea4335 0deg 120deg,
-            #fbbc05 120deg 240deg,
-            #34a853 240deg 360deg
+            #e94335 0deg 120deg,
+            #f4c542 120deg 240deg,
+            #42a95a 240deg 360deg
         );
 
+    position: relative;
+
     box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
+        0 3px 6px
+        rgba(0,0,0,0.3);
 }
+
 
 .dock-chrome-icon div {
 
-    width: 23px;
-    height: 23px;
+    position: absolute;
 
-    margin: 15px;
+    width: 22px;
+    height: 22px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
 
     border-radius: 50%;
 
     background: #4285f4;
 
-    border: 4px solid white;
+    border: 3px solid white;
 }
 
 
-/* DOCK PHOTOS */
+/* ==========================================================
+   DOCK PHOTOS
+   ========================================================== */
 
 .dock-photos-icon {
 
-    width: 53px;
-    height: 53px;
+    position: relative;
 
-    border-radius: 14px;
+    width: 54px;
+    height: 54px;
+
+    border-radius: 15px;
 
     background: white;
 
     box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+        0 3px 6px
+        rgba(0,0,0,0.3);
 }
+
 
 .dock-flower {
-
-    position: relative;
-
-    width: 40px;
-    height: 40px;
-}
-
-.dock-flower i {
-
-    position: absolute;
-
-    left: 16px;
-    top: 0;
-
-    width: 8px;
-    height: 19px;
-
-    border-radius: 50%;
-
-    background: #ff5277;
-
-    transform-origin:
-        4px 20px;
-}
-
-.dock-flower i:nth-child(2) {
-    transform: rotate(45deg);
-}
-
-.dock-flower i:nth-child(3) {
-    transform: rotate(90deg);
-}
-
-.dock-flower i:nth-child(4) {
-    transform: rotate(135deg);
-}
-
-.dock-flower i:nth-child(5) {
-    transform: rotate(180deg);
-}
-
-.dock-flower i:nth-child(6) {
-    transform: rotate(225deg);
-}
-
-.dock-flower i:nth-child(7) {
-    transform: rotate(270deg);
-}
-
-.dock-flower i:nth-child(8) {
-    transform: rotate(315deg);
+    transform:
+        translate(-50%, -50%)
+        scale(.85);
 }
 
 
-/* DOCK NOTES */
+/* ==========================================================
+   DOCK NOTES
+   ========================================================== */
 
 .dock-notes-icon {
 
-    width: 50px;
-    height: 53px;
+    width: 54px;
+    height: 54px;
 
-    border-radius: 7px;
+    border-radius: 12px;
 
-    background: white;
-
-    box-shadow:
-        0 3px 6px rgba(0,0,0,0.35);
+    background:
+        linear-gradient(
+            #fff,
+            #ececec
+        );
 
     overflow: hidden;
+
+    box-shadow:
+        0 3px 6px
+        rgba(0,0,0,0.3);
 }
+
 
 .dock-notes-icon::before {
 
@@ -1025,282 +1178,229 @@ body {
 
     height: 15px;
 
-    background: #ffd34d;
+    background:
+        #ffd84d;
 }
+
 
 .dock-notes-icon div {
 
-    width: 32px;
-    height: 2px;
+    margin: 7px;
+
+    height: 3px;
 
     background: #aaa;
 
-    margin: 8px auto;
+    box-shadow:
+        0 7px 0 #aaa,
+        0 14px 0 #aaa;
 }
 
 
-/* DOCK DOWNLOADS */
+/* ==========================================================
+   DOCK DOWNLOADS
+   ========================================================== */
 
 .dock-download-icon {
 
     position: relative;
 
     width: 54px;
-    height: 45px;
+    height: 54px;
 }
+
 
 .dock-folder-tab {
 
     position: absolute;
 
     left: 5px;
-    top: 0;
+    top: 5px;
 
     width: 24px;
-    height: 10px;
+    height: 11px;
 
-    background: #65b1f1;
+    background: #70baf2;
 
     border-radius:
         5px 5px 0 0;
 }
+
 
 .dock-folder-body {
 
     position: absolute;
 
     left: 2px;
-    top: 8px;
+    top: 11px;
 
     width: 50px;
-    height: 35px;
+    height: 38px;
 
     background:
         linear-gradient(
-            #70b9f2,
-            #398fd5
+            #8dd0ff,
+            #398ed2
         );
 
-    border-radius: 5px;
+    border-radius:
+        4px 4px 9px 9px;
 }
+
 
 .dock-download-icon span {
 
     position: absolute;
 
-    left: 20px;
-    top: 11px;
+    left: 0;
+    right: 0;
+
+    top: 14px;
+
+    text-align: center;
 
     color: white;
 
-    font-size: 23px;
+    font-size: 25px;
 
-    z-index: 2;
+    font-weight: bold;
+
+    z-index: 3;
 }
 
 
-/* DOCK TRASH */
+/* ==========================================================
+   DOCK TRASH
+   ========================================================== */
 
 .dock-trash-icon {
 
-    width: 45px;
-    height: 53px;
-
     position: relative;
+
+    width: 54px;
+    height: 54px;
 }
+
 
 .dock-trash-lid {
 
     position: absolute;
 
-    left: 5px;
-    top: 7px;
+    left: 8px;
+    top: 9px;
 
-    width: 34px;
-    height: 5px;
+    width: 38px;
+    height: 6px;
 
-    background: #aaa;
+    background: #c8c8c8;
 
     border-radius: 4px;
 }
+
 
 .dock-trash-body {
 
     position: absolute;
 
-    left: 9px;
-    top: 14px;
+    left: 12px;
+    top: 16px;
 
-    width: 27px;
+    width: 30px;
     height: 35px;
+
+    border-radius:
+        3px 3px 8px 8px;
 
     background:
         linear-gradient(
             90deg,
-            #ddd,
-            #aaa,
-            #ddd
+            #bdbdbd,
+            #f2f2f2,
+            #bdbdbd
         );
-
-    border-radius: 3px 3px 6px 6px;
 }
+
 
 .dock-trash-body span {
 
     display: inline-block;
 
     width: 2px;
-    height: 25px;
+    height: 23px;
 
-    background: #888;
+    margin:
+        5px 3px;
 
-    margin-left: 5px;
+    background: #999;
 }
 
-
-/* DIVIDER */
 
 .dock-divider {
 
     width: 1px;
 
-    height: 45px;
+    height: 52px;
+
+    margin:
+        0 3px;
 
     background:
         rgba(0,0,0,0.25);
-
-    margin:
-        0 2px;
 }
 
 
-/* ==========================================
+/* ==========================================================
    SYSTEM MESSAGE
-   ========================================== */
+   ========================================================== */
 
 .system-message {
 
     position: absolute;
 
     left: 50%;
-
-    bottom: 8px;
+    bottom: 103px;
 
     transform:
         translateX(-50%);
 
     padding:
-        5px 10px;
+        6px 12px;
+
+    border-radius: 8px;
 
     background:
-        rgba(0,0,0,0.55);
+        rgba(0,0,0,0.6);
 
     color: white;
-
-    border-radius: 7px;
 
     font-size: 11px;
 
     opacity: 0;
 
+    pointer-events: none;
+
     transition:
         opacity 0.2s ease;
-
-    pointer-events: none;
 
     z-index: 4500;
 }
 
-.system-message.show {
+
+.system-message:not(:empty) {
     opacity: 1;
 }
 
 
-/* ==========================================
-   APPLE MENU
-   ========================================== */
-
-.apple-menu {
-
-    position: fixed;
-
-    display: none;
-
-    top: 28px;
-    left: 8px;
-
-    width: 230px;
-
-    background:
-        rgba(245,245,245,0.96);
-
-    backdrop-filter:
-        blur(20px);
-
-    border-radius: 7px;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,0.3);
-
-    border:
-        1px solid rgba(0,0,0,0.2);
-
-    padding: 5px;
-
-    z-index: 6000;
-
-    font-size: 13px;
-}
-
-.apple-menu.visible {
-    display: block;
-}
-
-.apple-menu-title {
-
-    padding:
-        8px 10px;
-
-    font-weight: 600;
-}
-
-.apple-menu-entry {
-
-    padding:
-        7px 10px;
-
-    border-radius: 4px;
-
-    cursor: default;
-}
-
-.apple-menu-entry:hover {
-
-    background: #2878e8;
-
-    color: white;
-}
-
-.apple-menu-separator {
-
-    height: 1px;
-
-    background: #ccc;
-
-    margin: 5px 0;
-}
-
-
-/* ==========================================
-   COMPUTER WINDOWS
-   ========================================== */
+/* ==========================================================
+   WINDOWS
+   ========================================================== */
 
 .computer-window {
 
     position: absolute;
 
-    top: 100px;
     left: 250px;
+    top: 110px;
 
     width: 520px;
 
@@ -1308,32 +1408,35 @@ body {
         calc(100vw - 40px);
 
     max-height:
-        calc(100vh - 90px);
+        calc(100vh - 50px);
 
     background:
-        rgba(248,248,248,0.97);
+        rgba(248,248,248,0.96);
 
     border:
-        1px solid #aaa;
+        1px solid #777;
 
-    border-radius: 9px;
-
-    box-shadow:
-        0 18px 50px rgba(0,0,0,0.35);
+    border-radius:
+        10px;
 
     overflow: hidden;
 
-    z-index: 20;
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,0.4),
+
+        0 2px 8px
+        rgba(0,0,0,0.25);
+
+    z-index: 100;
 
     color: #111;
 }
 
 
-/* ==========================================
-   WINDOW HEADER
-   ========================================== */
-
 .window-header {
+
+    position: relative;
 
     height: 38px;
 
@@ -1343,72 +1446,205 @@ body {
 
     justify-content: center;
 
-    position: relative;
-
-    padding: 0 45px;
-
     background:
         linear-gradient(
-            #f8f8f8,
-            #e7e7e7
+            #fafafa,
+            #dedede
         );
 
     border-bottom:
-        1px solid #ccc;
+        1px solid #b5b5b5;
+
+    cursor: move;
 
     color: #222;
 
     font-size: 13px;
 
     font-weight: 600;
-
-    cursor: move;
 }
 
-.close-button {
+
+.window-title {
+    pointer-events: none;
+}
+
+
+.window-controls {
 
     position: absolute;
 
     left: 10px;
 
-    width: 14px;
-    height: 14px;
+    top: 11px;
+
+    display: flex;
+
+    gap: 6px;
+
+    z-index: 5;
+}
+
+
+.window-dot {
+
+    width: 13px;
+    height: 13px;
 
     padding: 0;
 
-    border: 0;
+    border: none;
 
     border-radius: 50%;
 
-    background: #ff5f57;
-
-    color: transparent;
-
     cursor: pointer;
+
+    box-shadow:
+        inset 0 0 0 0.5px
+        rgba(0,0,0,0.25);
 }
 
-.close-button:hover {
-    background: #ff3b30;
+
+.close-dot {
+    background: #ff5f57;
 }
 
 
-/* ==========================================
+.minimize-dot {
+    background: #ffbd2e;
+}
+
+
+.maximize-dot {
+    background: #28c840;
+}
+
+
+.window-dot:hover {
+    filter: brightness(0.9);
+}
+
+
+/* ==========================================================
+   WINDOW STATES
+   ========================================================== */
+
+.computer-window.minimized {
+
+    transform:
+        scale(0.05);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+}
+
+
+.computer-window.maximized {
+
+    left: 15px !important;
+    top: 40px !important;
+
+    width:
+        calc(100vw - 30px) !important;
+
+    height:
+        calc(100vh - 55px) !important;
+
+    max-width: none;
+
+    max-height: none;
+
+    border-radius: 10px;
+}
+
+
+/* ==========================================================
+   FINDER TOOLBAR
+   ========================================================== */
+
+.finder-toolbar {
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        6px 10px;
+
+    background:
+        #f2f2f2;
+
+    border-bottom:
+        1px solid #d0d0d0;
+}
+
+
+.toolbar-button {
+
+    width: 28px;
+    height: 27px;
+
+    border:
+        1px solid #bbb;
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            #fff,
+            #e5e5e5
+        );
+
+    font-size: 20px;
+
+    line-height: 20px;
+
+    cursor: default;
+}
+
+
+.toolbar-folder {
+
+    margin-left: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================================
    WINDOW CONTENT
-   ========================================== */
+   ========================================================== */
 
 .window-content {
 
-    padding: 15px;
+    padding: 14px;
 
-    max-height: 60vh;
+    max-height:
+        60vh;
 
     overflow-y: auto;
 }
 
 
-/* ==========================================
-   FILE LIST
-   ========================================== */
+.file-list {
+    padding: 7px;
+}
+
+
+/* ==========================================================
+   FILE ROW
+   ========================================================== */
 
 .file {
 
@@ -1416,64 +1652,121 @@ body {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    padding: 10px;
+    min-height: 52px;
+
+    padding:
+        7px 10px;
 
     border-radius: 6px;
 
     cursor: default;
+
+    font-size: 13px;
 }
+
 
 .file:hover {
 
     background:
-        rgba(0,122,255,0.12);
+        #d8eaff;
 }
+
 
 .file-icon {
 
-    width: 34px;
+    width: 36px;
+    height: 36px;
 
-    font-size: 25px;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 6px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    color: white;
+
+    box-shadow:
+        0 2px 4px
+        rgba(0,0,0,0.2);
 }
 
 
-/* ==========================================
+.document-small {
+    background: #4388e8;
+}
+
+
+.pdf-small {
+    background: #e84b4b;
+}
+
+
+.text-small {
+    background: #8d8d8d;
+}
+
+
+.image-small {
+    background: #48a86a;
+}
+
+
+.folder-small {
+    background: #6eb7ed;
+}
+
+
+/* ==========================================================
    FILE WINDOWS
-   ========================================== */
+   ========================================================== */
 
 .file-window {
 
-    width: 480px;
+    width: 500px;
+
+    background: #fff;
 }
+
 
 .file-content {
 
-    padding: 22px;
+    padding: 25px;
 
-    background: white;
-
-    font-family:
-        "SFMono-Regular",
-        Consolas,
-        monospace;
-
-    line-height: 1.7;
-
-    max-height: 65vh;
+    max-height:
+        65vh;
 
     overflow-y: auto;
 
-    overflow-wrap: anywhere;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    line-height: 1.7;
+
+    font-size: 14px;
 }
+
 
 .file-content h3 {
 
     margin-top: 0;
 
-    font-weight: normal;
+    font-size: 18px;
+
+    font-weight: 600;
 }
+
 
 .file-date {
 
@@ -1485,14 +1778,14 @@ body {
 }
 
 
-/* ==========================================
+/* ==========================================================
    PHOTOS
-   ========================================== */
+   ========================================================== */
 
 .photos-window {
-
     width: 650px;
 }
+
 
 .photo-grid {
 
@@ -1504,24 +1797,27 @@ body {
     gap: 15px;
 }
 
+
 .photo {
 
-    padding: 6px;
+    padding: 7px;
 
-    border-radius: 7px;
+    border-radius: 8px;
 
     cursor: default;
 
-    font-size: 11px;
-
     text-align: center;
+
+    font-size: 11px;
 }
+
 
 .photo:hover {
 
     background:
-        rgba(0,122,255,0.1);
+        #d8eaff;
 }
+
 
 .photo img {
 
@@ -1529,22 +1825,23 @@ body {
 
     width: 100%;
 
-    height: 145px;
+    height: 150px;
 
     object-fit: cover;
 
     border-radius: 6px;
 
-    border:
-        1px solid #bbb;
-
     margin-bottom: 7px;
+
+    box-shadow:
+        0 2px 5px
+        rgba(0,0,0,0.2);
 }
 
 
-/* ==========================================
+/* ==========================================================
    PHOTO PREVIEW
-   ========================================== */
+   ========================================================== */
 
 .photo-preview {
 
@@ -1559,106 +1856,185 @@ body {
     justify-content: center;
 
     background:
-        rgba(0,0,0,0.72);
+        rgba(0,0,0,0.6);
 
-    z-index: 7000;
+    backdrop-filter:
+        blur(5px);
+
+    z-index: 6000;
 }
+
 
 .preview-window {
 
-    width: 680px;
+    width: 750px;
 
     max-width: 90vw;
 
     background: #eee;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     overflow: hidden;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.5);
+        0 20px 60px
+        rgba(0,0,0,0.6);
 }
+
+
+.preview-header {
+
+    position: relative;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            #fafafa,
+            #ddd
+        );
+
+    border-bottom:
+        1px solid #bbb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
 
 .preview-content {
 
     padding: 15px;
 
+    background:
+        #222;
+
     text-align: center;
 }
+
 
 .preview-content img {
 
     max-width: 100%;
 
-    max-height: 65vh;
+    max-height: 70vh;
 
     object-fit: contain;
 }
 
-.preview-name {
 
-    margin-top: 10px;
+/* ==========================================================
+   IMAGE FILE WINDOW
+   ========================================================== */
 
-    font-family: monospace;
+.image-file-window {
 
-    font-size: 12px;
+    width: 650px;
+
+    max-width:
+        calc(100vw - 40px);
 }
 
 
-/* ==========================================
+.preview-image-content {
+
+    padding: 18px;
+
+    text-align: center;
+
+    background:
+        #222;
+}
+
+
+.large-file-image {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 65vh;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+}
+
+
+.image-caption {
+
+    margin-top: 12px;
+
+    color: #ddd;
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
    BROWSER
-   ========================================== */
+   ========================================================== */
 
 .browser-window {
 
-    width: 700px;
+    width: 720px;
 
-    height: 500px;
+    height: 510px;
 
     display: flex;
 
     flex-direction: column;
 }
 
+
 .browser-toolbar {
 
     display: flex;
+
+    align-items: center;
 
     gap: 6px;
 
     padding: 7px;
 
-    background: #e5e5e5;
+    background:
+        #ededed;
 
     border-bottom:
         1px solid #ccc;
 }
 
-.browser-toolbar button {
-
-    border: 0;
-
-    background: transparent;
-
-    font-size: 18px;
-}
 
 .address-bar {
 
     flex: 1;
 
-    min-width: 0;
+    height: 27px;
+
+    padding:
+        0 10px;
 
     border:
-        1px solid #ccc;
+        1px solid #bbb;
 
     border-radius: 6px;
 
-    padding: 5px 10px;
+    background: white;
 
-    font-family: monospace;
+    font-family:
+        monospace;
+
+    font-size: 11px;
 }
+
 
 .browser-page {
 
@@ -1666,24 +2042,27 @@ body {
 
     overflow-y: auto;
 
-    padding: 25px;
+    padding: 28px;
 
     background: white;
 }
 
+
 .browser-page h1 {
 
-    font-size: 22px;
-
-    font-weight: normal;
-
     margin-top: 0;
+
+    font-size: 25px;
+
+    font-weight: 500;
 }
+
 
 .browser-page p {
 
-    color: #666;
+    color: #777;
 }
+
 
 .search-history {
 
@@ -1694,20 +2073,25 @@ body {
     margin-top: 25px;
 }
 
+
 .search-history li {
 
-    padding: 12px 5px;
+    padding:
+        12px 8px;
 
     border-bottom:
-        1px solid #ddd;
+        1px solid #eee;
 
-    font-family: monospace;
+    font-size: 13px;
 }
+
 
 .search-history li:hover {
 
-    background: #f1f1f1;
+    background:
+        #f3f3f3;
 }
+
 
 .search-date {
 
@@ -1721,18 +2105,24 @@ body {
 }
 
 
-/* ==========================================
+/* ==========================================================
    NOTES
-   ========================================== */
+   ========================================================== */
 
 .notes-content {
 
-    background: #fffef2;
+    background:
+        #fffef2;
 
-    padding: 20px;
+    padding:
+        18px 22px;
 
-    font-family: monospace;
+    font-family:
+        "SF Mono",
+        Monaco,
+        monospace;
 }
+
 
 .note-line {
 
@@ -1740,16 +2130,21 @@ body {
 
     gap: 15px;
 
-    padding: 10px 0;
+    padding:
+        10px 0;
 
     border-bottom:
-        1px solid #ddd;
+        1px solid #e4e0ce;
 }
+
 
 .note-number {
 
     color: #aaa;
+
+    min-width: 22px;
 }
+
 
 .note-line p {
 
@@ -1759,28 +2154,308 @@ body {
 }
 
 
-/* ==========================================
-   SMALL SCREEN
-   ========================================== */
+/* ==========================================================
+   ABOUT MAC
+   ========================================================== */
+
+.about-window {
+    width: 360px;
+}
+
+
+.about-mac-content {
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: white;
+}
+
+
+.about-apple {
+
+    font-size: 65px;
+
+    margin-bottom: 10px;
+}
+
+
+.about-mac-content h2 {
+
+    margin:
+        0 0 5px;
+
+    font-size: 22px;
+}
+
+
+.about-mac-content p {
+
+    margin:
+        5px 0;
+
+    color: #555;
+}
+
+
+.about-small {
+
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   PREFERENCES
+   ========================================================== */
+
+.preferences-content {
+
+    padding: 20px;
+
+    background: white;
+}
+
+
+.preferences-content h2 {
+
+    margin-top: 0;
+
+    font-size: 20px;
+}
+
+
+.preference-row {
+
+    padding:
+        13px;
+
+    margin:
+        5px 0;
+
+    border-radius: 7px;
+
+    background:
+        #f1f1f1;
+}
+
+
+.preference-row:hover {
+    background: #e3e3e3;
+}
+
+
+/* ==========================================================
+   FORCE QUIT
+   ========================================================== */
+
+.force-quit-content {
+
+    padding: 20px;
+
+    background: white;
+}
+
+
+.force-quit-content h3 {
+
+    margin-top: 0;
+}
+
+
+.force-app {
+
+    padding: 12px;
+
+    margin:
+        5px 0;
+
+    background:
+        #f1f1f1;
+
+    border-radius: 6px;
+}
+
+
+.force-button {
+
+    margin-top: 15px;
+
+    padding:
+        7px 18px;
+
+    border:
+        1px solid #aaa;
+
+    border-radius: 6px;
+
+    background:
+        #eee;
+}
+
+
+/* ==========================================================
+   APPLE MENU
+   ========================================================== */
+
+.apple-menu {
+
+    position: fixed;
+
+    display: none;
+
+    left: 7px;
+    top: 31px;
+
+    width: 245px;
+
+    padding:
+        6px;
+
+    background:
+        rgba(250,250,250,0.94);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(0,0,0,0.2);
+
+    border-radius:
+        8px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.3);
+
+    z-index: 7000;
+
+    color: #111;
+
+    font-size: 13px;
+}
+
+
+.apple-menu.visible {
+    display: block;
+}
+
+
+.apple-menu-title,
+.apple-menu-entry {
+
+    padding:
+        7px 10px;
+
+    border-radius: 5px;
+
+    cursor: default;
+}
+
+
+.apple-menu-title {
+
+    font-weight: 600;
+}
+
+
+.apple-menu-entry:hover {
+
+    background:
+        #287cf0;
+
+    color: white;
+}
+
+
+.apple-menu-separator {
+
+    height: 1px;
+
+    margin:
+        5px 4px;
+
+    background:
+        #d0d0d0;
+}
+
+
+/* ==========================================================
+   SCROLLBARS
+   ========================================================== */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(0,0,0,0.25);
+
+    border-radius:
+        10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(0,0,0,0.4);
+}
+
+
+/* ==========================================================
+   SMALL SCREENS
+   ========================================================== */
 
 @media (max-width: 700px) {
 
-    .menu-item:nth-child(n+5) {
+    .menu-item {
         display: none;
     }
 
-    .menu-right span:nth-child(1),
-    .menu-right span:nth-child(2) {
+    .menu-left {
+        gap: 8px;
+    }
+
+    .menu-right .menu-status {
         display: none;
+    }
+
+    .desktop-item {
+        transform: scale(.85);
+        transform-origin: top left;
+    }
+
+    .dock {
+
+        max-width:
+            calc(100vw - 20px);
+
+        overflow-x: auto;
     }
 
     .computer-window {
 
-        left: 20px;
+        left: 20px !important;
 
-        top: 60px;
+        top: 55px !important;
 
         width:
+            calc(100vw - 40px) !important;
+
+        max-width:
             calc(100vw - 40px);
     }
 
@@ -1788,22 +2463,13 @@ body {
     .browser-window {
 
         width:
-            calc(100vw - 40px);
+            calc(100vw - 40px) !important;
     }
 
     .photo-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
-    .dock {
-
-        gap: 4px;
-    }
-
-    .dock-icon {
-
-        width: 48px;
-        height: 48px;
-    }
 }
