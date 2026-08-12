@@ -12,9 +12,11 @@
 
 <body>
 
-<main class="desktop">
+<main class="desktop" id="desktop">
 
-    <!-- Desktop Icons -->
+    <!-- =========================
+         DESKTOP ICONS
+         ========================= -->
 
     <div class="desktop-icon" data-window="documents">
         <div class="icon">📁</div>
@@ -47,21 +49,66 @@
     </div>
 
 
-    <!-- Taskbar -->
+    <!-- Hidden folder -->
+    <div
+        class="desktop-icon hidden-icon"
+        id="archive-icon"
+        data-window="archive"
+    >
+        <div class="icon">📁</div>
+        <span>Archive</span>
+    </div>
+
+
+    <!-- =========================
+         TASKBAR
+         ========================= -->
 
     <div class="taskbar">
 
-        <div class="start-button">
+        <button class="start-button" id="start-button">
             Start
-        </div>
+        </button>
 
-        <div class="clock" id="clock">
-            10:42 PM
+        <div class="taskbar-status">
+            <span id="connection-status">Connected</span>
+            <span class="clock" id="clock">
+                10:42 PM
+            </span>
         </div>
 
     </div>
 
 </main>
+
+
+<!-- =========================
+     START MENU
+     ========================= -->
+
+<div class="start-menu" id="start-menu">
+
+    <div class="start-title">
+        Lost Computer
+    </div>
+
+    <div class="start-item">
+        <strong>System</strong>
+        <span>Personal Computer</span>
+    </div>
+
+    <div class="start-item">
+        <strong>Storage</strong>
+        <span>128 GB</span>
+    </div>
+
+    <div class="start-item">
+        <strong>Status</strong>
+        <span>Last used recently</span>
+    </div>
+
+</div>
+
 
 <script src="script.js"></script>
 
