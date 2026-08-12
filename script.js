@@ -1,31 +1,27 @@
-// ==========================================
-// MACINTOSH LOST COMPUTER
-// ==========================================
+// ==========================================================
+// LOST COMPUTER — MACINTOSH INTERFACE
+// ==========================================================
 
 
-// ==========================================
+// ==========================================================
 // CLOCK
-// ==========================================
+// ==========================================================
 
 function updateClock() {
 
-    const clock =
-        document.getElementById("clock");
+    const clock = document.getElementById("clock");
 
-    const now =
-        new Date();
+    if (!clock) return;
 
-    let hours =
-        now.getHours();
+    const now = new Date();
 
-    let minutes =
-        now.getMinutes();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
 
-    const ampm =
-        hours >= 12 ? "PM" : "AM";
+    const ampm = hours >= 12 ? "PM" : "AM";
 
-    hours =
-        hours % 12 || 12;
+    hours = hours % 12;
+    hours = hours || 12;
 
     minutes =
         minutes < 10
@@ -41,9 +37,36 @@ updateClock();
 setInterval(updateClock, 1000);
 
 
-// ==========================================
+// ==========================================================
+// DATE
+// ==========================================================
+
+function updateDate() {
+
+    const dateElement =
+        document.getElementById("menu-date");
+
+    if (!dateElement) return;
+
+    const now = new Date();
+
+    dateElement.textContent =
+        now.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "short",
+                month: "short",
+                day: "numeric"
+            }
+        );
+}
+
+updateDate();
+
+
+// ==========================================================
 // DISCOVERIES
-// ==========================================
+// ==========================================================
 
 let discoveries =
     JSON.parse(
@@ -68,43 +91,9 @@ function recordDiscovery(name) {
 }
 
 
-// ==========================================
-// SYSTEM MESSAGE
-// ==========================================
-
-function setSystemMessage(message) {
-
-    const systemMessage =
-        document.getElementById(
-            "system-message"
-        );
-
-    systemMessage.textContent =
-        message;
-
-    systemMessage.classList.add("show");
-
-    clearTimeout(
-        window.systemMessageTimer
-    );
-
-    window.systemMessageTimer =
-        setTimeout(() => {
-
-            systemMessage.classList.remove(
-                "show"
-            );
-
-            systemMessage.textContent =
-                "Ready";
-
-        }, 2500);
-}
-
-
-// ==========================================
-// DESKTOP ICONS
-// ==========================================
+// ==========================================================
+// DESKTOP ITEMS
+// ==========================================================
 
 const desktopItems =
     document.querySelectorAll(
@@ -113,36 +102,6 @@ const desktopItems =
 
 
 desktopItems.forEach(item => {
-
-    item.addEventListener(
-        "click",
-        () => {
-
-            const fileName =
-                item.dataset.file;
-
-            const image =
-                item.dataset.image;
-
-            if (fileName) {
-
-                setSystemMessage(
-                    `${fileName} selected`
-                );
-
-            }
-
-            if (image) {
-
-                setSystemMessage(
-                    `${image.split("/").pop()} selected`
-                );
-
-            }
-
-        }
-    );
-
 
     item.addEventListener(
         "dblclick",
@@ -154,28 +113,6 @@ desktopItems.forEach(item => {
             const fileName =
                 item.dataset.file;
 
-            const image =
-                item.dataset.image;
-
-
-            // IMAGE FILE
-
-            if (image) {
-
-                recordDiscovery(
-                    image
-                );
-
-                openPhotoPreview(
-                    image,
-                    image.split("/").pop()
-                );
-
-                return;
-            }
-
-
-            // NORMAL FILE
 
             if (fileName) {
 
@@ -185,30 +122,51 @@ desktopItems.forEach(item => {
             }
 
 
-            // FOLDERS / APPS
+            switch (windowName) {
 
-            if (windowName === "school") {
-                openSchool();
+                case "school":
+                    openSchool();
+                    break;
+
+                case "photos":
+                    openPhotos();
+                    break;
+
+                case "downloads":
+                    openDownloads();
+                    break;
+
+                case "browser":
+                    openBrowser();
+                    break;
+
+                case "notes":
+                    openNotes();
+                    break;
+
+                case "trash":
+                    openTrash();
+                    break;
+
             }
 
-            if (windowName === "photos") {
-                openPhotos();
-            }
+        }
+    );
 
-            if (windowName === "downloads") {
-                openDownloads();
-            }
 
-            if (windowName === "browser") {
-                openBrowser();
-            }
+    item.addEventListener(
+        "click",
+        () => {
 
-            if (windowName === "notes") {
-                openNotes();
-            }
+            const fileName =
+                item.dataset.file;
 
-            if (windowName === "trash") {
-                openTrash();
+            if (fileName) {
+
+                setSystemMessage(
+                    `${fileName} selected`
+                );
+
             }
 
         }
@@ -217,9 +175,9 @@ desktopItems.forEach(item => {
 });
 
 
-// ==========================================
+// ==========================================================
 // APPLE MENU
-// ==========================================
+// ==========================================================
 
 const appleLogo =
     document.getElementById(
@@ -232,35 +190,114 @@ const appleMenu =
     );
 
 
-appleLogo.addEventListener(
-    "click",
-    event => {
+if (appleLogo && appleMenu) {
 
-        event.stopPropagation();
+    appleLogo.addEventListener(
+        "click",
+        event => {
 
-        appleMenu.classList.toggle(
-            "visible"
-        );
+            event.stopPropagation();
 
-    }
-);
+            appleMenu.classList.toggle(
+                "visible"
+            );
+
+        }
+    );
+
+}
 
 
 document.addEventListener(
     "click",
-    () => {
+    event => {
 
-        appleMenu.classList.remove(
-            "visible"
-        );
+        if (
+            appleMenu &&
+            !appleMenu.contains(event.target) &&
+            event.target !== appleLogo
+        ) {
+
+            appleMenu.classList.remove(
+                "visible"
+            );
+
+        }
 
     }
 );
 
 
-// ==========================================
+// ==========================================================
+// APPLE MENU ITEMS
+// ==========================================================
+
+if (appleMenu) {
+
+    const menuEntries =
+        appleMenu.querySelectorAll(
+            ".apple-menu-entry"
+        );
+
+
+    menuEntries.forEach(entry => {
+
+        entry.addEventListener(
+            "click",
+            () => {
+
+                const text =
+                    entry.textContent.trim();
+
+
+                if (
+                    text.includes(
+                        "About This Mac"
+                    )
+                ) {
+
+                    openAboutMac();
+
+                }
+
+
+                if (
+                    text.includes(
+                        "System Preferences"
+                    )
+                ) {
+
+                    openPreferences();
+
+                }
+
+
+                if (
+                    text.includes(
+                        "Force Quit"
+                    )
+                ) {
+
+                    openForceQuit();
+
+                }
+
+
+                appleMenu.classList.remove(
+                    "visible"
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+// ==========================================================
 // CREATE WINDOW
-// ==========================================
+// ==========================================================
 
 function createWindow(
     title,
@@ -280,13 +317,32 @@ function createWindow(
 
         <div class="window-header">
 
-            ${title}
+            <div class="window-controls">
 
-            <button class="close-button">
-                ×
-            </button>
+                <button
+                    class="window-dot close-dot"
+                    aria-label="Close">
+                </button>
+
+                <button
+                    class="window-dot minimize-dot"
+                    aria-label="Minimize">
+                </button>
+
+                <button
+                    class="window-dot maximize-dot"
+                    aria-label="Maximize">
+                </button>
+
+            </div>
+
+
+            <div class="window-title">
+                ${title}
+            </div>
 
         </div>
+
 
         ${content}
 
@@ -295,14 +351,12 @@ function createWindow(
 
     document
         .getElementById("desktop")
-        .appendChild(
-            windowElement
-        );
+        .appendChild(windowElement);
 
 
     const closeButton =
         windowElement.querySelector(
-            ".close-button"
+            ".close-dot"
         );
 
 
@@ -316,18 +370,63 @@ function createWindow(
     );
 
 
-    makeDraggable(
-        windowElement
+    const minimizeButton =
+        windowElement.querySelector(
+            ".minimize-dot"
+        );
+
+
+    minimizeButton.addEventListener(
+        "click",
+        () => {
+
+            windowElement.classList.toggle(
+                "minimized"
+            );
+
+        }
     );
+
+
+    const maximizeButton =
+        windowElement.querySelector(
+            ".maximize-dot"
+        );
+
+
+    maximizeButton.addEventListener(
+        "click",
+        () => {
+
+            windowElement.classList.toggle(
+                "maximized"
+            );
+
+        }
+    );
+
+
+    windowElement.addEventListener(
+        "mousedown",
+        () => {
+
+            windowElement.style.zIndex =
+                Date.now();
+
+        }
+    );
+
+
+    makeDraggable(windowElement);
 
 
     return windowElement;
 }
 
 
-// ==========================================
+// ==========================================================
 // DRAG WINDOWS
-// ==========================================
+// ==========================================================
 
 function makeDraggable(
     windowElement
@@ -350,11 +449,24 @@ function makeDraggable(
         event => {
 
             if (
-                event.target.classList.contains(
-                    "close-button"
+                event.target.closest(
+                    ".window-controls"
                 )
             ) {
+
                 return;
+
+            }
+
+
+            if (
+                windowElement.classList.contains(
+                    "maximized"
+                )
+            ) {
+
+                return;
+
             }
 
 
@@ -382,9 +494,7 @@ function makeDraggable(
         "mousemove",
         event => {
 
-            if (!dragging) {
-                return;
-            }
+            if (!dragging) return;
 
 
             let left =
@@ -395,6 +505,9 @@ function makeDraggable(
             let top =
                 event.clientY -
                 offsetY;
+
+
+            const menuHeight = 28;
 
 
             left =
@@ -410,12 +523,12 @@ function makeDraggable(
 
             top =
                 Math.max(
-                    30,
+                    menuHeight,
                     Math.min(
                         top,
                         window.innerHeight -
                         windowElement.offsetHeight -
-                        15
+                        5
                     )
                 );
 
@@ -443,9 +556,9 @@ function makeDraggable(
 }
 
 
-// ==========================================
-// SCHOOL
-// ==========================================
+// ==========================================================
+// SCHOOL FOLDER
+// ==========================================================
 
 function openSchool() {
 
@@ -454,7 +567,9 @@ function openSchool() {
             "school-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -463,16 +578,36 @@ function openSchool() {
 
     const content = `
 
-        <div class="window-content">
+        <div class="finder-toolbar">
+
+            <button class="toolbar-button">
+                ‹
+            </button>
+
+            <button class="toolbar-button">
+                ›
+            </button>
+
+            <span class="toolbar-folder">
+                school
+            </span>
+
+        </div>
+
+
+        <div class="window-content file-list">
+
 
             <div class="file"
                  data-file="Essay.docx">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon document-small">
+                    DOC
                 </div>
 
-                <span>Essay.docx</span>
+                <span>
+                    Essay.docx
+                </span>
 
             </div>
 
@@ -480,11 +615,13 @@ function openSchool() {
             <div class="file"
                  data-file="Essay (1).docx">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon document-small">
+                    DOC
                 </div>
 
-                <span>Essay (1).docx</span>
+                <span>
+                    Essay (1).docx
+                </span>
 
             </div>
 
@@ -492,11 +629,13 @@ function openSchool() {
             <div class="file"
                  data-file="resume_FINAL2.pdf">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon pdf-small">
+                    PDF
                 </div>
 
-                <span>resume_FINAL2.pdf</span>
+                <span>
+                    resume_FINAL2.pdf
+                </span>
 
             </div>
 
@@ -504,11 +643,13 @@ function openSchool() {
             <div class="file"
                  data-file="resume_FINAL_FINAL.pdf">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon pdf-small">
+                    PDF
                 </div>
 
-                <span>resume_FINAL_FINAL.pdf</span>
+                <span>
+                    resume_FINAL_FINAL.pdf
+                </span>
 
             </div>
 
@@ -516,11 +657,13 @@ function openSchool() {
             <div class="file"
                  data-file="Class Schedule.pdf">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon pdf-small">
+                    PDF
                 </div>
 
-                <span>Class Schedule.pdf</span>
+                <span>
+                    Class Schedule.pdf
+                </span>
 
             </div>
 
@@ -528,11 +671,13 @@ function openSchool() {
             <div class="file"
                  data-file="things_to_do.txt">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon text-small">
+                    TXT
                 </div>
 
-                <span>things_to_do.txt</span>
+                <span>
+                    things_to_do.txt
+                </span>
 
             </div>
 
@@ -540,34 +685,22 @@ function openSchool() {
             <div class="file"
                  data-file="Untitled.docx">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon document-small">
+                    DOC
                 </div>
 
-                <span>Untitled.docx</span>
+                <span>
+                    Untitled.docx
+                </span>
 
             </div>
 
 
             <div class="file"
-                 data-file="old stuff">
+                 data-file="form.png">
 
-                <div class="file-icon">
-                    📁
-                </div>
-
-                <span>old stuff</span>
-
-            </div>
-
-
-            <!-- FORM -->
-
-            <div class="file"
-                 data-image="images/form.png">
-
-                <div class="file-icon">
-                    🖼️
+                <div class="file-icon image-small">
+                    IMG
                 </div>
 
                 <span>
@@ -575,6 +708,21 @@ function openSchool() {
                 </span>
 
             </div>
+
+
+            <div class="file"
+                 data-file="old stuff">
+
+                <div class="file-icon folder-small">
+                    📁
+                </div>
+
+                <span>
+                    old stuff
+                </span>
+
+            </div>
+
 
         </div>
 
@@ -584,7 +732,8 @@ function openSchool() {
     const windowElement =
         createWindow(
             "school",
-            content
+            content,
+            "finder-window"
         );
 
 
@@ -599,9 +748,9 @@ function openSchool() {
 }
 
 
-// ==========================================
+// ==========================================================
 // PHOTOS
-// ==========================================
+// ==========================================================
 
 function openPhotos() {
 
@@ -610,7 +759,9 @@ function openPhotos() {
             "photos-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -620,6 +771,7 @@ function openPhotos() {
     const content = `
 
         <div class="window-content photo-grid">
+
 
             <div class="photo">
 
@@ -676,6 +828,7 @@ function openPhotos() {
 
             </div>
 
+
         </div>
 
     `;
@@ -706,7 +859,9 @@ function openPhotos() {
             () => {
 
                 const image =
-                    photo.querySelector("img");
+                    photo.querySelector(
+                        "img"
+                    );
 
 
                 recordDiscovery(
@@ -727,34 +882,18 @@ function openPhotos() {
 }
 
 
-// ==========================================
+// ==========================================================
 // PHOTO PREVIEW
-// ==========================================
+// ==========================================================
 
 function openPhotoPreview(
     src,
     name
 ) {
 
-    const existing =
-        document.getElementById(
-            "photo-preview"
-        );
-
-
-    if (existing) {
-        return;
-    }
-
-
     const preview =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
-
-    preview.id =
-        "photo-preview";
 
     preview.className =
         "photo-preview";
@@ -764,13 +903,19 @@ function openPhotoPreview(
 
         <div class="preview-window">
 
-            <div class="window-header">
+            <div class="preview-header">
 
-                ${name}
+                <div class="window-controls">
 
-                <button class="close-button">
-                    ×
-                </button>
+                    <button
+                        class="window-dot close-dot">
+                    </button>
+
+                </div>
+
+                <span>
+                    ${name}
+                </span>
 
             </div>
 
@@ -781,10 +926,6 @@ function openPhotoPreview(
                     src="${src}"
                     alt="${name}"
                 >
-
-                <div class="preview-name">
-                    ${name}
-                </div>
 
             </div>
 
@@ -799,7 +940,7 @@ function openPhotoPreview(
 
 
     preview
-        .querySelector(".close-button")
+        .querySelector(".close-dot")
         .addEventListener(
             "click",
             () => {
@@ -809,28 +950,12 @@ function openPhotoPreview(
             }
         );
 
-
-    preview.addEventListener(
-        "dblclick",
-        event => {
-
-            if (
-                event.target === preview
-            ) {
-
-                preview.remove();
-
-            }
-
-        }
-    );
-
 }
 
 
-// ==========================================
+// ==========================================================
 // DOWNLOADS
-// ==========================================
+// ==========================================================
 
 function openDownloads() {
 
@@ -839,7 +964,9 @@ function openDownloads() {
             "downloads-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -848,14 +975,31 @@ function openDownloads() {
 
     const content = `
 
-        <div class="window-content">
+        <div class="finder-toolbar">
+
+            <button class="toolbar-button">
+                ‹
+            </button>
+
+            <button class="toolbar-button">
+                ›
+            </button>
+
+            <span class="toolbar-folder">
+                Downloads
+            </span>
+
+        </div>
+
+
+        <div class="window-content file-list">
 
 
             <div class="file"
-                 data-image="images/Screenshot_2024-10-17.png">
+                 data-file="Screenshot_2024-10-17.png">
 
-                <div class="file-icon">
-                    🖼️
+                <div class="file-icon image-small">
+                    IMG
                 </div>
 
                 <span>
@@ -868,8 +1012,8 @@ function openDownloads() {
             <div class="file"
                  data-file="IMG_OLD.zip">
 
-                <div class="file-icon">
-                    📦
+                <div class="file-icon folder-small">
+                    ZIP
                 </div>
 
                 <span>
@@ -882,8 +1026,8 @@ function openDownloads() {
             <div class="file"
                  data-file="moving checklist.txt">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon text-small">
+                    TXT
                 </div>
 
                 <span>
@@ -896,8 +1040,8 @@ function openDownloads() {
             <div class="file"
                  data-file="resume template.pdf">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon pdf-small">
+                    PDF
                 </div>
 
                 <span>
@@ -910,8 +1054,8 @@ function openDownloads() {
             <div class="file"
                  data-file="backup_complete.txt">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon text-small">
+                    TXT
                 </div>
 
                 <span>
@@ -924,8 +1068,8 @@ function openDownloads() {
             <div class="file"
                  data-file="ChromeSetup.exe">
 
-                <div class="file-icon">
-                    ⚙️
+                <div class="file-icon folder-small">
+                    APP
                 </div>
 
                 <span>
@@ -933,6 +1077,7 @@ function openDownloads() {
                 </span>
 
             </div>
+
 
         </div>
 
@@ -942,7 +1087,8 @@ function openDownloads() {
     const windowElement =
         createWindow(
             "Downloads",
-            content
+            content,
+            "finder-window"
         );
 
 
@@ -957,9 +1103,9 @@ function openDownloads() {
 }
 
 
-// ==========================================
+// ==========================================================
 // BROWSER
-// ==========================================
+// ==========================================================
 
 function openBrowser() {
 
@@ -968,7 +1114,9 @@ function openBrowser() {
             "browser-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -979,8 +1127,13 @@ function openBrowser() {
 
         <div class="browser-toolbar">
 
-            <button>←</button>
-            <button>→</button>
+            <button class="toolbar-button">
+                ‹
+            </button>
+
+            <button class="toolbar-button">
+                ›
+            </button>
 
             <input
                 class="address-bar"
@@ -993,7 +1146,9 @@ function openBrowser() {
 
         <div class="browser-page">
 
-            <h1>History</h1>
+            <h1>
+                History
+            </h1>
 
             <p>
                 Recent activity
@@ -1095,7 +1250,7 @@ function openBrowser() {
 
     const windowElement =
         createWindow(
-            "Chrome",
+            "Google Chrome",
             content,
             "browser-window"
         );
@@ -1107,9 +1262,9 @@ function openBrowser() {
 }
 
 
-// ==========================================
+// ==========================================================
 // NOTES
-// ==========================================
+// ==========================================================
 
 function openNotes() {
 
@@ -1118,7 +1273,9 @@ function openNotes() {
             "notes-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -1197,9 +1354,9 @@ function openNotes() {
 }
 
 
-// ==========================================
+// ==========================================================
 // TRASH
-// ==========================================
+// ==========================================================
 
 function openTrash() {
 
@@ -1208,7 +1365,9 @@ function openTrash() {
             "trash-window"
         )
     ) {
+
         return;
+
     }
 
 
@@ -1217,13 +1376,31 @@ function openTrash() {
 
     const content = `
 
-        <div class="window-content">
+        <div class="finder-toolbar">
+
+            <button class="toolbar-button">
+                ‹
+            </button>
+
+            <button class="toolbar-button">
+                ›
+            </button>
+
+            <span class="toolbar-folder">
+                Trash
+            </span>
+
+        </div>
+
+
+        <div class="window-content file-list">
+
 
             <div class="file"
-                 data-image="images/photo5.jpg">
+                 data-file="IMG_1002.JPG">
 
-                <div class="file-icon">
-                    🖼️
+                <div class="file-icon image-small">
+                    IMG
                 </div>
 
                 <span>
@@ -1236,8 +1413,8 @@ function openTrash() {
             <div class="file"
                  data-file="old schedule.pdf">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon pdf-small">
+                    PDF
                 </div>
 
                 <span>
@@ -1250,8 +1427,8 @@ function openTrash() {
             <div class="file"
                  data-file="resume.docx">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon document-small">
+                    DOC
                 </div>
 
                 <span>
@@ -1264,8 +1441,8 @@ function openTrash() {
             <div class="file"
                  data-file="dorm room.jpg">
 
-                <div class="file-icon">
-                    🖼️
+                <div class="file-icon image-small">
+                    IMG
                 </div>
 
                 <span>
@@ -1278,8 +1455,8 @@ function openTrash() {
             <div class="file"
                  data-file="Untitled (7).docx">
 
-                <div class="file-icon">
-                    📄
+                <div class="file-icon document-small">
+                    DOC
                 </div>
 
                 <span>
@@ -1287,6 +1464,7 @@ function openTrash() {
                 </span>
 
             </div>
+
 
         </div>
 
@@ -1296,7 +1474,8 @@ function openTrash() {
     const windowElement =
         createWindow(
             "Trash",
-            content
+            content,
+            "finder-window"
         );
 
 
@@ -1311,9 +1490,9 @@ function openTrash() {
 }
 
 
-// ==========================================
+// ==========================================================
 // FILE LISTENERS
-// ==========================================
+// ==========================================================
 
 function attachFileListeners(
     windowElement
@@ -1334,30 +1513,10 @@ function attachFileListeners(
                 const fileName =
                     file.dataset.file;
 
-                const image =
-                    file.dataset.image;
-
-
-                if (image) {
-
-                    recordDiscovery(
-                        image
-                    );
-
-                    openPhotoPreview(
-                        image,
-                        image.split("/").pop()
-                    );
-
-                    return;
-                }
-
 
                 if (fileName) {
 
-                    openFile(
-                        fileName
-                    );
+                    openFile(fileName);
 
                 }
 
@@ -1369,12 +1528,11 @@ function attachFileListeners(
 }
 
 
-// ==========================================
+// ==========================================================
 // FILE CONTENT
-// ==========================================
+// ==========================================================
 
 const fileContents = {
-
 
     "things_to_do.txt": `
 
@@ -1390,10 +1548,7 @@ const fileContents = {
         <p>return books</p>
         <p>find boxes</p>
         <p>cancel internet</p>
-
-        <p>
-            figure out what to do with the computer
-        </p>
+        <p>figure out what to do with the computer</p>
 
     `,
 
@@ -1408,21 +1563,33 @@ const fileContents = {
 
         <p>EDUCATION</p>
 
-        <p>Bachelor of Arts</p>
+        <p>
+            Bachelor of Arts
+        </p>
 
-        <p>Expected Graduation: May</p>
+        <p>
+            Expected Graduation: May
+        </p>
 
         <p>EXPERIENCE</p>
 
-        <p>Student Assistant</p>
+        <p>
+            Student Assistant
+        </p>
 
-        <p>Design Intern</p>
+        <p>
+            Design Intern
+        </p>
 
         <p>SKILLS</p>
 
-        <p>Adobe Creative Cloud</p>
+        <p>
+            Adobe Creative Cloud
+        </p>
 
-        <p>HTML / CSS</p>
+        <p>
+            HTML / CSS
+        </p>
 
     `,
 
@@ -1435,9 +1602,13 @@ const fileContents = {
             modified April 4
         </div>
 
-        <p>Same resume.</p>
+        <p>
+            Same resume.
+        </p>
 
-        <p>Slightly different formatting.</p>
+        <p>
+            Slightly different formatting.
+        </p>
 
         <p>
             Why are there so many copies of this.
@@ -1509,12 +1680,25 @@ const fileContents = {
 
         <h3>backup_complete.txt</h3>
 
-        <p>Backup finished.</p>
+        <p>
+            Backup finished.
+        </p>
 
-        <p>Photos: complete</p>
-        <p>Documents: complete</p>
-        <p>Personal files: complete</p>
-        <p>Music: complete</p>
+        <p>
+            Photos: complete
+        </p>
+
+        <p>
+            Documents: complete
+        </p>
+
+        <p>
+            Personal files: complete
+        </p>
+
+        <p>
+            Music: complete
+        </p>
 
         <br>
 
@@ -1556,7 +1740,9 @@ const fileContents = {
 
         <br>
 
-        <p>Semester 1</p>
+        <p>
+            Semester 1
+        </p>
 
     `,
 
@@ -1574,21 +1760,8 @@ const fileContents = {
 
         <p>Experience:</p>
 
-        <p>None yet.</p>
-
-    `,
-
-
-    "dorm room.jpg": `
-
-        <h3>dorm room.jpg</h3>
-
         <p>
-            Deleted photograph.
-        </p>
-
-        <p>
-            The original image is unavailable.
+            None yet.
         </p>
 
     `,
@@ -1629,14 +1802,18 @@ const fileContents = {
             modified November 12
         </div>
 
-        <p>Introduction</p>
-
         <p>
-            Technology is something we interact
-            with every day...
+            Introduction
         </p>
 
-        <p>[unfinished]</p>
+        <p>
+            Technology is something we interact with
+            every day...
+        </p>
+
+        <p>
+            [unfinished]
+        </p>
 
     `,
 
@@ -1653,16 +1830,78 @@ const fileContents = {
             The document is mostly empty.
         </p>
 
+    `,
+
+
+    "form.png": `
+
+        <h3>form.png</h3>
+
+        <div class="file-date">
+            class reference image
+        </div>
+
+        <p>
+            Key Concepts
+        </p>
+
+        <p>
+            A visual reference sheet containing
+            important concepts from class.
+        </p>
+
     `
 
 };
 
 
-// ==========================================
+// ==========================================================
+// IMAGE FILES
+// ==========================================================
+
+const imageFiles = {
+
+    "form.png":
+        "images/form.png",
+
+    "Screenshot_2024-10-17.png":
+        "images/Screenshot_2024-10-17.png",
+
+    "IMG_1002.JPG":
+        "images/IMG_1002.JPG",
+
+    "dorm room.jpg":
+        "images/dorm-room.jpg"
+
+};
+
+
+// ==========================================================
 // OPEN FILE
-// ==========================================
+// ==========================================================
 
 function openFile(fileName) {
+
+    recordDiscovery(fileName);
+
+
+    // IMAGE FILE
+
+    if (
+        imageFiles[fileName]
+    ) {
+
+        openImageFile(
+            imageFiles[fileName],
+            fileName
+        );
+
+        return;
+
+    }
+
+
+    // EXISTING FILE WINDOW
 
     const safeName =
         fileName.replace(
@@ -1672,19 +1911,17 @@ function openFile(fileName) {
 
 
     const id =
-        "file-" + safeName;
+        "file-" +
+        safeName;
 
 
     if (
         document.getElementById(id)
     ) {
+
         return;
+
     }
-
-
-    recordDiscovery(
-        fileName
-    );
 
 
     let content =
@@ -1724,15 +1961,69 @@ function openFile(fileName) {
         );
 
 
-    windowElement.id =
-        id;
+    windowElement.id = id;
 
 }
 
 
-// ==========================================
+// ==========================================================
+// OPEN IMAGE FILE
+// ==========================================================
+
+function openImageFile(
+    src,
+    name
+) {
+
+    const existing =
+        document.getElementById(
+            "image-file-window"
+        );
+
+
+    if (existing) {
+
+        existing.remove();
+
+    }
+
+
+    const content = `
+
+        <div class="preview-image-content">
+
+            <img
+                src="${src}"
+                alt="${name}"
+                class="large-file-image"
+            >
+
+            <div class="image-caption">
+                ${name}
+            </div>
+
+        </div>
+
+    `;
+
+
+    const windowElement =
+        createWindow(
+            name,
+            content,
+            "image-file-window"
+        );
+
+
+    windowElement.id =
+        "image-file-window";
+
+}
+
+
+// ==========================================================
 // DOCK
-// ==========================================
+// ==========================================================
 
 const dockIcons =
     document.querySelectorAll(
@@ -1746,72 +2037,35 @@ dockIcons.forEach(icon => {
         "click",
         () => {
 
-            const destination =
+            const dockName =
                 icon.dataset.dock;
 
 
-            if (
-                destination === "finder"
-            ) {
+            switch (dockName) {
 
-                openSchool();
+                case "finder":
+                    openSchool();
+                    break;
 
-                return;
+                case "browser":
+                    openBrowser();
+                    break;
 
-            }
+                case "photos":
+                    openPhotos();
+                    break;
 
+                case "notes":
+                    openNotes();
+                    break;
 
-            if (
-                destination === "browser"
-            ) {
+                case "downloads":
+                    openDownloads();
+                    break;
 
-                openBrowser();
-
-                return;
-
-            }
-
-
-            if (
-                destination === "photos"
-            ) {
-
-                openPhotos();
-
-                return;
-
-            }
-
-
-            if (
-                destination === "notes"
-            ) {
-
-                openNotes();
-
-                return;
-
-            }
-
-
-            if (
-                destination === "downloads"
-            ) {
-
-                openDownloads();
-
-                return;
-
-            }
-
-
-            if (
-                destination === "trash"
-            ) {
-
-                openTrash();
-
-                return;
+                case "trash":
+                    openTrash();
+                    break;
 
             }
 
@@ -1819,3 +2073,233 @@ dockIcons.forEach(icon => {
     );
 
 });
+
+
+// ==========================================================
+// ABOUT THIS MAC
+// ==========================================================
+
+function openAboutMac() {
+
+    if (
+        document.getElementById(
+            "about-mac-window"
+        )
+    ) return;
+
+
+    const content = `
+
+        <div class="about-mac-content">
+
+            <div class="about-apple">
+                
+            </div>
+
+            <h2>
+                Macintosh
+            </h2>
+
+            <p>
+                Lost Computer
+            </p>
+
+            <p class="about-small">
+                Memory: 8 GB
+            </p>
+
+            <p class="about-small">
+                Storage: 256 GB
+            </p>
+
+            <p class="about-small">
+                Last backup: May 18
+            </p>
+
+        </div>
+
+    `;
+
+
+    const windowElement =
+        createWindow(
+            "About This Mac",
+            content,
+            "about-window"
+        );
+
+
+    windowElement.id =
+        "about-mac-window";
+
+}
+
+
+// ==========================================================
+// SYSTEM PREFERENCES
+// ==========================================================
+
+function openPreferences() {
+
+    if (
+        document.getElementById(
+            "preferences-window"
+        )
+    ) return;
+
+
+    const content = `
+
+        <div class="preferences-content">
+
+            <h2>
+                System Preferences
+            </h2>
+
+            <div class="preference-row">
+                General
+            </div>
+
+            <div class="preference-row">
+                Desktop & Dock
+            </div>
+
+            <div class="preference-row">
+                Displays
+            </div>
+
+            <div class="preference-row">
+                Battery
+            </div>
+
+            <div class="preference-row">
+                Privacy & Security
+            </div>
+
+        </div>
+
+    `;
+
+
+    const windowElement =
+        createWindow(
+            "System Preferences",
+            content
+        );
+
+
+    windowElement.id =
+        "preferences-window";
+
+}
+
+
+// ==========================================================
+// FORCE QUIT
+// ==========================================================
+
+function openForceQuit() {
+
+    if (
+        document.getElementById(
+            "force-quit-window"
+        )
+    ) return;
+
+
+    const content = `
+
+        <div class="force-quit-content">
+
+            <h3>
+                Force Quit Applications
+            </h3>
+
+            <div class="force-app">
+                Finder
+            </div>
+
+            <div class="force-app">
+                Google Chrome
+            </div>
+
+            <div class="force-app">
+                Photos
+            </div>
+
+            <button class="force-button">
+                Cancel
+            </button>
+
+        </div>
+
+    `;
+
+
+    const windowElement =
+        createWindow(
+            "Force Quit Applications",
+            content
+        );
+
+
+    windowElement.id =
+        "force-quit-window";
+
+
+    const cancel =
+        windowElement.querySelector(
+            ".force-button"
+        );
+
+
+    cancel.addEventListener(
+        "click",
+        () => {
+
+            windowElement.remove();
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// SYSTEM MESSAGE
+// ==========================================================
+
+function setSystemMessage(
+    message
+) {
+
+    const systemMessage =
+        document.getElementById(
+            "system-message"
+        );
+
+
+    if (!systemMessage) return;
+
+
+    systemMessage.textContent =
+        message;
+
+
+    clearTimeout(
+        window.systemMessageTimeout
+    );
+
+
+    window.systemMessageTimeout =
+        setTimeout(
+            () => {
+
+                systemMessage.textContent =
+                    "Ready";
+
+            },
+            2500
+        );
+
+}
