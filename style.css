@@ -1,6 +1,6 @@
-/* =================================
+/* ==========================================
    RESET
-   ================================= */
+   ========================================== */
 
 * {
     box-sizing: border-box;
@@ -8,22 +8,26 @@
 
 html,
 body {
-    margin: 0;
     width: 100%;
     height: 100%;
+
+    margin: 0;
+    padding: 0;
+
     overflow: hidden;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
-/* =================================
+/* ==========================================
    DESKTOP
-   ================================= */
+   ========================================== */
 
 .desktop {
+
     position: fixed;
 
     inset: 0;
@@ -31,24 +35,32 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background-image: url("images/wallpaper.jpeg");
+    background-image:
+        url("images/wallpaper.jpeg");
 
     background-size: cover;
+
     background-position: center;
+
     background-repeat: no-repeat;
 
     overflow: hidden;
+
+    user-select: none;
 }
 
 
-/* =================================
-   DESKTOP ICONS
-   ================================= */
+/* ==========================================
+   DESKTOP ITEMS
+   ========================================== */
 
-.desktop-icon {
+.desktop-item {
+
+    position: absolute;
+
     width: 90px;
 
-    margin: 18px;
+    padding: 5px;
 
     text-align: center;
 
@@ -56,84 +68,177 @@ body {
 
     font-family: monospace;
 
+    font-size: 12px;
+
     cursor: default;
 
-    user-select: none;
-
-    padding: 4px;
+    text-shadow:
+        1px 1px 3px #000;
 
     border: 1px solid transparent;
 }
 
-.desktop-icon .icon {
-    font-size: 40px;
+.desktop-item:hover {
 
-    margin-bottom: 5px;
+    background:
+        rgba(255, 255, 255, 0.15);
 
-    text-shadow:
-        2px 2px 3px black;
-}
-
-.desktop-icon span {
-    font-size: 12px;
-
-    text-shadow:
-        1px 1px 2px black;
-}
-
-.desktop-icon:hover {
-    background: rgba(255, 255, 255, 0.14);
-
-    border: 1px dotted rgba(255, 255, 255, 0.7);
+    border:
+        1px dotted rgba(255,255,255,0.7);
 }
 
 
-/* =================================
-   HIDDEN ARCHIVE
-   ================================= */
+/* ==========================================
+   ICONS
+   ========================================== */
 
-.hidden-icon {
-    display: none;
+.desktop-icon,
+.file-icon {
+
+    font-size: 38px;
+
+    line-height: 42px;
+
+    margin-bottom: 4px;
+
+    filter:
+        drop-shadow(
+            2px 2px 2px rgba(0,0,0,0.8)
+        );
 }
 
-.hidden-icon.visible {
-    display: block;
+
+/* ==========================================
+   MESSY DESKTOP POSITIONS
+   ========================================== */
+
+/*
+    The uneven positioning is intentional.
+
+    This should feel like someone's actual
+    computer rather than a designed interface.
+*/
+
+.item-school {
+
+    left: 35px;
+    top: 35px;
+}
+
+.item-photos {
+
+    left: 165px;
+    top: 85px;
+}
+
+.item-downloads {
+
+    left: 45px;
+    top: 210px;
+}
+
+.item-chrome {
+
+    left: 175px;
+    top: 300px;
+}
+
+.item-notes {
+
+    right: 125px;
+    top: 70px;
+}
+
+.item-trash {
+
+    right: 35px;
+    bottom: 80px;
 }
 
 
-/* =================================
+/* ==========================================
+   RANDOM FILE POSITIONS
+   ========================================== */
+
+.loose-file {
+
+    width: 120px;
+
+    word-break: break-word;
+}
+
+.file-resume {
+
+    left: 320px;
+    top: 45px;
+}
+
+.file-screenshot {
+
+    right: 240px;
+    top: 210px;
+}
+
+.file-untitled {
+
+    left: 350px;
+    bottom: 110px;
+}
+
+.file-final {
+
+    right: 55px;
+    top: 330px;
+}
+
+
+/* ==========================================
    TASKBAR
-   ================================= */
+   ========================================== */
 
 .taskbar {
+
     position: absolute;
 
-    bottom: 0;
     left: 0;
+    bottom: 0;
 
     width: 100%;
-    height: 42px;
+    height: 43px;
 
     display: flex;
+
     align-items: center;
 
-    background: #202020;
+    background:
+        rgba(25,25,25,0.95);
 
-    border-top: 2px solid #555;
+    border-top:
+        1px solid #666;
+
+    color: white;
 
     z-index: 1000;
+
+    font-family: monospace;
 }
 
+
 .start-button {
+
+    height: 31px;
+
     margin-left: 6px;
 
-    padding: 7px 18px;
+    padding:
+        0 14px;
 
     background: #333;
 
-    border: 1px solid #777;
-
     color: white;
+
+    border:
+        1px solid #777;
 
     font-family: monospace;
 
@@ -141,128 +246,183 @@ body {
 }
 
 .start-button:hover {
+
     background: #555;
 }
 
-.taskbar-status {
+
+.taskbar-center {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+
+.taskbar-right {
+
     margin-left: auto;
 
     display: flex;
 
-    gap: 20px;
+    align-items: center;
 
-    margin-right: 15px;
+    gap: 14px;
 
-    color: white;
+    margin-right: 14px;
 
-    font-family: monospace;
-
-    font-size: 13px;
+    font-size: 12px;
 }
 
 
-/* =================================
+/* ==========================================
    START MENU
-   ================================= */
+   ========================================== */
 
 .start-menu {
+
     position: fixed;
 
+    display: none;
+
     left: 6px;
-    bottom: 48px;
+    bottom: 50px;
 
-    width: 270px;
+    width: 280px;
 
-    background: #eeeeee;
+    background: #ededed;
 
-    border: 2px solid #333;
+    border:
+        2px solid #333;
 
     box-shadow:
-        7px 7px 0 rgba(0, 0, 0, 0.45);
+        7px 7px 0
+        rgba(0,0,0,0.45);
 
-    display: none;
+    color: #111;
 
     z-index: 2000;
 
     font-family: monospace;
 }
 
+
 .start-menu.visible {
+
     display: block;
 }
 
-.start-title {
+
+.start-header {
+
     padding: 15px;
 
     background: #333;
 
     color: white;
 
-    font-size: 18px;
-}
-
-.start-item {
     display: flex;
 
     flex-direction: column;
 
-    gap: 4px;
+    gap: 5px;
+}
+
+
+.start-header span {
+
+    color: #aaa;
+
+    font-size: 11px;
+}
+
+
+.start-entry {
 
     padding: 13px;
 
-    border-bottom: 1px solid #ccc;
-}
+    border-bottom:
+        1px solid #ccc;
 
-.start-item span {
-    color: #666;
-
-    font-size: 12px;
+    cursor: default;
 }
 
 
-/* =================================
+.start-entry:hover {
+
+    background: #ddd;
+}
+
+
+.start-footer {
+
+    padding: 12px;
+
+    font-size: 11px;
+
+    color: #777;
+
+    background: #ddd;
+}
+
+
+/* ==========================================
    COMPUTER WINDOWS
-   ================================= */
+   ========================================== */
 
 .computer-window {
+
     position: absolute;
 
-    top: 100px;
-    left: 220px;
+    top: 110px;
+    left: 250px;
 
-    width: 450px;
+    width: 500px;
 
-    max-width: calc(100vw - 40px);
+    max-width:
+        calc(100vw - 40px);
 
-    max-height: calc(100vh - 90px);
+    max-height:
+        calc(100vh - 80px);
 
-    background: #eeeeee;
+    background: #eee;
 
-    border: 2px solid #333;
+    border:
+        2px solid #333;
 
     box-shadow:
-        7px 7px 0 rgba(0, 0, 0, 0.45);
+        8px 8px 0
+        rgba(0,0,0,0.45);
+
+    z-index: 20;
 
     color: #111;
 
     overflow: hidden;
-
-    z-index: 20;
 }
 
 
-/* =================================
+/* ==========================================
    WINDOW HEADER
-   ================================= */
+   ========================================== */
 
 .window-header {
+
     height: 34px;
 
     display: flex;
 
     align-items: center;
 
-    padding: 0 8px;
+    padding:
+        0 8px;
 
     background: #333;
 
@@ -271,35 +431,42 @@ body {
     font-family: monospace;
 
     cursor: move;
-
-    user-select: none;
 }
 
+
 .close-button {
+
     margin-left: auto;
 
-    width: 25px;
-    height: 23px;
+    width: 26px;
 
-    border: 1px solid #777;
+    height: 24px;
 
     background: #ddd;
+
+    color: #111;
+
+    border:
+        1px solid #777;
 
     cursor: pointer;
 
     font-size: 16px;
 }
 
+
 .close-button:hover {
+
     background: #aaa;
 }
 
 
-/* =================================
+/* ==========================================
    WINDOW CONTENT
-   ================================= */
+   ========================================== */
 
 .window-content {
+
     padding: 15px;
 
     max-height: 60vh;
@@ -308,219 +475,238 @@ body {
 }
 
 
-/* =================================
-   FILES
-   ================================= */
+/* ==========================================
+   FILE LIST
+   ========================================== */
 
 .file {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    padding: 8px;
+    padding: 9px;
+
+    border:
+        1px solid transparent;
 
     font-family: monospace;
 
-    cursor: pointer;
-
-    border: 1px solid transparent;
+    cursor: default;
 }
+
 
 .file:hover {
+
     background: #ddd;
 
-    border-color: #aaa;
+    border:
+        1px solid #aaa;
 }
+
 
 .file-icon {
-    width: 30px;
 
-    font-size: 24px;
+    width: 34px;
 
-    text-align: center;
+    font-size: 25px;
 }
 
 
-/* =================================
-   TEXT FILES
-   ================================= */
+/* ==========================================
+   TEXT FILE WINDOWS
+   ========================================== */
 
 .file-window {
-    width: 450px;
+
+    width: 480px;
 }
 
-.file-content {
-    padding: 20px;
 
-    background: #f5f5f5;
+.file-content {
+
+    padding: 22px;
+
+    background: #fafafa;
 
     font-family: monospace;
 
-    line-height: 1.6;
-
-    overflow-y: auto;
+    line-height: 1.7;
 
     max-height: 65vh;
+
+    overflow-y: auto;
 
     overflow-wrap: anywhere;
 }
 
+
 .file-content h3 {
+
     margin-top: 0;
+
+    font-weight: normal;
 }
 
-.file-content p {
-    margin: 14px 0;
-}
 
 .file-date {
-    color: #777;
+
+    color: #888;
 
     font-size: 11px;
-}
 
-.highlight {
-    background: #fff3a3;
-
-    padding: 2px 4px;
-}
-
-.strange-message {
-    color: #555;
-
-    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 
-/* =================================
+/* ==========================================
    PHOTOS
-   ================================= */
+   ========================================== */
 
 .photos-window {
+
     width: 650px;
 }
 
+
 .photo-grid {
+
     display: grid;
 
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap: 18px;
+    gap: 15px;
 }
 
+
 .photo {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-
-    font-family: monospace;
-
-    font-size: 12px;
-
-    cursor: pointer;
 
     padding: 6px;
 
-    border: 1px solid transparent;
-}
+    border:
+        1px solid transparent;
 
-.photo:hover {
-    background: #ddd;
+    cursor: default;
 
-    border-color: #aaa;
-}
+    font-family: monospace;
 
-.photo img {
-    width: 100%;
+    font-size: 11px;
 
-    height: 150px;
-
-    object-fit: cover;
-
-    border: 2px solid #777;
-}
-
-.photo span {
     text-align: center;
 }
 
 
-/* =================================
+.photo:hover {
+
+    background: #ddd;
+
+    border:
+        1px solid #aaa;
+}
+
+
+.photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 145px;
+
+    object-fit: cover;
+
+    border:
+        1px solid #777;
+
+    margin-bottom: 7px;
+}
+
+
+/* ==========================================
    PHOTO PREVIEW
-   ================================= */
+   ========================================== */
 
 .photo-preview {
+
     position: fixed;
 
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.75);
-
     display: flex;
+
+    align-items: center;
 
     justify-content: center;
 
-    align-items: center;
+    background:
+        rgba(0,0,0,0.78);
 
     z-index: 3000;
 }
 
+
 .preview-window {
-    width: 650px;
+
+    width: 680px;
 
     max-width: 90vw;
 
     background: #eee;
 
-    border: 2px solid #222;
-
-    box-shadow:
-        8px 8px 0 rgba(0, 0, 0, 0.5);
+    border:
+        2px solid #222;
 }
 
+
 .preview-content {
+
     padding: 15px;
 
     text-align: center;
 }
 
+
 .preview-content img {
+
     max-width: 100%;
 
     max-height: 65vh;
 
     object-fit: contain;
-
-    border: 2px solid #555;
 }
 
+
 .preview-name {
+
     margin-top: 10px;
 
     font-family: monospace;
+
+    font-size: 12px;
 }
 
 
-/* =================================
+/* ==========================================
    BROWSER
-   ================================= */
+   ========================================== */
 
 .browser-window {
-    width: 650px;
 
-    height: 460px;
+    width: 700px;
+
+    height: 500px;
 
     display: flex;
 
     flex-direction: column;
 }
 
+
 .browser-toolbar {
+
     display: flex;
 
     gap: 5px;
@@ -530,11 +716,17 @@ body {
     background: #ccc;
 }
 
+
 .browser-button {
+
     width: 30px;
+
+    height: 25px;
 }
 
+
 .address-bar {
+
     flex: 1;
 
     min-width: 0;
@@ -542,193 +734,178 @@ body {
     font-family: monospace;
 }
 
-.browser-page {
-    padding: 25px;
 
-    background: white;
+.browser-page {
+
+    flex: 1;
 
     overflow-y: auto;
 
-    overflow-wrap: anywhere;
+    padding: 25px;
 
-    font-family: Arial, sans-serif;
+    background: white;
 }
 
+
 .browser-page h1 {
+
+    font-size: 22px;
+
+    font-weight: normal;
+
     margin-top: 0;
 }
 
-.browser-page h2 {
-    font-size: 18px;
 
-    margin-top: 30px;
+.browser-page p {
+
+    color: #666;
 }
 
+
 .search-history {
+
     list-style: none;
 
     padding: 0;
 
+    margin-top: 25px;
+}
+
+
+.search-history li {
+
+    padding: 12px 5px;
+
+    border-bottom:
+        1px solid #ddd;
+
     font-family: monospace;
 }
 
-.search-history li {
-    padding: 10px;
-
-    border-bottom: 1px solid #ddd;
-}
 
 .search-history li:hover {
-    background: #eee;
+
+    background: #f1f1f1;
 }
+
 
 .search-date {
-    color: #888;
 
-    font-size: 11px;
+    display: block;
+
+    margin-top: 4px;
+
+    color: #999;
+
+    font-size: 10px;
 }
 
 
-/* =================================
+/* ==========================================
    NOTES
-   ================================= */
+   ========================================== */
 
 .notes-content {
-    padding: 15px;
 
     background: #fffef2;
 
+    padding: 20px;
+
     font-family: monospace;
 }
 
+
 .note-line {
+
     display: flex;
 
     gap: 15px;
 
     padding: 10px 0;
 
-    border-bottom: 1px solid #ddd;
+    border-bottom:
+        1px solid #ddd;
 }
 
-.note-line span {
-    color: #888;
+
+.note-number {
+
+    color: #aaa;
 }
+
 
 .note-line p {
+
     margin: 0;
+
+    overflow-wrap: anywhere;
 }
 
 
-/* =================================
-   WARNING
-   ================================= */
+/* ==========================================
+   WARNING / SYSTEM MESSAGE
+   ========================================== */
 
 .warning-content {
+
     padding: 25px;
 
     text-align: center;
 
     font-family: monospace;
 }
+
 
 .warning-icon {
+
     font-size: 45px;
+
+    margin-bottom: 10px;
 }
+
 
 .warning-button {
-    margin-top: 15px;
 
-    padding: 7px 20px;
+    padding:
+        7px 20px;
 
-    cursor: pointer;
-}
-
-
-/* =================================
-   ARCHIVE
-   ================================= */
-
-.archive-warning {
-    padding: 12px;
-
-    background: #e5e5e5;
-
-    border-bottom: 1px solid #aaa;
-
-    color: #555;
-
-    font-family: monospace;
-
-    font-size: 12px;
-}
-
-
-/* =================================
-   FINAL RESET
-   ================================= */
-
-.reset-screen {
-    text-align: center;
-
-    padding: 25px;
-
-    font-family: monospace;
-}
-
-.reset-screen h2 {
-    font-weight: normal;
-}
-
-.reset-screen p {
-    line-height: 1.7;
-}
-
-.reset-button {
-    margin-top: 15px;
-
-    padding: 9px 18px;
-
-    background: #333;
-
-    color: white;
-
-    border: none;
+    margin-top: 10px;
 
     cursor: pointer;
-
-    font-family: monospace;
-}
-
-.reset-button:hover {
-    background: #555;
 }
 
 
-/* =================================
-   RESPONSIVE
-   ================================= */
+/* ==========================================
+   SMALL SCREEN
+   ========================================== */
 
 @media (max-width: 700px) {
 
     .computer-window {
+
         left: 20px;
 
-        top: 70px;
+        top: 60px;
 
-        width: calc(100vw - 40px);
+        width:
+            calc(100vw - 40px);
     }
 
     .photos-window,
     .browser-window {
-        width: calc(100vw - 40px);
+
+        width:
+            calc(100vw - 40px);
     }
 
     .photo-grid {
+
         grid-template-columns: 1fr;
     }
 
-    .taskbar-status {
-        gap: 8px;
+    .taskbar-center {
+
+        display: none;
     }
 }
