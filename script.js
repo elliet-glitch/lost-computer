@@ -1,4 +1,9 @@
 // =================================
+// LOST COMPUTER
+// =================================
+
+
+// =================================
 // CLOCK
 // =================================
 
@@ -30,6 +35,58 @@ setInterval(updateClock, 1000);
 
 
 // =================================
+// STORY PROGRESS
+// =================================
+
+let discoveries =
+    JSON.parse(
+        localStorage.getItem("lostComputerDiscoveries")
+    ) || [];
+
+function recordDiscovery(name) {
+
+    if (!discoveries.includes(name)) {
+
+        discoveries.push(name);
+
+        localStorage.setItem(
+            "lostComputerDiscoveries",
+            JSON.stringify(discoveries)
+        );
+    }
+
+    checkArchiveUnlock();
+}
+
+
+// =================================
+// ARCHIVE UNLOCK
+// =================================
+
+function checkArchiveUnlock() {
+
+    const archive =
+        document.getElementById("archive-icon");
+
+    if (!archive) {
+        return;
+    }
+
+    /*
+        The Archive appears after
+        the user discovers several
+        pieces of the computer.
+    */
+
+    if (discoveries.length >= 5) {
+
+        archive.classList.add("visible");
+
+    }
+}
+
+
+// =================================
 // DESKTOP ICONS
 // =================================
 
@@ -40,7 +97,8 @@ icons.forEach(icon => {
 
     icon.addEventListener("dblclick", () => {
 
-        const name = icon.dataset.window;
+        const name =
+            icon.dataset.window;
 
         if (name === "documents") {
             openDocuments();
@@ -66,13 +124,34 @@ icons.forEach(icon => {
             openTrash();
         }
 
+        if (name === "archive") {
+            openArchive();
+        }
+
     });
 
 });
 
 
 // =================================
-// HELPER: CLOSE WINDOW
+// START MENU
+// =================================
+
+const startButton =
+    document.getElementById("start-button");
+
+const startMenu =
+    document.getElementById("start-menu");
+
+startButton.addEventListener("click", () => {
+
+    startMenu.classList.toggle("visible");
+
+});
+
+
+// =================================
+// CLOSE WINDOW
 // =================================
 
 function closeWindow(windowElement) {
@@ -80,9 +159,130 @@ function closeWindow(windowElement) {
     const button =
         windowElement.querySelector(".close-button");
 
-    button.addEventListener("click", () => {
-        windowElement.remove();
+    if (button) {
+
+        button.addEventListener("click", () => {
+
+            windowElement.remove();
+
+        });
+
+    }
+}
+
+
+// =================================
+// MAKE WINDOWS DRAGGABLE
+// =================================
+
+function makeDraggable(windowElement) {
+
+    const header =
+        windowElement.querySelector(".window-header");
+
+    if (!header) {
+        return;
+    }
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    let dragging = false;
+
+
+    header.addEventListener("mousedown", event => {
+
+        if (
+            event.target.classList.contains(
+                "close-button"
+            )
+        ) {
+            return;
+        }
+
+        dragging = true;
+
+        offsetX =
+            event.clientX -
+            windowElement.offsetLeft;
+
+        offsetY =
+            event.clientY -
+            windowElement.offsetTop;
+
+        windowElement.style.zIndex =
+            Date.now();
+
     });
+
+
+    document.addEventListener("mousemove", event => {
+
+        if (!dragging) {
+            return;
+        }
+
+        let newLeft =
+            event.clientX - offsetX;
+
+        let newTop =
+            event.clientY - offsetY;
+
+
+        newLeft =
+            Math.max(
+                0,
+                Math.min(
+                    newLeft,
+                    window.innerWidth -
+                    windowElement.offsetWidth
+                )
+            );
+
+
+        newTop =
+            Math.max(
+                0,
+                Math.min(
+                    newTop,
+                    window.innerHeight -
+                    windowElement.offsetHeight -
+                    42
+                )
+            );
+
+
+        windowElement.style.left =
+            `${newLeft}px`;
+
+        windowElement.style.top =
+            `${newTop}px`;
+
+    });
+
+
+    document.addEventListener("mouseup", () => {
+
+        dragging = false;
+
+    });
+
+}
+
+
+// =================================
+// ADD WINDOW
+// =================================
+
+function addWindow(windowElement) {
+
+    document
+        .getElementById("desktop")
+        .appendChild(windowElement);
+
+    closeWindow(windowElement);
+
+    makeDraggable(windowElement);
 
 }
 
@@ -93,58 +293,113 @@ function closeWindow(windowElement) {
 
 function openDocuments() {
 
-    if (document.getElementById("documents-window")) {
+    if (
+        document.getElementById(
+            "documents-window"
+        )
+    ) {
         return;
     }
+
+
+    recordDiscovery("documents");
+
 
     const windowElement =
         document.createElement("div");
 
-    windowElement.id = "documents-window";
+    windowElement.id =
+        "documents-window";
 
     windowElement.className =
         "computer-window";
 
+
     windowElement.innerHTML = `
 
         <div class="window-header">
+
             Documents
 
             <button class="close-button">
                 ×
             </button>
+
         </div>
+
 
         <div class="window-content">
 
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>journal.txt</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    journal.txt
+                </span>
+
             </div>
 
-            <div class="file">
-                <div class="file-icon">📄</div>
-                <span>to_do.txt</span>
-            </div>
 
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>letter.txt</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    schedule.txt
+                </span>
+
             </div>
 
+
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>untitled.doc</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    resume_final.pdf
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    apartment_search.doc
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    goodbye.txt
+                </span>
+
             </div>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 }
 
 
@@ -154,16 +409,29 @@ function openDocuments() {
 
 function openPhotos() {
 
-    if (document.getElementById("photos-window")) {
+    if (
+        document.getElementById(
+            "photos-window"
+        )
+    ) {
         return;
     }
 
-    const windowElement = document.createElement("div");
 
-    windowElement.id = "photos-window";
+    recordDiscovery("photos");
+
+
+    const windowElement =
+        document.createElement("div");
+
+
+    windowElement.id =
+        "photos-window";
+
 
     windowElement.className =
         "computer-window photos-window";
+
 
     windowElement.innerHTML = `
 
@@ -177,135 +445,314 @@ function openPhotos() {
 
         </div>
 
+
         <div class="window-content photo-grid">
+
 
             <div class="photo">
 
                 <img
                     src="images/photo1.jpg"
-                    alt="Photo 1"
+                    alt="College memory photograph"
                 >
 
-                <span>photo1.jpg</span>
+                <span>
+                    photo1.jpg
+                </span>
 
             </div>
+
 
             <div class="photo">
 
                 <img
                     src="images/photo2.JPG"
-                    alt="Photo 2"
+                    alt="College memory photograph"
                 >
 
-                <span>photo2.JPG</span>
+                <span>
+                    photo2.JPG
+                </span>
 
             </div>
+
 
             <div class="photo">
 
                 <img
                     src="images/photo3.JPG"
-                    alt="Photo 3"
+                    alt="College memory photograph"
                 >
 
-                <span>photo3.JPG</span>
+                <span>
+                    photo3.JPG
+                </span>
 
             </div>
+
 
             <div class="photo">
 
                 <img
                     src="images/photo4.JPG"
-                    alt="Photo 4"
+                    alt="College memory photograph"
                 >
 
-                <span>photo4.JPG</span>
+                <span>
+                    photo4.JPG
+                </span>
 
             </div>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
 
-
-    // Double-click a photo to preview it
 
     const photos =
-        windowElement.querySelectorAll(".photo img");
+        windowElement.querySelectorAll(
+            ".photo img"
+        );
+
 
     photos.forEach(photo => {
 
-        photo.addEventListener("dblclick", () => {
+        photo.addEventListener(
+            "dblclick",
+            () => {
 
-            openPhotoPreview(
-                photo.src,
-                photo.alt
-            );
+                recordDiscovery(
+                    photo.alt
+                );
 
-        });
+                openPhotoPreview(
+                    photo.src,
+                    photo.alt
+                );
+
+            }
+        );
 
     });
 
 }
+
+
+// =================================
+// PHOTO PREVIEW
+// =================================
+
+function openPhotoPreview(
+    imageSrc,
+    imageAlt
+) {
+
+    if (
+        document.getElementById(
+            "photo-preview"
+        )
+    ) {
+        return;
+    }
+
+
+    const preview =
+        document.createElement("div");
+
+
+    preview.id =
+        "photo-preview";
+
+
+    preview.className =
+        "photo-preview";
+
+
+    preview.innerHTML = `
+
+        <div class="preview-window">
+
+            <div class="window-header">
+
+                Photo Preview
+
+                <button class="close-button">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="preview-content">
+
+                <img
+                    src="${imageSrc}"
+                    alt="${imageAlt}"
+                >
+
+                <div class="preview-name">
+
+                    ${imageAlt}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("desktop")
+        .appendChild(preview);
+
+
+    preview
+        .querySelector(".close-button")
+        .addEventListener("click", () => {
+
+            preview.remove();
+
+        });
+
+
+    preview.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target === preview
+            ) {
+
+                preview.remove();
+
+            }
+
+        }
+    );
+
+}
+
+
 // =================================
 // DOWNLOADS
 // =================================
 
 function openDownloads() {
 
-    if (document.getElementById("downloads-window")) {
+    if (
+        document.getElementById(
+            "downloads-window"
+        )
+    ) {
         return;
     }
+
+
+    recordDiscovery("downloads");
+
 
     const windowElement =
         document.createElement("div");
 
+
     windowElement.id =
         "downloads-window";
+
 
     windowElement.className =
         "computer-window";
 
+
     windowElement.innerHTML = `
 
         <div class="window-header">
+
             Downloads
 
             <button class="close-button">
                 ×
             </button>
+
         </div>
+
 
         <div class="window-content">
 
-            <div class="file">
-                <div class="file-icon">📷</div>
-                <span>photo_backup.zip</span>
-            </div>
 
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>read_me.txt</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    internship_resume.pdf
+                </span>
+
             </div>
 
+
             <div class="file">
-                <div class="file-icon">⚠️</div>
-                <span>unknown_file.exe</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    graduation_requirements.pdf
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    moving_checklist.txt
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📦
+                </div>
+
+                <span>
+                    old_photos.zip
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    💾
+                </div>
+
+                <span>
+                    backup_complete.txt
+                </span>
+
             </div>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 }
 
 
@@ -315,28 +762,42 @@ function openDownloads() {
 
 function openBrowser() {
 
-    if (document.getElementById("browser-window")) {
+    if (
+        document.getElementById(
+            "browser-window"
+        )
+    ) {
         return;
     }
+
+
+    recordDiscovery("browser");
+
 
     const windowElement =
         document.createElement("div");
 
+
     windowElement.id =
         "browser-window";
+
 
     windowElement.className =
         "computer-window browser-window";
 
+
     windowElement.innerHTML = `
 
         <div class="window-header">
+
             Browser
 
             <button class="close-button">
                 ×
             </button>
+
         </div>
+
 
         <div class="browser-toolbar">
 
@@ -351,6 +812,7 @@ function openBrowser() {
             <input
                 class="address-bar"
                 value="http://oldcomputer.local"
+                aria-label="Address bar"
             >
 
             <button class="browser-button">
@@ -359,40 +821,146 @@ function openBrowser() {
 
         </div>
 
+
         <div class="browser-page">
 
             <h1>
-                Welcome
+                Browser History
             </h1>
 
             <p>
-                Welcome to the Internet.
+                Recent searches from this computer.
             </p>
 
-            <p>
-                This computer is connected.
-            </p>
 
-            <hr>
+            <ul class="search-history">
 
-            <h2>
-                Recently used
-            </h2>
 
-            <ul>
-                <li>Documents</li>
-                <li>Photos</li>
-                <li>Downloads</li>
+                <li>
+
+                    <div>
+                        best coffee near campus
+                    </div>
+
+                    <span class="search-date">
+                        August 28
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        how to write a resume
+                    </div>
+
+                    <span class="search-date">
+                        September 14
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        photoshop tutorial
+                    </div>
+
+                    <span class="search-date">
+                        October 2
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        graduation requirements
+                    </div>
+
+                    <span class="search-date">
+                        March 19
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        apartments near downtown
+                    </div>
+
+                    <span class="search-date">
+                        April 8
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        jobs for recent graduates
+                    </div>
+
+                    <span class="search-date">
+                        April 22
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        how to move out of apartment
+                    </div>
+
+                    <span class="search-date">
+                        May 3
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        transfer files to new laptop
+                    </div>
+
+                    <span class="search-date">
+                        May 17
+                    </span>
+
+                </li>
+
+
+                <li>
+
+                    <div>
+                        factory reset laptop
+                    </div>
+
+                    <span class="search-date">
+                        May 18
+                    </span>
+
+                </li>
+
+
             </ul>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 }
 
 
@@ -402,67 +970,155 @@ function openBrowser() {
 
 function openNotes() {
 
-    if (document.getElementById("notes-window")) {
+    if (
+        document.getElementById(
+            "notes-window"
+        )
+    ) {
         return;
     }
+
+
+    recordDiscovery("notes");
+
 
     const windowElement =
         document.createElement("div");
 
+
     windowElement.id =
         "notes-window";
+
 
     windowElement.className =
         "computer-window";
 
+
     windowElement.innerHTML = `
 
         <div class="window-header">
+
             Notes
 
             <button class="close-button">
                 ×
             </button>
+
         </div>
+
 
         <div class="notes-content">
 
-            <div class="note-line">
-                <span>1</span>
-                <p>
-                    Remember to back up the computer.
-                </p>
-            </div>
 
             <div class="note-line">
-                <span>2</span>
+
+                <span>
+                    1
+                </span>
+
                 <p>
-                    Check the Documents folder.
+                    Buy toothpaste
                 </p>
+
             </div>
 
-            <div class="note-line">
-                <span>3</span>
-                <p>
-                    Something is wrong with the files.
-                </p>
-            </div>
 
             <div class="note-line">
-                <span>4</span>
+
+                <span>
+                    2
+                </span>
+
                 <p>
-                    Do not open the unknown file.
+                    Email professor about final grade
                 </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    3
+                </span>
+
+                <p>
+                    Return library books
+                </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    4
+                </span>
+
+                <p>
+                    Pick up boxes
+                </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    5
+                </span>
+
+                <p>
+                    Cancel apartment utilities
+                </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    6
+                </span>
+
+                <p>
+                    Take everything from fridge
+                </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    7
+                </span>
+
+                <p>
+                    Don't forget the laptop
+                </p>
+
+            </div>
+
+
+            <div class="note-line">
+
+                <span>
+                    8
+                </span>
+
+                <p>
+                    I can't believe I'm actually leaving.
+                </p>
+
             </div>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 }
 
 
@@ -472,54 +1128,216 @@ function openNotes() {
 
 function openTrash() {
 
-    if (document.getElementById("trash-window")) {
+    if (
+        document.getElementById(
+            "trash-window"
+        )
+    ) {
         return;
     }
+
+
+    recordDiscovery("trash");
+
 
     const windowElement =
         document.createElement("div");
 
+
     windowElement.id =
         "trash-window";
+
 
     windowElement.className =
         "computer-window";
 
+
     windowElement.innerHTML = `
 
         <div class="window-header">
+
             Trash
 
             <button class="close-button">
                 ×
             </button>
+
         </div>
+
 
         <div class="window-content">
 
-            <div class="file">
-                <div class="file-icon">📄</div>
-                <span>old_photo.jpg</span>
-            </div>
 
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>deleted.txt</span>
+
+                <div class="file-icon">
+                    🖼️
+                </div>
+
+                <span>
+                    dorm_room_old.jpg
+                </span>
+
             </div>
 
+
             <div class="file">
-                <div class="file-icon">📄</div>
-                <span>broken_file.doc</span>
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    old_schedule.txt
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    first_resume.doc
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    moving_day.txt
+                </span>
+
             </div>
 
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
+}
+
+
+// =================================
+// ARCHIVE
+// =================================
+
+function openArchive() {
+
+    if (
+        document.getElementById(
+            "archive-window"
+        )
+    ) {
+        return;
+    }
+
+
+    recordDiscovery("archive");
+
+
+    const windowElement =
+        document.createElement("div");
+
+
+    windowElement.id =
+        "archive-window";
+
+
+    windowElement.className =
+        "computer-window";
+
+
+    windowElement.innerHTML = `
+
+        <div class="window-header">
+
+            Archive
+
+            <button class="close-button">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="archive-warning">
+
+            These files have not been opened in a long time.
+
+        </div>
+
+
+        <div class="window-content">
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    freshman_year.txt
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    sophomore_year.txt
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    junior_year.txt
+                </span>
+
+            </div>
+
+
+            <div class="file">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <span>
+                    goodbye.txt
+                </span>
+
+            </div>
+
+        </div>
+    `;
+
+
+    addWindow(windowElement);
+
 }
 
 
@@ -527,30 +1345,36 @@ function openTrash() {
 // FILE OPENING
 // =================================
 
-document.addEventListener("dblclick", event => {
+document.addEventListener(
+    "dblclick",
+    event => {
 
-    const file =
-        event.target.closest(".file");
+        const file =
+            event.target.closest(".file");
 
-    if (!file) {
-        return;
-    }
 
-    const fileName =
-        file.querySelector("span").textContent;
+        if (!file) {
+            return;
+        }
 
-    if (
-        fileName.endsWith(".txt") ||
-        fileName.endsWith(".doc")
-    ) {
+
+        const nameElement =
+            file.querySelector("span");
+
+
+        if (!nameElement) {
+            return;
+        }
+
+
+        const fileName =
+            nameElement.textContent.trim();
+
+
         openFile(fileName);
-    }
 
-    if (fileName === "unknown_file.exe") {
-        openUnknownFile();
     }
-
-});
+);
 
 
 // =================================
@@ -559,16 +1383,28 @@ document.addEventListener("dblclick", event => {
 
 function openFile(fileName) {
 
+    const id =
+        "file-" +
+        fileName
+            .replace(/[^a-zA-Z0-9]/g, "-");
+
+
     if (
-        document.getElementById(
-            "file-" + fileName
-        )
+        document.getElementById(id)
     ) {
         return;
     }
 
+
+    recordDiscovery(fileName);
+
+
     let content = "";
 
+
+    // -----------------------------
+    // JOURNAL
+    // -----------------------------
 
     if (fileName === "journal.txt") {
 
@@ -576,62 +1412,124 @@ function openFile(fileName) {
 
             <h3>journal.txt</h3>
 
+            <div class="file-date">
+                Last modified: May 14
+            </div>
+
             <p>
-                I don't know how long this computer
-                has been sitting here.
+                I really need to clean this thing out.
             </p>
 
             <p>
-                I should probably back everything up.
+                Four years of files and I still have
+                screenshots from freshman year.
             </p>
 
-            ${
-                localStorage.getItem("readMeOpened")
-                ? `
-                    <p class="strange-message">
-                        You saw this too.
-                    </p>
-                `
-                : ""
-            }
+            <p>
+                I don't even remember why I kept
+                half of this stuff.
+            </p>
+
+            <p>
+                Maybe that's the problem.
+            </p>
 
         `;
 
     }
 
 
-    if (fileName === "to_do.txt") {
+    // -----------------------------
+    // SCHEDULE
+    // -----------------------------
+
+    if (fileName === "schedule.txt") {
 
         content = `
 
-            <h3>to_do.txt</h3>
+            <h3>schedule.txt</h3>
 
-            <p>[ ] Back up files</p>
+            <p>
+                Monday — Class
+            </p>
 
-            <p>[ ] Clean out Downloads</p>
+            <p>
+                Tuesday — Work
+            </p>
 
-            <p>[ ] Check old photos</p>
+            <p>
+                Wednesday — Class
+            </p>
 
-            <p>[ ] Find a new computer</p>
+            <p>
+                Thursday — Work
+            </p>
+
+            <p>
+                Friday — Last day
+            </p>
+
+            <br>
+
+            <p>
+                Graduation: Saturday
+            </p>
 
         `;
 
     }
 
 
-    if (fileName === "letter.txt") {
+    // -----------------------------
+    // RESUME
+    // -----------------------------
+
+    if (
+        fileName === "resume_final.pdf"
+    ) {
 
         content = `
 
-            <h3>letter.txt</h3>
+            <h3>resume_final.pdf</h3>
+
+            <div class="file-date">
+                Created during senior year
+            </div>
 
             <p>
-                I don't think I'm coming back for this.
+                EDUCATION
             </p>
 
             <p>
-                Everything important is somewhere
-                on the computer.
+                Bachelor of Arts
+            </p>
+
+            <p>
+                EXPERIENCE
+            </p>
+
+            <p>
+                Student Assistant
+            </p>
+
+            <p>
+                Design Intern
+            </p>
+
+            <p>
+                SKILLS
+            </p>
+
+            <p>
+                Adobe Creative Cloud
+            </p>
+
+            <p>
+                HTML / CSS
+            </p>
+
+            <p>
+                Communication
             </p>
 
         `;
@@ -639,18 +1537,44 @@ function openFile(fileName) {
     }
 
 
-    if (fileName === "untitled.doc") {
+    // -----------------------------
+    // APARTMENT
+    // -----------------------------
+
+    if (
+        fileName === "apartment_search.doc"
+    ) {
 
         content = `
 
-            <h3>untitled.doc</h3>
+            <h3>apartment_search.doc</h3>
 
             <p>
-                This document has no title.
+                Places to look:
             </p>
 
             <p>
-                There is nothing else here.
+                1. Downtown
+            </p>
+
+            <p>
+                2. Near work
+            </p>
+
+            <p>
+                3. Somewhere with a balcony
+            </p>
+
+            <p>
+                Notes:
+            </p>
+
+            <p>
+                Need to figure out what to take.
+            </p>
+
+            <p>
+                I don't need everything anymore.
             </p>
 
         `;
@@ -658,25 +1582,273 @@ function openFile(fileName) {
     }
 
 
-    if (fileName === "read_me.txt") {
+    // -----------------------------
+    // GOODBYE
+    // -----------------------------
 
-        localStorage.setItem(
-            "readMeOpened",
-            "true"
-        );
+    if (
+        fileName === "goodbye.txt"
+    ) {
+
+        content = `
+
+            <h3>goodbye.txt</h3>
+
+            <div class="file-date">
+                Last modified: May 18
+            </div>
+
+            <p>
+                This computer has been with me
+                through everything.
+            </p>
+
+            <p>
+                First semester.
+                First apartment.
+                First terrible all-nighter.
+                First real job.
+            </p>
+
+            <p>
+                There are probably things on here
+                I haven't looked at in years.
+            </p>
+
+            <p>
+                I think I'm ready to let it go.
+            </p>
+
+            <p>
+                Everything important has been backed up.
+            </p>
+
+            <p>
+                Tomorrow I'll reset it.
+            </p>
+
+            <p>
+                I guess this is goodbye.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // MOVING CHECKLIST
+    // -----------------------------
+
+    if (
+        fileName === "moving_checklist.txt"
+    ) {
+
+        content = `
+
+            <h3>moving_checklist.txt</h3>
+
+            <p>
+                [x] Pack clothes
+            </p>
+
+            <p>
+                [x] Return keys
+            </p>
+
+            <p>
+                [x] Donate furniture
+            </p>
+
+            <p>
+                [x] Back up laptop
+            </p>
+
+            <p>
+                [x] Clean apartment
+            </p>
+
+            <p>
+                [ ] Say goodbye
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // BACKUP
+    // -----------------------------
+
+    if (
+        fileName === "backup_complete.txt"
+    ) {
+
+        content = `
+
+            <h3>backup_complete.txt</h3>
+
+            <p>
+                Backup completed successfully.
+            </p>
+
+            <p>
+                Photos: backed up
+            </p>
+
+            <p>
+                Documents: backed up
+            </p>
+
+            <p>
+                Music: backed up
+            </p>
+
+            <p>
+                Personal files: backed up
+            </p>
+
+            <br>
+
+            <p>
+                The computer can now be reset.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // FRESHMAN YEAR
+    // -----------------------------
+
+    if (
+        fileName === "freshman_year.txt"
+    ) {
+
+        content = `
+
+            <h3>freshman_year.txt</h3>
+
+            <p>
+                I thought college would feel different.
+            </p>
+
+            <p>
+                I was nervous about everything.
+            </p>
+
+            <p>
+                I didn't know anyone.
+            </p>
+
+            <p>
+                Somehow by the end of the year,
+                this place already felt normal.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // SOPHOMORE YEAR
+    // -----------------------------
+
+    if (
+        fileName === "sophomore_year.txt"
+    ) {
+
+        content = `
+
+            <h3>sophomore_year.txt</h3>
+
+            <p>
+                I finally stopped feeling like
+                I was pretending to be a college student.
+            </p>
+
+            <p>
+                I had friends.
+            </p>
+
+            <p>
+                I knew where everything was.
+            </p>
+
+            <p>
+                I liked my life here.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // JUNIOR YEAR
+    // -----------------------------
+
+    if (
+        fileName === "junior_year.txt"
+    ) {
+
+        content = `
+
+            <h3>junior_year.txt</h3>
+
+            <p>
+                Everything got busy.
+            </p>
+
+            <p>
+                Classes.
+                Work.
+                Applications.
+                Late nights.
+            </p>
+
+            <p>
+                I keep telling myself
+                I'll slow down after graduation.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // READ ME
+    // -----------------------------
+
+    if (
+        fileName === "read_me.txt"
+    ) {
 
         content = `
 
             <h3>read_me.txt</h3>
 
             <p>
-                If you found this computer,
-                please leave it alone.
+                If you're reading this,
+                you probably found the computer
+                after I left it.
             </p>
 
             <p>
-                I don't remember what is still
-                on here.
+                Everything important was backed up.
+            </p>
+
+            <p>
+                You can look around.
+            </p>
+
+            <p>
+                I don't mind.
             </p>
 
         `;
@@ -684,14 +1856,204 @@ function openFile(fileName) {
     }
 
 
+    // -----------------------------
+    // OLD PHOTOS
+    // -----------------------------
+
+    if (
+        fileName === "old_photos.zip"
+    ) {
+
+        content = `
+
+            <h3>old_photos.zip</h3>
+
+            <p>
+                Archive contains:
+            </p>
+
+            <p>
+                847 photographs
+            </p>
+
+            <p>
+                31 screenshots
+            </p>
+
+            <p>
+                4 videos
+            </p>
+
+            <p>
+                Last opened:
+                2 years ago
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // TRASH FILES
+    // -----------------------------
+
+    if (
+        fileName === "dorm_room_old.jpg"
+    ) {
+
+        content = `
+
+            <h3>dorm_room_old.jpg</h3>
+
+            <p>
+                Deleted photograph.
+            </p>
+
+            <p>
+                The file cannot be restored.
+            </p>
+
+        `;
+
+    }
+
+
+    if (
+        fileName === "old_schedule.txt"
+    ) {
+
+        content = `
+
+            <h3>old_schedule.txt</h3>
+
+            <p>
+                Monday — Biology
+            </p>
+
+            <p>
+                Tuesday — Studio
+            </p>
+
+            <p>
+                Wednesday — Biology
+            </p>
+
+            <p>
+                Thursday — Studio
+            </p>
+
+            <p>
+                Friday — Free
+            </p>
+
+            <br>
+
+            <p>
+                Semester 1
+            </p>
+
+        `;
+
+    }
+
+
+    if (
+        fileName === "first_resume.doc"
+    ) {
+
+        content = `
+
+            <h3>first_resume.doc</h3>
+
+            <p>
+                Objective:
+            </p>
+
+            <p>
+                "Looking for my first job."
+            </p>
+
+            <p>
+                Experience:
+            </p>
+
+            <p>
+                None yet.
+            </p>
+
+        `;
+
+    }
+
+
+    if (
+        fileName === "moving_day.txt"
+    ) {
+
+        content = `
+
+            <h3>moving_day.txt</h3>
+
+            <p>
+                6:00 AM — Wake up
+            </p>
+
+            <p>
+                7:00 AM — Load car
+            </p>
+
+            <p>
+                9:00 AM — Clean room
+            </p>
+
+            <p>
+                11:00 AM — Return keys
+            </p>
+
+            <p>
+                12:00 PM — Leave
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // DEFAULT
+    // -----------------------------
+
+    if (content === "") {
+
+        content = `
+
+            <h3>${fileName}</h3>
+
+            <p>
+                This file appears to be empty.
+            </p>
+
+        `;
+
+    }
+
+
+    // -----------------------------
+    // CREATE WINDOW
+    // -----------------------------
+
     const windowElement =
         document.createElement("div");
 
+
     windowElement.id =
-        "file-" + fileName;
+        id;
+
 
     windowElement.className =
         "computer-window file-window";
+
 
     windowElement.innerHTML = `
 
@@ -705,6 +2067,7 @@ function openFile(fileName) {
 
         </div>
 
+
         <div class="file-content">
 
             ${content}
@@ -713,16 +2076,14 @@ function openFile(fileName) {
 
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 }
 
 
 // =================================
-// UNKNOWN FILE
+// RESET WARNING
 // =================================
 
 function openUnknownFile() {
@@ -735,14 +2096,18 @@ function openUnknownFile() {
         return;
     }
 
+
     const windowElement =
         document.createElement("div");
+
 
     windowElement.id =
         "unknown-window";
 
+
     windowElement.className =
         "computer-window";
+
 
     windowElement.innerHTML = `
 
@@ -755,6 +2120,7 @@ function openUnknownFile() {
             </button>
 
         </div>
+
 
         <div class="warning-content">
 
@@ -786,91 +2152,68 @@ function openUnknownFile() {
         </div>
     `;
 
-    document
-        .querySelector(".desktop")
-        .appendChild(windowElement);
 
-    closeWindow(windowElement);
+    addWindow(windowElement);
+
 
     windowElement
         .querySelector(".warning-button")
-        .addEventListener("click", () => {
+        .addEventListener(
+            "click",
+            () => {
 
-            windowElement.remove();
+                windowElement.remove();
 
-        });
+            }
+        );
+
 }
+
+
 // =================================
-// PHOTO PREVIEW
+// DOUBLE CLICK SPECIAL FILES
 // =================================
 
-function openPhotoPreview(imageSrc, imageAlt) {
+document.addEventListener(
+    "dblclick",
+    event => {
 
-    if (document.getElementById("photo-preview")) {
-        return;
-    }
-
-    const preview = document.createElement("div");
-
-    preview.id = "photo-preview";
-
-    preview.className = "photo-preview";
-
-    preview.innerHTML = `
-
-        <div class="preview-window">
-
-            <div class="window-header">
-
-                Photo Preview
-
-                <button class="close-button">
-                    ×
-                </button>
-
-            </div>
-
-            <div class="preview-content">
-
-                <img
-                    src="${imageSrc}"
-                    alt="${imageAlt}"
-                >
-
-                <div class="preview-name">
-                    ${imageAlt}
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document
-        .querySelector(".desktop")
-        .appendChild(preview);
+        const file =
+            event.target.closest(".file");
 
 
-    // Close button
-
-    preview
-        .querySelector(".close-button")
-        .addEventListener("click", () => {
-
-            preview.remove();
-
-        });
-
-
-    // Click outside the photo to close
-
-    preview.addEventListener("click", event => {
-
-        if (event.target === preview) {
-            preview.remove();
+        if (!file) {
+            return;
         }
 
-    });
 
-}
+        const nameElement =
+            file.querySelector("span");
+
+
+        if (!nameElement) {
+            return;
+        }
+
+
+        const fileName =
+            nameElement.textContent.trim();
+
+
+        if (
+            fileName === "unknown_file.exe"
+        ) {
+
+            openUnknownFile();
+
+        }
+
+    }
+);
+
+
+// =================================
+// INITIAL ARCHIVE CHECK
+// =================================
+
+checkArchiveUnlock();
