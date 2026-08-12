@@ -10,15 +10,13 @@ html,
 body {
     width: 100%;
     height: 100%;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 
@@ -36,7 +34,7 @@ body {
     height: 100vh;
 
     background-image:
-        url("images/wallpaper.jpeg");
+        url("images/wallpaper.jpg");
 
     background-size: cover;
 
@@ -51,6 +49,91 @@ body {
 
 
 /* ==========================================
+   MENU BAR
+   ========================================== */
+
+.menu-bar {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 12px;
+
+    background: rgba(245, 245, 245, 0.86);
+
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+
+    color: #111;
+
+    font-size: 13px;
+
+    z-index: 5000;
+}
+
+.menu-left,
+.menu-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+}
+
+.apple-logo {
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    width: 17px;
+
+    text-align: center;
+}
+
+.menu-item {
+
+    cursor: default;
+
+    white-space: nowrap;
+}
+
+.active-menu {
+
+    font-weight: 600;
+}
+
+.menu-status {
+
+    white-space: nowrap;
+}
+
+.menu-right {
+
+    gap: 13px;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
    DESKTOP ITEMS
    ========================================== */
 
@@ -58,111 +141,84 @@ body {
 
     position: absolute;
 
-    width: 90px;
+    width: 110px;
 
-    padding: 5px;
+    padding: 6px;
 
     text-align: center;
 
     color: white;
-
-    font-family: monospace;
 
     font-size: 12px;
 
     cursor: default;
 
     text-shadow:
-        1px 1px 3px #000;
+        0 1px 4px rgba(0,0,0,0.9);
 
     border: 1px solid transparent;
+
+    border-radius: 5px;
 }
 
 .desktop-item:hover {
 
     background:
-        rgba(255, 255, 255, 0.15);
+        rgba(255,255,255,0.15);
 
     border:
-        1px dotted rgba(255,255,255,0.7);
+        1px solid rgba(255,255,255,0.25);
+}
+
+.desktop-item:active {
+
+    background:
+        rgba(100,150,255,0.35);
 }
 
 
 /* ==========================================
-   ICONS
+   DESKTOP POSITIONS
    ========================================== */
-
-.desktop-icon,
-.file-icon {
-
-    font-size: 38px;
-
-    line-height: 42px;
-
-    margin-bottom: 4px;
-
-    filter:
-        drop-shadow(
-            2px 2px 2px rgba(0,0,0,0.8)
-        );
-}
-
-
-/* ==========================================
-   MESSY DESKTOP POSITIONS
-   ========================================== */
-
-/*
-    The uneven positioning is intentional.
-
-    This should feel like someone's actual
-    computer rather than a designed interface.
-*/
 
 .item-school {
-
     left: 35px;
-    top: 35px;
+    top: 55px;
 }
 
 .item-photos {
-
     left: 165px;
-    top: 85px;
+    top: 110px;
 }
 
 .item-downloads {
-
-    left: 45px;
-    top: 210px;
+    left: 40px;
+    top: 220px;
 }
 
 .item-chrome {
-
-    left: 175px;
-    top: 300px;
+    left: 165px;
+    top: 310px;
 }
 
 .item-notes {
-
     right: 125px;
-    top: 70px;
+    top: 65px;
 }
 
 .item-trash {
-
     right: 35px;
-    bottom: 80px;
+    bottom: 100px;
 }
 
 
 /* ==========================================
-   RANDOM FILE POSITIONS
+   FILE POSITIONS
    ========================================== */
 
 .loose-file {
 
-    width: 120px;
+    width: 130px;
 
     word-break: break-word;
 }
@@ -170,206 +226,1068 @@ body {
 .file-resume {
 
     left: 320px;
-    top: 45px;
+    top: 55px;
 }
 
 .file-screenshot {
 
-    right: 240px;
+    right: 250px;
     top: 210px;
 }
 
 .file-untitled {
 
-    left: 350px;
-    bottom: 110px;
+    left: 340px;
+    bottom: 130px;
 }
 
 .file-final {
 
     right: 55px;
-    top: 330px;
+    top: 350px;
+}
+
+.file-form {
+
+    left: 500px;
+    top: 185px;
 }
 
 
 /* ==========================================
-   TASKBAR
+   APPLE STYLE FOLDER ICON
    ========================================== */
 
-.taskbar {
+.apple-icon {
+
+    position: relative;
+
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 6px;
+
+    filter:
+        drop-shadow(
+            0 3px 4px rgba(0,0,0,0.35)
+        );
+}
+
+
+/* FOLDER */
+
+.folder-icon {
+
+    width: 64px;
+    height: 52px;
+
+    margin-top: 5px;
+}
+
+.folder-tab {
 
     position: absolute;
 
-    left: 0;
-    bottom: 0;
+    left: 5px;
+    top: 2px;
+
+    width: 25px;
+    height: 12px;
+
+    background: linear-gradient(
+        #78bdf8,
+        #4b94dc
+    );
+
+    border-radius:
+        5px 5px 0 0;
+}
+
+.folder-body {
+
+    position: absolute;
+
+    left: 2px;
+    top: 10px;
+
+    width: 60px;
+    height: 39px;
+
+    border-radius: 5px;
+
+    background: linear-gradient(
+        #76bdf7,
+        #3e8fd8
+    );
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.55);
+}
+
+
+/* ==========================================
+   DOWNLOAD ICON
+   ========================================== */
+
+.downloads-icon .download-arrow {
+
+    position: absolute;
+
+    z-index: 4;
+
+    left: 23px;
+    top: 15px;
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,0.4);
+}
+
+
+/* ==========================================
+   PHOTOS ICON
+   ========================================== */
+
+.photos-icon {
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,0.3);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.photo-flower {
+
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+}
+
+.photo-flower i {
+
+    position: absolute;
+
+    left: 17px;
+    top: 1px;
+
+    width: 9px;
+    height: 19px;
+
+    border-radius: 50%;
+
+    background: #ff5277;
+
+    transform-origin: 4px 20px;
+}
+
+.photo-flower i:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.photo-flower i:nth-child(3) {
+    transform: rotate(90deg);
+}
+
+.photo-flower i:nth-child(4) {
+    transform: rotate(135deg);
+}
+
+.photo-flower i:nth-child(5) {
+    transform: rotate(180deg);
+}
+
+.photo-flower i:nth-child(6) {
+    transform: rotate(225deg);
+}
+
+.photo-flower i:nth-child(7) {
+    transform: rotate(270deg);
+}
+
+.photo-flower i:nth-child(8) {
+    transform: rotate(315deg);
+}
+
+
+/* ==========================================
+   CHROME ICON
+   ========================================== */
+
+.chrome-icon {
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #ea4335 0deg 120deg,
+            #fbbc05 120deg 240deg,
+            #34a853 240deg 360deg
+        );
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+}
+
+.chrome-center {
+
+    position: absolute;
+
+    left: 17px;
+    top: 17px;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background: #4285f4;
+
+    border: 4px solid white;
+}
+
+
+/* ==========================================
+   NOTES ICON
+   ========================================== */
+
+.notes-icon {
+
+    width: 52px;
+    height: 58px;
+
+    background: #fff;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+.notes-paper {
 
     width: 100%;
-    height: 43px;
+    height: 100%;
+}
+
+.notes-paper::before {
+
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 16px;
+
+    background: #f9c842;
+}
+
+.notes-paper div {
+
+    width: 34px;
+    height: 2px;
+
+    background: #aaa;
+
+    margin:
+        8px auto;
+}
+
+
+/* ==========================================
+   TRASH ICON
+   ========================================== */
+
+.trash-icon {
+
+    width: 50px;
+    height: 58px;
+}
+
+.trash-lid {
+
+    position: absolute;
+
+    left: 7px;
+    top: 6px;
+
+    width: 36px;
+    height: 6px;
+
+    border-radius: 4px;
+
+    background: #d8d8d8;
+}
+
+.trash-can {
+
+    position: absolute;
+
+    left: 10px;
+    top: 13px;
+
+    width: 30px;
+    height: 39px;
+
+    border-radius: 3px 3px 7px 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ddd,
+            #aaa,
+            #ddd
+        );
+}
+
+.trash-can span {
+
+    display: block;
+
+    width: 2px;
+    height: 28px;
+
+    background: #888;
+
+    margin: 5px auto;
+}
+
+.trash-can span:nth-child(1) {
+    margin-left: 8px;
+}
+
+.trash-can span:nth-child(2) {
+    margin-top: -33px;
+}
+
+.trash-can span:nth-child(3) {
+    margin-left: 20px;
+    margin-top: -28px;
+}
+
+
+/* ==========================================
+   FILE ICONS
+   ========================================== */
+
+.apple-file-icon {
+
+    position: relative;
+
+    width: 50px;
+    height: 58px;
+
+    margin: 0 auto 7px;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 3px 5px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+
+/* PDF */
+
+.pdf-icon {
+
+    background: #f5f5f5;
+
+    border: 1px solid #bbb;
+
+    color: #e53935;
 
     display: flex;
 
     align-items: center;
 
-    background:
-        rgba(25,25,25,0.95);
+    justify-content: center;
 
-    border-top:
-        1px solid #666;
+    font-size: 10px;
+}
 
-    color: white;
+.pdf-icon strong {
 
-    z-index: 1000;
+    margin-top: 8px;
+}
 
-    font-family: monospace;
+.file-fold {
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 16px;
+    height: 16px;
+
+    background: #ddd;
+
+    clip-path:
+        polygon(0 0,100% 100%,0 100%);
 }
 
 
-.start-button {
+/* IMAGE FILE */
 
-    height: 31px;
+.image-file-icon {
 
-    margin-left: 6px;
+    background: linear-gradient(
+        135deg,
+        #d9f1ff,
+        #8cc9f5
+    );
+
+    border: 1px solid white;
+}
+
+.image-sun {
+
+    position: absolute;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #ffd54f;
+
+    top: 9px;
+    right: 9px;
+}
+
+.image-mountain {
+
+    position: absolute;
+
+    left: 5px;
+    bottom: 5px;
+
+    width: 40px;
+    height: 29px;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 50%,
+            #4caf50 51%
+        );
+
+    border-radius: 3px;
+}
+
+
+/* DOCUMENT */
+
+.document-icon {
+
+    background: white;
+
+    border: 1px solid #aaa;
+}
+
+.document-lines {
+
+    padding-top: 22px;
+}
+
+.document-lines i {
+
+    display: block;
+
+    width: 31px;
+    height: 2px;
+
+    background: #999;
+
+    margin: 5px auto;
+}
+
+
+/* ==========================================
+   DOCK
+   ========================================== */
+
+.dock-container {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 12px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 4000;
+}
+
+.dock {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
 
     padding:
-        0 14px;
+        8px 12px 7px;
 
-    background: #333;
+    background:
+        rgba(235,235,235,0.65);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,0.55);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,0.4);
+}
+
+.dock-icon {
+
+    position: relative;
+
+    width: 56px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease;
+}
+
+.dock-icon:hover {
+
+    transform:
+        translateY(-10px) scale(1.13);
+}
+
+.dock-icon small {
+
+    position: absolute;
+
+    display: none;
+
+    bottom: 62px;
+
+    background: rgba(0,0,0,0.75);
 
     color: white;
 
-    border:
-        1px solid #777;
+    padding: 4px 7px;
 
-    font-family: monospace;
+    border-radius: 5px;
 
-    cursor: pointer;
+    white-space: nowrap;
+
+    font-size: 10px;
 }
 
-.start-button:hover {
-
-    background: #555;
+.dock-icon:hover small {
+    display: block;
 }
 
 
-.taskbar-center {
+/* FINDER */
+
+.dock-finder-icon {
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #59aef5 50%,
+            #b8ddfa 50%
+        );
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+.finder-face {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.finder-eye {
+
+    position: absolute;
+
+    top: 20px;
+
+    width: 5px;
+    height: 7px;
+
+    background: #222;
+
+    border-radius: 50%;
+}
+
+.left-eye {
+    left: 16px;
+}
+
+.right-eye {
+    right: 16px;
+}
+
+.finder-mouth {
+
+    position: absolute;
+
+    left: 17px;
+    top: 30px;
+
+    width: 20px;
+    height: 8px;
+
+    border-bottom:
+        2px solid #222;
+
+    border-radius: 50%;
+}
+
+
+/* DOCK CHROME */
+
+.dock-chrome-icon {
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #ea4335 0deg 120deg,
+            #fbbc05 120deg 240deg,
+            #34a853 240deg 360deg
+        );
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+}
+
+.dock-chrome-icon div {
+
+    width: 23px;
+    height: 23px;
+
+    margin: 15px;
+
+    border-radius: 50%;
+
+    background: #4285f4;
+
+    border: 4px solid white;
+}
+
+
+/* DOCK PHOTOS */
+
+.dock-photos-icon {
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.dock-flower {
+
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+}
+
+.dock-flower i {
+
+    position: absolute;
+
+    left: 16px;
+    top: 0;
+
+    width: 8px;
+    height: 19px;
+
+    border-radius: 50%;
+
+    background: #ff5277;
+
+    transform-origin:
+        4px 20px;
+}
+
+.dock-flower i:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.dock-flower i:nth-child(3) {
+    transform: rotate(90deg);
+}
+
+.dock-flower i:nth-child(4) {
+    transform: rotate(135deg);
+}
+
+.dock-flower i:nth-child(5) {
+    transform: rotate(180deg);
+}
+
+.dock-flower i:nth-child(6) {
+    transform: rotate(225deg);
+}
+
+.dock-flower i:nth-child(7) {
+    transform: rotate(270deg);
+}
+
+.dock-flower i:nth-child(8) {
+    transform: rotate(315deg);
+}
+
+
+/* DOCK NOTES */
+
+.dock-notes-icon {
+
+    width: 50px;
+    height: 53px;
+
+    border-radius: 7px;
+
+    background: white;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+.dock-notes-icon::before {
+
+    content: "";
+
+    display: block;
+
+    height: 15px;
+
+    background: #ffd34d;
+}
+
+.dock-notes-icon div {
+
+    width: 32px;
+    height: 2px;
+
+    background: #aaa;
+
+    margin: 8px auto;
+}
+
+
+/* DOCK DOWNLOADS */
+
+.dock-download-icon {
+
+    position: relative;
+
+    width: 54px;
+    height: 45px;
+}
+
+.dock-folder-tab {
+
+    position: absolute;
+
+    left: 5px;
+    top: 0;
+
+    width: 24px;
+    height: 10px;
+
+    background: #65b1f1;
+
+    border-radius:
+        5px 5px 0 0;
+}
+
+.dock-folder-body {
+
+    position: absolute;
+
+    left: 2px;
+    top: 8px;
+
+    width: 50px;
+    height: 35px;
+
+    background:
+        linear-gradient(
+            #70b9f2,
+            #398fd5
+        );
+
+    border-radius: 5px;
+}
+
+.dock-download-icon span {
+
+    position: absolute;
+
+    left: 20px;
+    top: 11px;
+
+    color: white;
+
+    font-size: 23px;
+
+    z-index: 2;
+}
+
+
+/* DOCK TRASH */
+
+.dock-trash-icon {
+
+    width: 45px;
+    height: 53px;
+
+    position: relative;
+}
+
+.dock-trash-lid {
+
+    position: absolute;
+
+    left: 5px;
+    top: 7px;
+
+    width: 34px;
+    height: 5px;
+
+    background: #aaa;
+
+    border-radius: 4px;
+}
+
+.dock-trash-body {
+
+    position: absolute;
+
+    left: 9px;
+    top: 14px;
+
+    width: 27px;
+    height: 35px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ddd,
+            #aaa,
+            #ddd
+        );
+
+    border-radius: 3px 3px 6px 6px;
+}
+
+.dock-trash-body span {
+
+    display: inline-block;
+
+    width: 2px;
+    height: 25px;
+
+    background: #888;
+
+    margin-left: 5px;
+}
+
+
+/* DIVIDER */
+
+.dock-divider {
+
+    width: 1px;
+
+    height: 45px;
+
+    background:
+        rgba(0,0,0,0.25);
+
+    margin:
+        0 2px;
+}
+
+
+/* ==========================================
+   SYSTEM MESSAGE
+   ========================================== */
+
+.system-message {
 
     position: absolute;
 
     left: 50%;
 
+    bottom: 8px;
+
     transform:
         translateX(-50%);
 
-    color: #aaa;
+    padding:
+        5px 10px;
 
-    font-size: 12px;
+    background:
+        rgba(0,0,0,0.55);
+
+    color: white;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease;
+
+    pointer-events: none;
+
+    z-index: 4500;
 }
 
-
-.taskbar-right {
-
-    margin-left: auto;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    margin-right: 14px;
-
-    font-size: 12px;
+.system-message.show {
+    opacity: 1;
 }
 
 
 /* ==========================================
-   START MENU
+   APPLE MENU
    ========================================== */
 
-.start-menu {
+.apple-menu {
 
     position: fixed;
 
     display: none;
 
-    left: 6px;
-    bottom: 50px;
+    top: 28px;
+    left: 8px;
 
-    width: 280px;
+    width: 230px;
 
-    background: #ededed;
+    background:
+        rgba(245,245,245,0.96);
 
-    border:
-        2px solid #333;
+    backdrop-filter:
+        blur(20px);
+
+    border-radius: 7px;
 
     box-shadow:
-        7px 7px 0
-        rgba(0,0,0,0.45);
+        0 8px 30px rgba(0,0,0,0.3);
 
-    color: #111;
+    border:
+        1px solid rgba(0,0,0,0.2);
 
-    z-index: 2000;
+    padding: 5px;
 
-    font-family: monospace;
+    z-index: 6000;
+
+    font-size: 13px;
 }
 
-
-.start-menu.visible {
-
+.apple-menu.visible {
     display: block;
 }
 
+.apple-menu-title {
 
-.start-header {
+    padding:
+        8px 10px;
 
-    padding: 15px;
-
-    background: #333;
-
-    color: white;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
+    font-weight: 600;
 }
 
+.apple-menu-entry {
 
-.start-header span {
+    padding:
+        7px 10px;
 
-    color: #aaa;
-
-    font-size: 11px;
-}
-
-
-.start-entry {
-
-    padding: 13px;
-
-    border-bottom:
-        1px solid #ccc;
+    border-radius: 4px;
 
     cursor: default;
 }
 
+.apple-menu-entry:hover {
 
-.start-entry:hover {
+    background: #2878e8;
 
-    background: #ddd;
+    color: white;
 }
 
+.apple-menu-separator {
 
-.start-footer {
+    height: 1px;
 
-    padding: 12px;
+    background: #ccc;
 
-    font-size: 11px;
-
-    color: #777;
-
-    background: #ddd;
+    margin: 5px 0;
 }
 
 
@@ -381,31 +1299,33 @@ body {
 
     position: absolute;
 
-    top: 110px;
+    top: 100px;
     left: 250px;
 
-    width: 500px;
+    width: 520px;
 
     max-width:
         calc(100vw - 40px);
 
     max-height:
-        calc(100vh - 80px);
+        calc(100vh - 90px);
 
-    background: #eee;
+    background:
+        rgba(248,248,248,0.97);
 
     border:
-        2px solid #333;
+        1px solid #aaa;
+
+    border-radius: 9px;
 
     box-shadow:
-        8px 8px 0
-        rgba(0,0,0,0.45);
+        0 18px 50px rgba(0,0,0,0.35);
+
+    overflow: hidden;
 
     z-index: 20;
 
     color: #111;
-
-    overflow: hidden;
 }
 
 
@@ -415,49 +1335,60 @@ body {
 
 .window-header {
 
-    height: 34px;
+    height: 38px;
 
     display: flex;
 
     align-items: center;
 
-    padding:
-        0 8px;
+    justify-content: center;
 
-    background: #333;
+    position: relative;
 
-    color: white;
+    padding: 0 45px;
 
-    font-family: monospace;
+    background:
+        linear-gradient(
+            #f8f8f8,
+            #e7e7e7
+        );
+
+    border-bottom:
+        1px solid #ccc;
+
+    color: #222;
+
+    font-size: 13px;
+
+    font-weight: 600;
 
     cursor: move;
 }
 
-
 .close-button {
 
-    margin-left: auto;
+    position: absolute;
 
-    width: 26px;
+    left: 10px;
 
-    height: 24px;
+    width: 14px;
+    height: 14px;
 
-    background: #ddd;
+    padding: 0;
 
-    color: #111;
+    border: 0;
 
-    border:
-        1px solid #777;
+    border-radius: 50%;
+
+    background: #ff5f57;
+
+    color: transparent;
 
     cursor: pointer;
-
-    font-size: 16px;
 }
 
-
 .close-button:hover {
-
-    background: #aaa;
+    background: #ff3b30;
 }
 
 
@@ -487,25 +1418,18 @@ body {
 
     gap: 12px;
 
-    padding: 9px;
+    padding: 10px;
 
-    border:
-        1px solid transparent;
-
-    font-family: monospace;
+    border-radius: 6px;
 
     cursor: default;
 }
 
-
 .file:hover {
 
-    background: #ddd;
-
-    border:
-        1px solid #aaa;
+    background:
+        rgba(0,122,255,0.12);
 }
-
 
 .file-icon {
 
@@ -516,7 +1440,7 @@ body {
 
 
 /* ==========================================
-   TEXT FILE WINDOWS
+   FILE WINDOWS
    ========================================== */
 
 .file-window {
@@ -524,14 +1448,16 @@ body {
     width: 480px;
 }
 
-
 .file-content {
 
     padding: 22px;
 
-    background: #fafafa;
+    background: white;
 
-    font-family: monospace;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
 
     line-height: 1.7;
 
@@ -542,14 +1468,12 @@ body {
     overflow-wrap: anywhere;
 }
 
-
 .file-content h3 {
 
     margin-top: 0;
 
     font-weight: normal;
 }
-
 
 .file-date {
 
@@ -570,7 +1494,6 @@ body {
     width: 650px;
 }
 
-
 .photo-grid {
 
     display: grid;
@@ -581,32 +1504,24 @@ body {
     gap: 15px;
 }
 
-
 .photo {
 
     padding: 6px;
 
-    border:
-        1px solid transparent;
+    border-radius: 7px;
 
     cursor: default;
-
-    font-family: monospace;
 
     font-size: 11px;
 
     text-align: center;
 }
 
-
 .photo:hover {
 
-    background: #ddd;
-
-    border:
-        1px solid #aaa;
+    background:
+        rgba(0,122,255,0.1);
 }
-
 
 .photo img {
 
@@ -618,8 +1533,10 @@ body {
 
     object-fit: cover;
 
+    border-radius: 6px;
+
     border:
-        1px solid #777;
+        1px solid #bbb;
 
     margin-bottom: 7px;
 }
@@ -642,11 +1559,10 @@ body {
     justify-content: center;
 
     background:
-        rgba(0,0,0,0.78);
+        rgba(0,0,0,0.72);
 
-    z-index: 3000;
+    z-index: 7000;
 }
-
 
 .preview-window {
 
@@ -656,10 +1572,13 @@ body {
 
     background: #eee;
 
-    border:
-        2px solid #222;
-}
+    border-radius: 9px;
 
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5);
+}
 
 .preview-content {
 
@@ -667,7 +1586,6 @@ body {
 
     text-align: center;
 }
-
 
 .preview-content img {
 
@@ -677,7 +1595,6 @@ body {
 
     object-fit: contain;
 }
-
 
 .preview-name {
 
@@ -704,26 +1621,28 @@ body {
     flex-direction: column;
 }
 
-
 .browser-toolbar {
 
     display: flex;
 
-    gap: 5px;
+    gap: 6px;
 
-    padding: 6px;
+    padding: 7px;
 
-    background: #ccc;
+    background: #e5e5e5;
+
+    border-bottom:
+        1px solid #ccc;
 }
 
+.browser-toolbar button {
 
-.browser-button {
+    border: 0;
 
-    width: 30px;
+    background: transparent;
 
-    height: 25px;
+    font-size: 18px;
 }
-
 
 .address-bar {
 
@@ -731,9 +1650,15 @@ body {
 
     min-width: 0;
 
+    border:
+        1px solid #ccc;
+
+    border-radius: 6px;
+
+    padding: 5px 10px;
+
     font-family: monospace;
 }
-
 
 .browser-page {
 
@@ -746,7 +1671,6 @@ body {
     background: white;
 }
 
-
 .browser-page h1 {
 
     font-size: 22px;
@@ -756,12 +1680,10 @@ body {
     margin-top: 0;
 }
 
-
 .browser-page p {
 
     color: #666;
 }
-
 
 .search-history {
 
@@ -771,7 +1693,6 @@ body {
 
     margin-top: 25px;
 }
-
 
 .search-history li {
 
@@ -783,12 +1704,10 @@ body {
     font-family: monospace;
 }
 
-
 .search-history li:hover {
 
     background: #f1f1f1;
 }
-
 
 .search-date {
 
@@ -815,7 +1734,6 @@ body {
     font-family: monospace;
 }
 
-
 .note-line {
 
     display: flex;
@@ -828,12 +1746,10 @@ body {
         1px solid #ddd;
 }
 
-
 .note-number {
 
     color: #aaa;
 }
-
 
 .note-line p {
 
@@ -844,43 +1760,19 @@ body {
 
 
 /* ==========================================
-   WARNING / SYSTEM MESSAGE
-   ========================================== */
-
-.warning-content {
-
-    padding: 25px;
-
-    text-align: center;
-
-    font-family: monospace;
-}
-
-
-.warning-icon {
-
-    font-size: 45px;
-
-    margin-bottom: 10px;
-}
-
-
-.warning-button {
-
-    padding:
-        7px 20px;
-
-    margin-top: 10px;
-
-    cursor: pointer;
-}
-
-
-/* ==========================================
    SMALL SCREEN
    ========================================== */
 
 @media (max-width: 700px) {
+
+    .menu-item:nth-child(n+5) {
+        display: none;
+    }
+
+    .menu-right span:nth-child(1),
+    .menu-right span:nth-child(2) {
+        display: none;
+    }
 
     .computer-window {
 
@@ -904,8 +1796,14 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .taskbar-center {
+    .dock {
 
-        display: none;
+        gap: 4px;
+    }
+
+    .dock-icon {
+
+        width: 48px;
+        height: 48px;
     }
 }
