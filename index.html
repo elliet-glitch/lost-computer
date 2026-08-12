@@ -5,238 +5,494 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Desktop</title>
+    <title>Macintosh Desktop</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="desktop" id="desktop">
+<main class="desktop" id="desktop">
 
-        <!-- =========================
-             DESKTOP FILES
-             ========================= -->
+    <!-- ==========================================
+         MAC MENU BAR
+         ========================================== -->
 
-        <div class="desktop-item item-school"
-             data-window="school">
+    <div class="menu-bar">
 
-            <div class="desktop-icon">
-                📁
-            </div>
+        <div class="menu-left">
 
-            <span>school</span>
-
-        </div>
-
-
-        <div class="desktop-item item-photos"
-             data-window="photos">
-
-            <div class="desktop-icon">
-                📷
-            </div>
-
-            <span>Photos</span>
-
-        </div>
-
-
-        <div class="desktop-item item-downloads"
-             data-window="downloads">
-
-            <div class="desktop-icon">
-                📥
-            </div>
-
-            <span>Downloads</span>
-
-        </div>
-
-
-        <div class="desktop-item item-chrome"
-             data-window="browser">
-
-            <div class="desktop-icon">
-                🌐
-            </div>
-
-            <span>Chrome</span>
-
-        </div>
-
-
-        <div class="desktop-item item-notes"
-             data-window="notes">
-
-            <div class="desktop-icon">
-                📝
-            </div>
-
-            <span>Notes</span>
-
-        </div>
-
-
-        <div class="desktop-item item-trash"
-             data-window="trash">
-
-            <div class="desktop-icon">
-                🗑️
-            </div>
-
-            <span>Trash</span>
-
-        </div>
-
-
-        <!-- =========================
-             RANDOM LOOSE FILES
-             ========================= -->
-
-        <div class="desktop-item loose-file file-resume"
-             data-file="resume_FINAL2.pdf">
-
-            <div class="file-icon">
-                📄
-            </div>
-
-            <span>resume_FINAL2.pdf</span>
-
-        </div>
-
-
-        <div class="desktop-item loose-file file-screenshot"
-             data-file="Screenshot_2024-10-17.png">
-
-            <div class="file-icon">
-                🖼️
-            </div>
-
-            <span>Screenshot_2024-10-17.png</span>
-
-        </div>
-
-
-        <div class="desktop-item loose-file file-untitled"
-             data-file="Untitled.docx">
-
-            <div class="file-icon">
-                📄
-            </div>
-
-            <span>Untitled.docx</span>
-
-        </div>
-
-
-        <div class="desktop-item loose-file file-final"
-             data-file="final_FINAL.pdf">
-
-            <div class="file-icon">
-                📄
-            </div>
-
-            <span>final_FINAL.pdf</span>
-
-        </div>
-
-
-        <!-- =========================
-             TASKBAR
-             ========================= -->
-
-        <div class="taskbar">
-
-            <button
-                class="start-button"
-                id="start-button">
-
-                ▣ Start
-
-            </button>
-
-
-            <div class="taskbar-center">
-
-                <span id="system-message">
-                    Ready
-                </span>
-
-            </div>
-
-
-            <div class="taskbar-right">
-
-                <span>
-                    🔊
-                </span>
-
-                <span>
-                    Wi-Fi
-                </span>
-
-                <span id="clock">
-                    10:42 PM
-                </span>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- =========================
-         START MENU
-         ========================= -->
-
-    <div
-        class="start-menu"
-        id="start-menu">
-
-        <div class="start-header">
-
-            <strong>
-                Personal Computer
-            </strong>
-
-            <span>
-                User
+            <span class="apple-logo" id="apple-logo">
+                ●
             </span>
 
-        </div>
-
-
-        <div class="start-section">
-
-            <div class="start-entry">
-                📁 Documents
-            </div>
-
-            <div class="start-entry">
-                🌐 Browser
-            </div>
-
-            <div class="start-entry">
-                ⚙ Settings
-            </div>
+            <span class="menu-item active-menu">Finder</span>
+            <span class="menu-item">File</span>
+            <span class="menu-item">Edit</span>
+            <span class="menu-item">View</span>
+            <span class="menu-item">Go</span>
+            <span class="menu-item">Window</span>
+            <span class="menu-item">Help</span>
 
         </div>
 
+        <div class="menu-right">
 
-        <div class="start-footer">
+            <span class="menu-status">◐</span>
+            <span class="menu-status">Wi-Fi</span>
+            <span class="menu-status">🔋</span>
 
-            Last login:
-            May 18
+            <span id="menu-date">
+                Wed Aug 12
+            </span>
+
+            <span id="clock">
+                3:18 PM
+            </span>
 
         </div>
 
     </div>
 
 
-    <script src="script.js"></script>
+    <!-- ==========================================
+         DESKTOP ICONS
+         ========================================== -->
+
+
+    <!-- SCHOOL -->
+
+    <div class="desktop-item item-school"
+         data-window="school">
+
+        <div class="apple-icon folder-icon">
+
+            <div class="folder-tab"></div>
+            <div class="folder-body"></div>
+
+        </div>
+
+        <span>school</span>
+
+    </div>
+
+
+    <!-- PHOTOS -->
+
+    <div class="desktop-item item-photos"
+         data-window="photos">
+
+        <div class="apple-icon photos-icon">
+
+            <div class="photo-flower">
+
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+
+            </div>
+
+        </div>
+
+        <span>Photos</span>
+
+    </div>
+
+
+    <!-- DOWNLOADS -->
+
+    <div class="desktop-item item-downloads"
+         data-window="downloads">
+
+        <div class="apple-icon folder-icon downloads-icon">
+
+            <div class="folder-tab"></div>
+            <div class="folder-body"></div>
+
+            <div class="download-arrow">
+                ↓
+            </div>
+
+        </div>
+
+        <span>Downloads</span>
+
+    </div>
+
+
+    <!-- CHROME -->
+
+    <div class="desktop-item item-chrome"
+         data-window="browser">
+
+        <div class="apple-icon chrome-icon">
+
+            <div class="chrome-center"></div>
+
+        </div>
+
+        <span>Google Chrome</span>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="desktop-item item-notes"
+         data-window="notes">
+
+        <div class="apple-icon notes-icon">
+
+            <div class="notes-paper">
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+
+        </div>
+
+        <span>Notes</span>
+
+    </div>
+
+
+    <!-- TRASH -->
+
+    <div class="desktop-item item-trash"
+         data-window="trash">
+
+        <div class="apple-icon trash-icon">
+
+            <div class="trash-lid"></div>
+
+            <div class="trash-can">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+        <span>Trash</span>
+
+    </div>
+
+
+    <!-- ==========================================
+         LOOSE FILES
+         ========================================== -->
+
+
+    <!-- RESUME -->
+
+    <div class="desktop-item loose-file file-resume"
+         data-file="resume_FINAL2.pdf">
+
+        <div class="apple-file-icon pdf-icon">
+
+            <div class="file-fold"></div>
+
+            <strong>PDF</strong>
+
+        </div>
+
+        <span>
+            resume_FINAL2.pdf
+        </span>
+
+    </div>
+
+
+    <!-- SCREENSHOT -->
+
+    <div class="desktop-item loose-file file-screenshot"
+         data-image="images/Screenshot_2024-10-17.png">
+
+        <div class="apple-file-icon image-file-icon">
+
+            <div class="image-mountain"></div>
+            <div class="image-sun"></div>
+
+        </div>
+
+        <span>
+            Screenshot_2024-10-17.png
+        </span>
+
+    </div>
+
+
+    <!-- UNTITLED -->
+
+    <div class="desktop-item loose-file file-untitled"
+         data-file="Untitled.docx">
+
+        <div class="apple-file-icon document-icon">
+
+            <div class="file-fold"></div>
+
+            <div class="document-lines">
+
+                <i></i>
+                <i></i>
+                <i></i>
+
+            </div>
+
+        </div>
+
+        <span>
+            Untitled.docx
+        </span>
+
+    </div>
+
+
+    <!-- FINAL PDF -->
+
+    <div class="desktop-item loose-file file-final"
+         data-file="final_FINAL.pdf">
+
+        <div class="apple-file-icon pdf-icon">
+
+            <div class="file-fold"></div>
+
+            <strong>PDF</strong>
+
+        </div>
+
+        <span>
+            final_FINAL.pdf
+        </span>
+
+    </div>
+
+
+    <!-- ==========================================
+         FORM PNG
+         ========================================== -->
+
+    <div class="desktop-item loose-file file-form"
+         data-image="images/form.png">
+
+        <div class="apple-file-icon image-file-icon">
+
+            <div class="image-mountain"></div>
+            <div class="image-sun"></div>
+
+        </div>
+
+        <span>
+            form.png
+        </span>
+
+    </div>
+
+
+    <!-- ==========================================
+         MAC DOCK
+         ========================================== -->
+
+    <div class="dock-container">
+
+        <div class="dock">
+
+
+            <!-- FINDER -->
+
+            <div class="dock-icon"
+                 data-dock="finder">
+
+                <div class="dock-finder-icon">
+
+                    <div class="finder-face">
+
+                        <div class="finder-eye left-eye"></div>
+                        <div class="finder-eye right-eye"></div>
+                        <div class="finder-mouth"></div>
+
+                    </div>
+
+                </div>
+
+                <small>Finder</small>
+
+            </div>
+
+
+            <!-- CHROME -->
+
+            <div class="dock-icon"
+                 data-dock="browser">
+
+                <div class="dock-chrome-icon">
+                    <div></div>
+                </div>
+
+                <small>Chrome</small>
+
+            </div>
+
+
+            <!-- PHOTOS -->
+
+            <div class="dock-icon"
+                 data-dock="photos">
+
+                <div class="dock-photos-icon">
+
+                    <div class="dock-flower">
+
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+
+                    </div>
+
+                </div>
+
+                <small>Photos</small>
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div class="dock-icon"
+                 data-dock="notes">
+
+                <div class="dock-notes-icon">
+                    <div></div>
+                </div>
+
+                <small>Notes</small>
+
+            </div>
+
+
+            <!-- DOWNLOADS -->
+
+            <div class="dock-icon"
+                 data-dock="downloads">
+
+                <div class="dock-download-icon">
+
+                    <div class="dock-folder-tab"></div>
+                    <div class="dock-folder-body"></div>
+
+                    <span>↓</span>
+
+                </div>
+
+                <small>Downloads</small>
+
+            </div>
+
+
+            <div class="dock-divider"></div>
+
+
+            <!-- TRASH -->
+
+            <div class="dock-icon"
+                 data-dock="trash">
+
+                <div class="dock-trash-icon">
+
+                    <div class="dock-trash-lid"></div>
+
+                    <div class="dock-trash-body">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+                <small>Trash</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SYSTEM MESSAGE -->
+
+    <div class="system-message"
+         id="system-message">
+
+        Ready
+
+    </div>
+
+</main>
+
+
+<!-- ==========================================
+     APPLE MENU
+     ========================================== -->
+
+<div class="apple-menu"
+     id="apple-menu">
+
+    <div class="apple-menu-title">
+        About This Mac
+    </div>
+
+    <div class="apple-menu-entry">
+        System Preferences...
+    </div>
+
+    <div class="apple-menu-entry">
+        App Store...
+    </div>
+
+    <div class="apple-menu-separator"></div>
+
+    <div class="apple-menu-entry">
+        Recent Items
+    </div>
+
+    <div class="apple-menu-entry">
+        Force Quit...
+    </div>
+
+    <div class="apple-menu-separator"></div>
+
+    <div class="apple-menu-entry">
+        Sleep
+    </div>
+
+    <div class="apple-menu-entry">
+        Restart...
+    </div>
+
+    <div class="apple-menu-entry">
+        Shut Down...
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
