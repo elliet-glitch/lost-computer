@@ -1,5 +1,5 @@
 // ==========================================
-// LOST COMPUTER
+// MACINTOSH LOST COMPUTER
 // ==========================================
 
 
@@ -22,15 +22,10 @@ function updateClock() {
         now.getMinutes();
 
     const ampm =
-        hours >= 12
-            ? "PM"
-            : "AM";
+        hours >= 12 ? "PM" : "AM";
 
     hours =
-        hours % 12;
-
-    hours =
-        hours || 12;
+        hours % 12 || 12;
 
     minutes =
         minutes < 10
@@ -43,10 +38,7 @@ function updateClock() {
 
 updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+setInterval(updateClock, 1000);
 
 
 // ==========================================
@@ -63,9 +55,7 @@ let discoveries =
 
 function recordDiscovery(name) {
 
-    if (
-        !discoveries.includes(name)
-    ) {
+    if (!discoveries.includes(name)) {
 
         discoveries.push(name);
 
@@ -75,6 +65,40 @@ function recordDiscovery(name) {
         );
 
     }
+}
+
+
+// ==========================================
+// SYSTEM MESSAGE
+// ==========================================
+
+function setSystemMessage(message) {
+
+    const systemMessage =
+        document.getElementById(
+            "system-message"
+        );
+
+    systemMessage.textContent =
+        message;
+
+    systemMessage.classList.add("show");
+
+    clearTimeout(
+        window.systemMessageTimer
+    );
+
+    window.systemMessageTimer =
+        setTimeout(() => {
+
+            systemMessage.classList.remove(
+                "show"
+            );
+
+            systemMessage.textContent =
+                "Ready";
+
+        }, 2500);
 }
 
 
@@ -91,6 +115,36 @@ const desktopItems =
 desktopItems.forEach(item => {
 
     item.addEventListener(
+        "click",
+        () => {
+
+            const fileName =
+                item.dataset.file;
+
+            const image =
+                item.dataset.image;
+
+            if (fileName) {
+
+                setSystemMessage(
+                    `${fileName} selected`
+                );
+
+            }
+
+            if (image) {
+
+                setSystemMessage(
+                    `${image.split("/").pop()} selected`
+                );
+
+            }
+
+        }
+    );
+
+
+    item.addEventListener(
         "dblclick",
         () => {
 
@@ -100,6 +154,28 @@ desktopItems.forEach(item => {
             const fileName =
                 item.dataset.file;
 
+            const image =
+                item.dataset.image;
+
+
+            // IMAGE FILE
+
+            if (image) {
+
+                recordDiscovery(
+                    image
+                );
+
+                openPhotoPreview(
+                    image,
+                    image.split("/").pop()
+                );
+
+                return;
+            }
+
+
+            // NORMAL FILE
 
             if (fileName) {
 
@@ -109,57 +185,30 @@ desktopItems.forEach(item => {
             }
 
 
-            if (
-                windowName === "school"
-            ) {
+            // FOLDERS / APPS
 
+            if (windowName === "school") {
                 openSchool();
-
             }
 
-
-            if (
-                windowName === "photos"
-            ) {
-
+            if (windowName === "photos") {
                 openPhotos();
-
             }
 
-
-            if (
-                windowName === "downloads"
-            ) {
-
+            if (windowName === "downloads") {
                 openDownloads();
-
             }
 
-
-            if (
-                windowName === "browser"
-            ) {
-
+            if (windowName === "browser") {
                 openBrowser();
-
             }
 
-
-            if (
-                windowName === "notes"
-            ) {
-
+            if (windowName === "notes") {
                 openNotes();
-
             }
 
-
-            if (
-                windowName === "trash"
-            ) {
-
+            if (windowName === "trash") {
                 openTrash();
-
             }
 
         }
@@ -169,26 +218,39 @@ desktopItems.forEach(item => {
 
 
 // ==========================================
-// START MENU
+// APPLE MENU
 // ==========================================
 
-const startButton =
+const appleLogo =
     document.getElementById(
-        "start-button"
+        "apple-logo"
+    );
+
+const appleMenu =
+    document.getElementById(
+        "apple-menu"
     );
 
 
-const startMenu =
-    document.getElementById(
-        "start-menu"
-    );
+appleLogo.addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        appleMenu.classList.toggle(
+            "visible"
+        );
+
+    }
+);
 
 
-startButton.addEventListener(
+document.addEventListener(
     "click",
     () => {
 
-        startMenu.classList.toggle(
+        appleMenu.classList.remove(
             "visible"
         );
 
@@ -277,8 +339,7 @@ function makeDraggable(
         );
 
 
-    let dragging =
-        false;
+    let dragging = false;
 
     let offsetX = 0;
     let offsetY = 0;
@@ -293,9 +354,7 @@ function makeDraggable(
                     "close-button"
                 )
             ) {
-
                 return;
-
             }
 
 
@@ -351,12 +410,12 @@ function makeDraggable(
 
             top =
                 Math.max(
-                    0,
+                    30,
                     Math.min(
                         top,
                         window.innerHeight -
                         windowElement.offsetHeight -
-                        43
+                        15
                     )
                 );
 
@@ -385,7 +444,7 @@ function makeDraggable(
 
 
 // ==========================================
-// SCHOOL FOLDER
+// SCHOOL
 // ==========================================
 
 function openSchool() {
@@ -395,15 +454,11 @@ function openSchool() {
             "school-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "school"
-    );
+    recordDiscovery("school");
 
 
     const content = `
@@ -417,9 +472,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    Essay.docx
-                </span>
+                <span>Essay.docx</span>
 
             </div>
 
@@ -431,9 +484,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    Essay (1).docx
-                </span>
+                <span>Essay (1).docx</span>
 
             </div>
 
@@ -445,9 +496,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    resume_FINAL2.pdf
-                </span>
+                <span>resume_FINAL2.pdf</span>
 
             </div>
 
@@ -459,9 +508,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    resume_FINAL_FINAL.pdf
-                </span>
+                <span>resume_FINAL_FINAL.pdf</span>
 
             </div>
 
@@ -473,9 +520,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    Class Schedule.pdf
-                </span>
+                <span>Class Schedule.pdf</span>
 
             </div>
 
@@ -487,9 +532,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    things_to_do.txt
-                </span>
+                <span>things_to_do.txt</span>
 
             </div>
 
@@ -501,9 +544,7 @@ function openSchool() {
                     📄
                 </div>
 
-                <span>
-                    Untitled.docx
-                </span>
+                <span>Untitled.docx</span>
 
             </div>
 
@@ -515,8 +556,22 @@ function openSchool() {
                     📁
                 </div>
 
+                <span>old stuff</span>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="file"
+                 data-image="images/form.png">
+
+                <div class="file-icon">
+                    🖼️
+                </div>
+
                 <span>
-                    old stuff
+                    form.png
                 </span>
 
             </div>
@@ -555,21 +610,16 @@ function openPhotos() {
             "photos-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "photos"
-    );
+    recordDiscovery("photos");
 
 
     const content = `
 
         <div class="window-content photo-grid">
-
 
             <div class="photo">
 
@@ -656,9 +706,7 @@ function openPhotos() {
             () => {
 
                 const image =
-                    photo.querySelector(
-                        "img"
-                    );
+                    photo.querySelector("img");
 
 
                 recordDiscovery(
@@ -708,7 +756,6 @@ function openPhotoPreview(
     preview.id =
         "photo-preview";
 
-
     preview.className =
         "photo-preview";
 
@@ -736,9 +783,7 @@ function openPhotoPreview(
                 >
 
                 <div class="preview-name">
-
                     ${name}
-
                 </div>
 
             </div>
@@ -749,18 +794,12 @@ function openPhotoPreview(
 
 
     document
-        .getElementById(
-            "desktop"
-        )
-        .appendChild(
-            preview
-        );
+        .getElementById("desktop")
+        .appendChild(preview);
 
 
     preview
-        .querySelector(
-            ".close-button"
-        )
+        .querySelector(".close-button")
         .addEventListener(
             "click",
             () => {
@@ -769,6 +808,22 @@ function openPhotoPreview(
 
             }
         );
+
+
+    preview.addEventListener(
+        "dblclick",
+        event => {
+
+            if (
+                event.target === preview
+            ) {
+
+                preview.remove();
+
+            }
+
+        }
+    );
 
 }
 
@@ -784,15 +839,11 @@ function openDownloads() {
             "downloads-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "downloads"
-    );
+    recordDiscovery("downloads");
 
 
     const content = `
@@ -801,7 +852,7 @@ function openDownloads() {
 
 
             <div class="file"
-                 data-file="Screenshot_2024-10-17.png">
+                 data-image="images/Screenshot_2024-10-17.png">
 
                 <div class="file-icon">
                     🖼️
@@ -917,28 +968,19 @@ function openBrowser() {
             "browser-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "browser"
-    );
+    recordDiscovery("browser");
 
 
     const content = `
 
         <div class="browser-toolbar">
 
-            <button>
-                ←
-            </button>
-
-            <button>
-                →
-            </button>
+            <button>←</button>
+            <button>→</button>
 
             <input
                 class="address-bar"
@@ -951,9 +993,7 @@ function openBrowser() {
 
         <div class="browser-page">
 
-            <h1>
-                History
-            </h1>
+            <h1>History</h1>
 
             <p>
                 Recent activity
@@ -962,136 +1002,88 @@ function openBrowser() {
 
             <ul class="search-history">
 
-
                 <li>
-
                     Canvas
-
                     <span class="search-date">
                         Aug 28
                     </span>
-
                 </li>
 
-
                 <li>
-
                     UTD academic calendar
-
                     <span class="search-date">
                         Sep 3
                     </span>
-
                 </li>
 
-
                 <li>
-
                     cheap meals near campus
-
                     <span class="search-date">
                         Sep 16
                     </span>
-
                 </li>
 
-
                 <li>
-
                     how to make a resume
-
                     <span class="search-date">
                         Oct 4
                     </span>
-
                 </li>
 
-
                 <li>
-
                     Photoshop shortcuts
-
                     <span class="search-date">
                         Nov 12
                     </span>
-
                 </li>
 
-
                 <li>
-
                     graduation requirements
-
                     <span class="search-date">
                         Mar 19
                     </span>
-
                 </li>
 
-
                 <li>
-
                     jobs for recent graduates
-
                     <span class="search-date">
                         Apr 2
                     </span>
-
                 </li>
 
-
                 <li>
-
                     apartments near downtown
-
                     <span class="search-date">
                         Apr 11
                     </span>
-
                 </li>
 
-
                 <li>
-
                     how much does it cost to move
-
                     <span class="search-date">
                         Apr 20
                     </span>
-
                 </li>
 
-
                 <li>
-
                     moving checklist
-
                     <span class="search-date">
                         May 3
                     </span>
-
                 </li>
 
-
                 <li>
-
                     transfer files to new computer
-
                     <span class="search-date">
                         May 17
                     </span>
-
                 </li>
 
-
                 <li>
-
                     factory reset laptop
-
                     <span class="search-date">
                         May 18
                     </span>
-
                 </li>
 
             </ul>
@@ -1126,149 +1118,65 @@ function openNotes() {
             "notes-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "notes"
-    );
+    recordDiscovery("notes");
 
 
     const content = `
 
         <div class="notes-content">
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    01
-                </span>
-
-                <p>
-                    buy toothpaste
-                </p>
-
+                <span class="note-number">01</span>
+                <p>buy toothpaste</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    02
-                </span>
-
-                <p>
-                    email professor
-                </p>
-
+                <span class="note-number">02</span>
+                <p>email professor</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    03
-                </span>
-
-                <p>
-                    return library books
-                </p>
-
+                <span class="note-number">03</span>
+                <p>return library books</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    04
-                </span>
-
-                <p>
-                    call mom
-                </p>
-
+                <span class="note-number">04</span>
+                <p>call mom</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    05
-                </span>
-
-                <p>
-                    find boxes
-                </p>
-
+                <span class="note-number">05</span>
+                <p>find boxes</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    06
-                </span>
-
-                <p>
-                    cancel internet
-                </p>
-
+                <span class="note-number">06</span>
+                <p>cancel internet</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    07
-                </span>
-
-                <p>
-                    clean out fridge
-                </p>
-
+                <span class="note-number">07</span>
+                <p>clean out fridge</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    08
-                </span>
-
-                <p>
-                    give keys back Friday
-                </p>
-
+                <span class="note-number">08</span>
+                <p>give keys back Friday</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    09
-                </span>
-
-                <p>
-                    don't forget the laptop
-                </p>
-
+                <span class="note-number">09</span>
+                <p>don't forget the laptop</p>
             </div>
 
-
             <div class="note-line">
-
-                <span class="note-number">
-                    10
-                </span>
-
-                <p>
-                    I think I'm ready
-                </p>
-
+                <span class="note-number">10</span>
+                <p>I think I'm ready</p>
             </div>
 
         </div>
@@ -1300,24 +1208,19 @@ function openTrash() {
             "trash-window"
         )
     ) {
-
         return;
-
     }
 
 
-    recordDiscovery(
-        "trash"
-    );
+    recordDiscovery("trash");
 
 
     const content = `
 
         <div class="window-content">
 
-
             <div class="file"
-                 data-file="IMG_1002.JPG">
+                 data-image="images/photo5.jpg">
 
                 <div class="file-icon">
                     🖼️
@@ -1431,6 +1334,24 @@ function attachFileListeners(
                 const fileName =
                     file.dataset.file;
 
+                const image =
+                    file.dataset.image;
+
+
+                if (image) {
+
+                    recordDiscovery(
+                        image
+                    );
+
+                    openPhotoPreview(
+                        image,
+                        image.split("/").pop()
+                    );
+
+                    return;
+                }
+
 
                 if (fileName) {
 
@@ -1454,6 +1375,7 @@ function attachFileListeners(
 
 const fileContents = {
 
+
     "things_to_do.txt": `
 
         <h3>things_to_do.txt</h3>
@@ -1462,29 +1384,12 @@ const fileContents = {
             modified May 17
         </div>
 
-        <p>
-            email professor
-        </p>
-
-        <p>
-            finish portfolio
-        </p>
-
-        <p>
-            clean room
-        </p>
-
-        <p>
-            return books
-        </p>
-
-        <p>
-            find boxes
-        </p>
-
-        <p>
-            cancel internet
-        </p>
+        <p>email professor</p>
+        <p>finish portfolio</p>
+        <p>clean room</p>
+        <p>return books</p>
+        <p>find boxes</p>
+        <p>cancel internet</p>
 
         <p>
             figure out what to do with the computer
@@ -1501,41 +1406,23 @@ const fileContents = {
             modified April 3
         </div>
 
-        <p>
-            EDUCATION
-        </p>
+        <p>EDUCATION</p>
 
-        <p>
-            Bachelor of Arts
-        </p>
+        <p>Bachelor of Arts</p>
 
-        <p>
-            Expected Graduation: May
-        </p>
+        <p>Expected Graduation: May</p>
 
-        <p>
-            EXPERIENCE
-        </p>
+        <p>EXPERIENCE</p>
 
-        <p>
-            Student Assistant
-        </p>
+        <p>Student Assistant</p>
 
-        <p>
-            Design Intern
-        </p>
+        <p>Design Intern</p>
 
-        <p>
-            SKILLS
-        </p>
+        <p>SKILLS</p>
 
-        <p>
-            Adobe Creative Cloud
-        </p>
+        <p>Adobe Creative Cloud</p>
 
-        <p>
-            HTML / CSS
-        </p>
+        <p>HTML / CSS</p>
 
     `,
 
@@ -1548,13 +1435,9 @@ const fileContents = {
             modified April 4
         </div>
 
-        <p>
-            Same resume.
-        </p>
+        <p>Same resume.</p>
 
-        <p>
-            Slightly different formatting.
-        </p>
+        <p>Slightly different formatting.</p>
 
         <p>
             Why are there so many copies of this.
@@ -1571,41 +1454,18 @@ const fileContents = {
             Fall Semester
         </div>
 
-        <p>
-            Monday
-        </p>
+        <p>Monday</p>
+        <p>10:00 — Class</p>
+        <p>2:00 — Class</p>
 
-        <p>
-            10:00 — Class
-        </p>
+        <p>Tuesday</p>
+        <p>9:30 — Work</p>
 
-        <p>
-            2:00 — Class
-        </p>
+        <p>Wednesday</p>
+        <p>10:00 — Class</p>
 
-        <p>
-            Tuesday
-        </p>
-
-        <p>
-            9:30 — Work
-        </p>
-
-        <p>
-            Wednesday
-        </p>
-
-        <p>
-            10:00 — Class
-        </p>
-
-        <p>
-            Friday
-        </p>
-
-        <p>
-            11:00 — Class
-        </p>
+        <p>Friday</p>
+        <p>11:00 — Class</p>
 
     `,
 
@@ -1630,59 +1490,17 @@ const fileContents = {
     `,
 
 
-    "Screenshot_2024-10-17.png": `
-
-        <h3>
-            Screenshot_2024-10-17.png
-        </h3>
-
-        <div class="file-date">
-            screenshot
-        </div>
-
-        <p>
-            A screenshot from an old conversation.
-        </p>
-
-        <p>
-            The original conversation is no longer
-            on the computer.
-        </p>
-
-    `,
-
-
     "moving checklist.txt": `
 
         <h3>moving checklist.txt</h3>
 
-        <p>
-            [x] clothes
-        </p>
-
-        <p>
-            [x] books
-        </p>
-
-        <p>
-            [x] kitchen
-        </p>
-
-        <p>
-            [x] desk
-        </p>
-
-        <p>
-            [x] apartment
-        </p>
-
-        <p>
-            [x] keys
-        </p>
-
-        <p>
-            [ ] laptop
-        </p>
+        <p>[x] clothes</p>
+        <p>[x] books</p>
+        <p>[x] kitchen</p>
+        <p>[x] desk</p>
+        <p>[x] apartment</p>
+        <p>[x] keys</p>
+        <p>[ ] laptop</p>
 
     `,
 
@@ -1691,25 +1509,12 @@ const fileContents = {
 
         <h3>backup_complete.txt</h3>
 
-        <p>
-            Backup finished.
-        </p>
+        <p>Backup finished.</p>
 
-        <p>
-            Photos: complete
-        </p>
-
-        <p>
-            Documents: complete
-        </p>
-
-        <p>
-            Personal files: complete
-        </p>
-
-        <p>
-            Music: complete
-        </p>
+        <p>Photos: complete</p>
+        <p>Documents: complete</p>
+        <p>Personal files: complete</p>
+        <p>Music: complete</p>
 
         <br>
 
@@ -1728,21 +1533,12 @@ const fileContents = {
             archive created 2023
         </div>
 
-        <p>
-            382 files
-        </p>
+        <p>382 files</p>
+        <p>14 videos</p>
+        <p>2 folders</p>
 
         <p>
-            14 videos
-        </p>
-
-        <p>
-            2 folders
-        </p>
-
-        <p>
-            Last opened:
-            2023
+            Last opened: 2023
         </p>
 
     `,
@@ -1752,31 +1548,15 @@ const fileContents = {
 
         <h3>old schedule.pdf</h3>
 
-        <p>
-            Monday — 8:00 AM
-        </p>
-
-        <p>
-            Tuesday — 11:00 AM
-        </p>
-
-        <p>
-            Wednesday — 8:00 AM
-        </p>
-
-        <p>
-            Thursday — 11:00 AM
-        </p>
-
-        <p>
-            Friday — No class
-        </p>
+        <p>Monday — 8:00 AM</p>
+        <p>Tuesday — 11:00 AM</p>
+        <p>Wednesday — 8:00 AM</p>
+        <p>Thursday — 11:00 AM</p>
+        <p>Friday — No class</p>
 
         <br>
 
-        <p>
-            Semester 1
-        </p>
+        <p>Semester 1</p>
 
     `,
 
@@ -1785,22 +1565,16 @@ const fileContents = {
 
         <h3>resume.docx</h3>
 
-        <p>
-            Objective:
-        </p>
+        <p>Objective:</p>
 
         <p>
             Looking for an opportunity to gain
             experience.
         </p>
 
-        <p>
-            Experience:
-        </p>
+        <p>Experience:</p>
 
-        <p>
-            None yet.
-        </p>
+        <p>None yet.</p>
 
     `,
 
@@ -1815,21 +1589,6 @@ const fileContents = {
 
         <p>
             The original image is unavailable.
-        </p>
-
-    `,
-
-
-    "IMG_1002.JPG": `
-
-        <h3>IMG_1002.JPG</h3>
-
-        <p>
-            Deleted photograph.
-        </p>
-
-        <p>
-            The file preview is unavailable.
         </p>
 
     `,
@@ -1870,18 +1629,14 @@ const fileContents = {
             modified November 12
         </div>
 
-        <p>
-            Introduction
-        </p>
+        <p>Introduction</p>
 
         <p>
-            Technology is something we interact with
-            every day...
+            Technology is something we interact
+            with every day...
         </p>
 
-        <p>
-            [unfinished]
-        </p>
+        <p>[unfinished]</p>
 
     `,
 
@@ -1907,9 +1662,7 @@ const fileContents = {
 // OPEN FILE
 // ==========================================
 
-function openFile(
-    fileName
-) {
+function openFile(fileName) {
 
     const safeName =
         fileName.replace(
@@ -1919,16 +1672,13 @@ function openFile(
 
 
     const id =
-        "file-" +
-        safeName;
+        "file-" + safeName;
 
 
     if (
         document.getElementById(id)
     ) {
-
         return;
-
     }
 
 
@@ -1981,61 +1731,91 @@ function openFile(
 
 
 // ==========================================
-// SYSTEM MESSAGE
+// DOCK
 // ==========================================
 
-function setSystemMessage(
-    message
-) {
-
-    const systemMessage =
-        document.getElementById(
-            "system-message"
-        );
-
-
-    systemMessage.textContent =
-        message;
-
-
-    setTimeout(
-        () => {
-
-            systemMessage.textContent =
-                "Ready";
-
-        },
-        2500
+const dockIcons =
+    document.querySelectorAll(
+        ".dock-icon"
     );
 
-}
+
+dockIcons.forEach(icon => {
+
+    icon.addEventListener(
+        "click",
+        () => {
+
+            const destination =
+                icon.dataset.dock;
 
 
-// ==========================================
-// DESKTOP DOUBLE CLICK FEEDBACK
-// ==========================================
+            if (
+                destination === "finder"
+            ) {
 
-desktopItems.forEach(
-    item => {
+                openSchool();
 
-        item.addEventListener(
-            "click",
-            () => {
-
-                const fileName =
-                    item.dataset.file;
-
-
-                if (fileName) {
-
-                    setSystemMessage(
-                        `${fileName} selected`
-                    );
-
-                }
+                return;
 
             }
-        );
 
-    }
-);
+
+            if (
+                destination === "browser"
+            ) {
+
+                openBrowser();
+
+                return;
+
+            }
+
+
+            if (
+                destination === "photos"
+            ) {
+
+                openPhotos();
+
+                return;
+
+            }
+
+
+            if (
+                destination === "notes"
+            ) {
+
+                openNotes();
+
+                return;
+
+            }
+
+
+            if (
+                destination === "downloads"
+            ) {
+
+                openDownloads();
+
+                return;
+
+            }
+
+
+            if (
+                destination === "trash"
+            ) {
+
+                openTrash();
+
+                return;
+
+            }
+
+        }
+    );
+
+});
